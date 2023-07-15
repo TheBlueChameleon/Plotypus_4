@@ -1,0 +1,99 @@
+@startuml;
+
+interface Scriptable {}
+interface Textable {}
+interface Serializable {}
+
+annotation CompatiblityTag {}
+
+abstract Collection<T> {}
+
+' ---------------------------------------------------------------------------- '
+
+Report -up-> Scriptable
+Report -up-> Collection : T=AbstractSheet
+Report -up-> Collection : T=AbstractStyle
+
+Report -right-* TerminalInfoProvider
+' ---------------------------------------------------------------------------- '
+
+abstract AbstractOverlay {}
+AbstractOverlay -up-> Scriptable
+AbstractOverlay -right-* Position
+
+Label -up-> AbstractOverlay
+Arrow -up-> AbstractOverlay
+
+abstract AbstractShape {}
+AbstractShape -up-> AbstractOverlay
+
+RectangleShape -up-> AbstractShape
+EllipseShape -up-> AbstractShape
+CircleShape -up-> AbstractShape
+PolygonShape -up-> AbstractShape
+
+' ---------------------------------------------------------------------------- '
+
+abstract AbstractStyle {}
+AbstractStyle -up-> Scriptable
+
+LineStyle -up-> AbstractStyle
+PointStyle -up-> AbstractStyle
+BoxStyle -up-> AbstractStyle
+ArrowStyle -up-> AbstractStyle
+
+' ---------------------------------------------------------------------------- '
+
+abstract AbstractSheet {}
+AbstractSheet -up-> Scriptable
+AbstractSheet -up-> Collection : T=AbstractOverlay
+
+EmptySheet -up-> AbstractSheet
+Multiplot -up-> AbstractSheet
+Multiplot -up-> Collection : T=AbstractSheet
+
+abstract AbstractPlot {}
+AbstractPlot -up-> AbstractSheet
+AbstractPlot -up-> Collection : T=AbstractDataview
+
+AbstractPlot -right-* AxisDescriptor
+AbstractPlot --* KeyDescriptor
+AbstractPlot --* PaletteDescriptor
+
+abstract PlotOrthogonal {}
+PlotOrthogonal -up-> AbstractPlot
+
+PlotOrtho2D -up-> PlotOrthogonal
+PlotOrtho3D -up-> PlotOrthogonal
+PlotPie -up-> AbstractPlot
+
+' ---------------------------------------------------------------------------- '
+
+abstract AbstractDataview {}
+AbstractDataview -up-> Scriptable
+AbstractDataview -up-> Textable
+AbstractDataview -up-> Serializable
+AbstractDataview -up-* CompatiblityTag
+
+interface SequenceDataview {}
+interface MatrixDataview {}
+interface CompoundDataview {}
+interface SimpleDataview {}
+
+CompoundSequenceDataview -up-> AbstractDataview
+CompoundSequenceDataview -up-> SequenceDataview
+CompoundSequenceDataview -up-> CompoundDataview
+
+SimpleSequenceDataview -up-> AbstractDataview
+SimpleSequenceDataview -up-> SequenceDataview
+SimpleSequenceDataview -up-> SimpleDataview
+
+SimpleMatrixDataview -up-> AbstractDataview
+SimpleMatrixDataview -up-> MatrixDataview
+SimpleMatrixDataview -up-> SimpleDataview
+
+CompoundMatrixDataview -up-> AbstractDataview
+CompoundMatrixDataview -up-> MatrixDataview
+CompoundMatrixDataview -up-> CompoundDataview
+
+@enduml;

@@ -1,0 +1,14 @@
+@startuml;
+
+interface Scriptable {
+    # std::string options
+    ---
+    ..attribute access..
+    + std::string getOptions()
+    + Scriptable setOptions()
+    + Scriptable clearOptions()
+    ..writer commands..
+    + {abstract} void writeScript(std::ostream& hFile)
+}
+
+@enduml;

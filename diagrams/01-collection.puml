@@ -1,0 +1,15 @@
+@startuml;
+
+abstract Collection<T> {
+    - std::vector<T*> data
+    ---
+    # const std::vector<T*> expose() const;
+    ..read access..
+    # const size_t size() const;
+    # T& operator[](size_t idx);
+    ..modifying access..
+    # Collection<T>& add(T* element);
+    # Collection<T>& clear();
+}
+
+@enduml;

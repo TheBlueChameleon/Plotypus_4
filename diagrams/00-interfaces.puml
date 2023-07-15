@@ -1,0 +1,49 @@
+@startuml;
+
+interface Persistable {}
+
+interface Scriptable {}
+Scriptable -up-> Persistable
+
+interface Serializable {}
+Serializable -up-> Persistable
+
+interface Textable {}
+Textable -up-> Persistable
+
+interface Style {}
+Style -up-> Scriptable
+
+interface Sheet {}
+Sheet -up-> Scriptable
+
+interface Plot {}
+Plot -up-> Sheet
+
+interface Overlay {}
+Overlay -up-> Scriptable
+
+interface Shape {}
+Shape -up-> Overlay
+
+interface PlotElement {}
+PlotElement -up-* Plot
+
+annotation CompatiblityTag {}
+CompatiblityTag -up-* PlotElement
+
+interface Dataview {}
+Dataview -up-> Textable
+Dataview -up-> Serializable
+Dataview -up-* PlotElement
+
+interface SimpleDataview {}
+SimpleDataview -up-> Dataview
+interface CompoundDataview {}
+CompoundDataview -up-> Dataview
+
+interface PlotFormat {}
+PlotFormat -up-* PlotElement
+PlotFormat -up-> Scriptable
+
+@enduml;

@@ -1,0 +1,10 @@
+@startuml;
+
+interface Persistable {
+    - fs::path filename
+    ---
+    + std::ofstream getFileStream()
+    + std::stringsteam getStringStream()
+}
+
+@enduml;

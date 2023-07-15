@@ -1,0 +1,22 @@
+@startuml;
+!include 01-scriptable.puml
+!include 01-collection.puml
+!include 01-persistable.puml
+
+class Report {
+    - TerminalInfoProvider tip
+    ---
+    + void compile(bool run = true)
+    + void writeScript()
+}
+Report -up-> Collection : T=Style
+Report -up-> Collection : T=Sheet
+
+class TerminalInfoProvider {
+
+}
+TerminalInfoProvider -up-* Report
+TerminalInfoProvider -up-> Persistable
+TerminalInfoProvider -up-> Scriptable
+
+@enduml;

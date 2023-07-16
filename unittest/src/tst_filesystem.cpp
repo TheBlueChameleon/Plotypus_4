@@ -129,17 +129,10 @@ TEST_F(TempDir_Fixture, OutputPathProvider_Test)
     EXPECT_EQ(actual, expected);
 }
 
-class PersistableImplStub : public PersistableImpl
-{
-    public:
-        // Persistable interface
-        void write(std::ostream& hFile) {}
-};
-
 TEST_F(TempDir_Fixture, PersistableImpl_Test)
 {
     auto opp = OutputPathProvider();
-    auto pis = PersistableImplStub();
+    auto pis = PersistableImpl();
 
     // test in implicit CWD
     std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);

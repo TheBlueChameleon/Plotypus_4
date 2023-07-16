@@ -7,18 +7,19 @@
 
 namespace Plotypus
 {
-//    class Report :
-//        public Scriptable,
-//        public OutputPathProvider
-//    {
-//        private:
-//        public:
-//            Report();
+    class Report :
+        public Scriptable,
+        public PersistableImpl,
+        public OutputPathProvider
+    {
+        private:
+        public:
+            Report();
 
-//            // Scriptable interface
-//            bool validate();
-//            void write(std::ostream& hFile);
-//    };
+            // Scriptable interface
+            bool validateScript();
+            void writeScript(std::ostream& hFile);
+    };
 }
 
 #endif // REPORT_H

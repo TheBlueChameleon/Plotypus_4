@@ -30,6 +30,7 @@ namespace Plotypus
         Default,
         Rounded,
         Butt,
+        Square
     };
 
     //! @todo add more formats

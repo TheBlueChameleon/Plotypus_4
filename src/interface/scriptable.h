@@ -1,13 +1,14 @@
 #ifndef SCRIPTABLE_H
 #define SCRIPTABLE_H
 
-#include "persistable.h"
-
 namespace Plotypus
 {
-    struct Scriptable : public Persistable
+    struct Scriptable
     {
+        virtual void reset() = 0;
+
         virtual bool validateScript() = 0;
+        virtual void writeScript(std::ostream& hFile) = 0;
     };
 }
 

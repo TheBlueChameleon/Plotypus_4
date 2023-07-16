@@ -12,10 +12,9 @@ namespace Plotypus
         return file;
     }
 
-    PersistableImpl& PersistableImpl::setFile(const std::filesystem::path& newFile)
+    void PersistableImpl::setFile(const std::filesystem::path& newFile)
     {
         file = newFile;
-        return *this;
     }
 
     bool PersistableImpl::getMakePaths() const
@@ -23,10 +22,9 @@ namespace Plotypus
         return makePaths;
     }
 
-    PersistableImpl& PersistableImpl::setMakePaths(bool newMakePaths)
+    void PersistableImpl::setMakePaths(bool newMakePaths)
     {
         makePaths = newMakePaths;
-        return *this;
     }
 
     bool PersistableImpl::getOverwrite() const
@@ -34,10 +32,9 @@ namespace Plotypus
         return overwrite;
     }
 
-    PersistableImpl& PersistableImpl::setOverwrite(bool newOverwrite)
+    void PersistableImpl::setOverwrite(bool newOverwrite)
     {
         overwrite = newOverwrite;
-        return *this;
     }
 
     std::ofstream PersistableImpl::getFileStream()
@@ -73,7 +70,7 @@ namespace Plotypus
         }
 
         const auto& parentDir = file.parent_path();
-        if (parentDir.empty())
+        if (parentDir.empty()) // implicitly in CWD -- always valid
         {
             return ValidationResult::SUCCESS;
         }

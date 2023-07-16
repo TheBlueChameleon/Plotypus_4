@@ -1,20 +1,17 @@
 #ifndef SCRIPTABLEIMPL_H
 #define SCRIPTABLEIMPL_H
 
-#include "../interface/customizable.h"
+#include "../interface/fragment.h"
 
 namespace Plotypus
 {
-    class CustomizableImpl : public Customizable
+    class CustomizableFragment : public Fragment
     {
         protected:
             std::optional<std::string> options;
 
         public:
-            CustomizableImpl() = default;
-
-            // Customizable interface
-            virtual void reset();
+            CustomizableFragment() = default;
 
             std::optional<std::string> getOptions() const;
             std::string getOptionsOrDefault(const std::string& defaultValue) const;
@@ -22,6 +19,7 @@ namespace Plotypus
             void clearOptions();
 
             // Fragment interface
+            void reset();
             std::string generateScriptFragment() const;
     };
 }

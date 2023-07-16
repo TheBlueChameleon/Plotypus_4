@@ -7,28 +7,30 @@
 
 namespace Plotypus
 {
-    class FontFragment : public Fragment
+    namespace TerminalInfo
     {
-        protected:
-            std::string font = "Sans,12";
+        class FontFragment : public Fragment
+        {
+            protected:
+                std::string font = "Sans,12";
 
-        private:
-            std::pair<std::string_view, std::string_view> findHalves() const;
+            private:
+                std::pair<std::string_view, std::string_view> findHalves() const;
 
-        public:
-            FontFragment() = default;
+            public:
+                FontFragment() = default;
 
-            const std::string_view                 getFont() const;
-            const std::string_view                 getFontFace() const;
-            const int                              getFontSize() const;
-            const std::pair<std::string_view, int> getFontData() const;
+                const std::string_view                 getFont() const;
+                const std::string_view                 getFontFace() const;
+                const int                              getFontSize() const;
+                const std::pair<std::string_view, int> getFontData() const;
 
-            void setFont(const std::string& newFontFace, const int newFontSize);
+                void setFont(const std::string& newFontFace, const int newFontSize);
 
-            // Fragment interface
-            void reset();
-            std::string generateScriptFragment() const;
-    };
+                // Fragment interface
+                void reset();
+                std::string generateScriptFragment() const;
+        };
+    }
 }
-
 #endif // FONTFRAGMENT_H

@@ -24,7 +24,7 @@ add_library(Plotypus-lib SHARED
     src/typesystem/types.h
 
     src/interface/collection.h
-    src/interface/customizable.h
+    # src/interface/customizable.h
     src/interface/fragment.h
     src/interface/persistable.h
     src/interface/scriptable.h
@@ -32,20 +32,22 @@ add_library(Plotypus-lib SHARED
     src/interface/terminalInfoProvider.h
     src/interface/textable.h
 
-    src/base/customizableImpl.h src/base/customizableImpl.cpp
+    src/base/customizableFragment.h src/base/customizableFragment.cpp
     src/base/persistableimpl.h src/base/persistableimpl.cpp
     src/base/polymorphiclist.h src/base/polymorphiclist.txx
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
 
     src/base/terminalInfoProvider/backgroundfragment.h src/base/terminalInfoProvider/backgroundfragment.cpp
     src/base/terminalInfoProvider/colorfragment.h src/base/terminalInfoProvider/colorfragment.cpp
+    src/base/terminalInfoProvider/continuoussizefragment.h src/base/terminalInfoProvider/continuoussizefragment.cpp
     src/base/terminalInfoProvider/enhancedfragment.h src/base/terminalInfoProvider/enhancedfragment.cpp
     src/base/terminalInfoProvider/fontfragment.h src/base/terminalInfoProvider/fontfragment.cpp
     src/base/terminalInfoProvider/lineendsfragment.h src/base/terminalInfoProvider/lineendsfragment.cpp
 
     src/report/outputPathProvider.h src/report/outputPathProvider.cpp
     src/report/report.h src/report/report.cpp
-    src/report/terminalInfoProvider/tip_pdfcairo.h src/report/terminalInfoProvider/tip_pdfcairo.cpp
+
+    src/report/terminalInfoProvider/pdfcairo.h src/report/terminalInfoProvider/pdfcairo.cpp
 )
 
 set_target_properties(Plotypus-lib PROPERTIES

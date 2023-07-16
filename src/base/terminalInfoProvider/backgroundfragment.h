@@ -5,22 +5,25 @@
 
 namespace Plotypus
 {
-    class BackgroundFragment : public Fragment
+    namespace TerminalInfo
     {
-        protected:
-            std::optional<std::string> background = "";
+        class BackgroundFragment : public Fragment
+        {
+            protected:
+                std::optional<std::string> background = "";
 
-        public:
-            BackgroundFragment() = default;
+            public:
+                BackgroundFragment() = default;
 
-            std::optional<std::string> getBackground() const;
-            void setBackground(const std::string& newBackground);
-            void clearBackground();
+                std::optional<std::string> getBackground() const;
+                void setBackground(const std::string& newBackground);
+                void clearBackground();
 
-            // Fragment interface
-            void reset();
-            std::string generateScriptFragment() const;
-    };
+                // Fragment interface
+                void reset();
+                std::string generateScriptFragment() const;
+        };
+    }
 }
 
 #endif // BACKGROUNDFRAGMENT_H

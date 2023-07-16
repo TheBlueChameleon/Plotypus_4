@@ -2,32 +2,33 @@
 
 namespace Plotypus
 {
-
-    bool EnhancedFragment::getEnhanced() const
+    namespace TerminalInfo
     {
-        return enhanced;
-    }
-
-    void EnhancedFragment::setEnhanced(bool newEnhanced)
-    {
-        enhanced = newEnhanced;
-    }
-
-    void EnhancedFragment::reset()
-    {
-        enhanced = true;
-    }
-
-    std::string EnhancedFragment::generateScriptFragment() const
-    {
-        if (enhanced)
+        bool EnhancedFragment::getEnhanced() const
         {
-            return "enhanced";
+            return enhanced;
         }
-        else
+
+        void EnhancedFragment::setEnhanced(bool newEnhanced)
         {
-            return "noenhanced";
+            enhanced = newEnhanced;
+        }
+
+        void EnhancedFragment::reset()
+        {
+            enhanced = true;
+        }
+
+        std::string EnhancedFragment::generateScriptFragment() const
+        {
+            if (enhanced)
+            {
+                return "enhanced ";
+            }
+            else
+            {
+                return "noenhanced ";
+            }
         }
     }
-
 }

@@ -6,21 +6,24 @@
 
 namespace Plotypus
 {
-    class LineEndsFragment : public Fragment
+    namespace TerminalInfo
     {
-        protected:
-            LineEnds lineEnds = LineEnds::Default;
+        class LineEndsFragment : public Fragment
+        {
+            protected:
+                LineEnds lineEnds = LineEnds::Default;
 
-        public:
-            LineEndsFragment() = default;
+            public:
+                LineEndsFragment() = default;
 
-            LineEnds getLineEnds() const;
-            void setLineEnds(LineEnds newLineEnds);
+                LineEnds getLineEnds() const;
+                void setLineEnds(LineEnds newLineEnds);
 
-            // Fragment interface
-            void reset();
-            std::string generateScriptFragment() const;
-    };
+                // Fragment interface
+                void reset();
+                std::string generateScriptFragment() const;
+        };
+    }
 }
 
 #endif // LINEENDSFRAGMENT_H

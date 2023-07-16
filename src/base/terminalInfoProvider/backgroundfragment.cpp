@@ -1,38 +1,39 @@
 #include "backgroundfragment.h"
 
-
-
 namespace Plotypus
 {
-    std::optional<std::string> BackgroundFragment::getBackground() const
+    namespace TerminalInfo
     {
-        return background;
-    }
-
-    void BackgroundFragment::setBackground(const std::string& newBackground)
-    {
-        background = newBackground;
-    }
-
-    void BackgroundFragment::clearBackground()
-    {
-        background.reset();
-    }
-
-    void BackgroundFragment::reset()
-    {
-        clearBackground();
-    }
-
-    std::string BackgroundFragment::generateScriptFragment() const
-    {
-        if (background.has_value())
+        std::optional<std::string> BackgroundFragment::getBackground() const
         {
-            return "background " + background.value();
+            return background;
         }
-        else
+
+        void BackgroundFragment::setBackground(const std::string& newBackground)
         {
-            return "";
+            background = newBackground;
+        }
+
+        void BackgroundFragment::clearBackground()
+        {
+            background.reset();
+        }
+
+        void BackgroundFragment::reset()
+        {
+            clearBackground();
+        }
+
+        std::string BackgroundFragment::generateScriptFragment() const
+        {
+            if (background.has_value())
+            {
+                return "background " + background.value() + " ";
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

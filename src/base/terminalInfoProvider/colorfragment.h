@@ -5,19 +5,22 @@
 
 namespace Plotypus
 {
-    class ColorFragment : public Fragment
+    namespace TerminalInfo
     {
-        protected:
-            bool color = true;
+        class ColorFragment : public Fragment
+        {
+            protected:
+                bool color = true;
 
-        public:
-            ColorFragment() = default;
-            bool getColor() const;
-            void setColor(bool newColor);
+            public:
+                ColorFragment() = default;
+                bool getColor() const;
+                void setColor(bool newColor);
 
-            // Fragment interface
-            void reset();
-            std::string generateScriptFragment() const;
-    };
+                // Fragment interface
+                void reset();
+                std::string generateScriptFragment() const;
+        };
+    }
 }
 #endif // COLORFRAGMENT_H

@@ -6,15 +6,12 @@ namespace Plotypus
     struct TerminalInfoProvider : public Scriptable
     {
         protected:
-            std::filesystem::path target;
+            std::filesystem::path fileCreatedByScript;
 
         public:
-            TerminalInfoProvider(const std::filesystem::path& target) : target(target) {}
+            TerminalInfoProvider(const std::filesystem::path& fileCreatedByScript) : fileCreatedByScript(fileCreatedByScript) {}
 
-            // Scriptable interface
-            virtual void reset() = 0;
-            virtual bool validateScript() = 0;
-            virtual void writeScript(std::ostream& hFile) = 0;
+            virtual std::string getDefaultExtension() = 0;
     };
 }
 

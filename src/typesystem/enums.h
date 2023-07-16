@@ -21,6 +21,7 @@ namespace Plotypus
 
     enum class LengthUnit
     {
+        Default,
         Inch,
         Centimeter,
     };

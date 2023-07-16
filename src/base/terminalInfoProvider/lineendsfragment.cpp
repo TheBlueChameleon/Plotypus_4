@@ -3,37 +3,38 @@
 
 namespace Plotypus
 {
-
-    LineEnds LineEndsFragment::getLineEnds() const
+    namespace TerminalInfo
     {
-        return lineEnds;
-    }
-
-    void LineEndsFragment::setLineEnds(LineEnds newLineEnds)
-    {
-        lineEnds = newLineEnds;
-    }
-
-    void LineEndsFragment::reset()
-    {
-        lineEnds = LineEnds::Default;
-    }
-
-    std::string LineEndsFragment::generateScriptFragment() const
-    {
-        switch (lineEnds)
+        LineEnds LineEndsFragment::getLineEnds() const
         {
-            case LineEnds::Default:
-                return "";
-            case LineEnds::Rounded:
-                return "rounded";
-            case LineEnds::Square:
-                return "square";
-            case LineEnds::Butt:
-                return "butt";
+            return lineEnds;
         }
 
-        throw InvalidArgumentError("Unknown LineEnds type.");
-    }
+        void LineEndsFragment::setLineEnds(LineEnds newLineEnds)
+        {
+            lineEnds = newLineEnds;
+        }
 
+        void LineEndsFragment::reset()
+        {
+            lineEnds = LineEnds::Default;
+        }
+
+        std::string LineEndsFragment::generateScriptFragment() const
+        {
+            switch (lineEnds)
+            {
+                case LineEnds::Default:
+                    return "";
+                case LineEnds::Rounded:
+                    return "rounded ";
+                case LineEnds::Square:
+                    return "square ";
+                case LineEnds::Butt:
+                    return "butt ";
+            }
+
+            throw InvalidArgumentError("Unknown LineEnds type.");
+        }
+    }
 }

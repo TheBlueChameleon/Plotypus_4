@@ -2,30 +2,33 @@
 
 namespace Plotypus
 {
-    bool ColorFragment::getColor() const
+    namespace TerminalInfo
     {
-        return color;
-    }
-
-    void ColorFragment::setColor(bool newColor)
-    {
-        color = newColor;
-    }
-
-    void ColorFragment::reset()
-    {
-        color = true;
-    }
-
-    std::string ColorFragment::generateScriptFragment() const
-    {
-        if (color)
+        bool ColorFragment::getColor() const
         {
-            return "color";
+            return color;
         }
-        else
+
+        void ColorFragment::setColor(bool newColor)
         {
-            return "mono";
+            color = newColor;
+        }
+
+        void ColorFragment::reset()
+        {
+            color = true;
+        }
+
+        std::string ColorFragment::generateScriptFragment() const
+        {
+            if (color)
+            {
+                return "color ";
+            }
+            else
+            {
+                return "mono ";
+            }
         }
     }
 }

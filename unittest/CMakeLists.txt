@@ -53,7 +53,7 @@ include_directories(${GTestIncludes})
 add_executable(Plotypus_Test
     src/main.cpp
     src/tst_collection_test.cpp
-    src/tst_foo_test.cpp
+    src/tst_filesystem.cpp
 
     ${GTestFiles}
 )
@@ -66,5 +66,6 @@ target_include_directories(Plotypus_Test
 )
 target_link_libraries(Plotypus_Test
     PRIVATE Threads::Threads
+    PRIVATE Plotypus-lib
 )
 

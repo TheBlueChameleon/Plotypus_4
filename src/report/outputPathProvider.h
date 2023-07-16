@@ -41,7 +41,7 @@ namespace Plotypus
             const std::string& getExtension(const GeneratedFileType filetype) const;
             OutputPathProvider& setExtension(const GeneratedFileType filetype, const std::string& newExtension);
 
-            std::filesystem::path getOutputPath(const GeneratedFileType filetype, const std::string& infix = "") const;
+            std::filesystem::path getOutputPath(const GeneratedFileType filetype, const std::string& infix) const;
             std::filesystem::path getOutputPath(const GeneratedFileType filetype, const int page = -1, const int subplot = -1) const;
 
             std::string getOutputPathString(const GeneratedFileType filetype, const std::string& infix) const;

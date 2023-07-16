@@ -21,6 +21,11 @@ class TempDir_Fixture : public ::testing::Test
         static std::filesystem::path nonExistingFile;
         static bool ready;
 
+        static constexpr auto existingSubdirName = "existingSubDir";
+        static constexpr auto nonExistingSubdirName = "nonExistingSubDir";
+        static constexpr auto existingFileName = "existingFile";
+        static constexpr auto nonExistingFileName = "nonExistingFile";
+
         static void createDirOrStop(const std::filesystem::path& path)
         {
             if (!ready)
@@ -61,15 +66,15 @@ class TempDir_Fixture : public ::testing::Test
             root /= "PlotypusTest";
             createDirOrStop(root);
 
-            existingSubdir = root / "existingSubDir";
+            existingSubdir = root / existingSubdirName;
             createDirOrStop(existingSubdir);
 
-            nonExistingSubdir = root / "existingSubDir";
+            nonExistingSubdir = root / nonExistingSubdirName;
 
-            existingFile = existingSubdir / "file";
+            existingFile = existingSubdir / existingFileName;
             createFileOrStop(existingFile);
 
-            nonExistingFile  = existingSubdir / "nonExistingFile";
+            nonExistingFile  = existingSubdir / nonExistingFileName;
         }
 
         static void TearDownTestSuite()
@@ -77,15 +82,13 @@ class TempDir_Fixture : public ::testing::Test
             std::filesystem::remove_all(root);
         }
 
-        void SetUp()
+        void SetUp() override
         {
             ASSERT_TRUE(ready);
         }
 
-        void TearDown()
-        {
-            std::cout << "TearDown T#" << std::endl;
-        }
+        void TearDown () override
+        {}
 
 };
 
@@ -117,14 +120,82 @@ TEST_F(TempDir_Fixture, OutputPathProvider_Test)
     actual = opp.getOutputPathString(OutputPathProvider::GeneratedFileType::Report, 99, 1);
     EXPECT_EQ(actual, expected);
 
+    // actually no checks for invalid characters in filenames
     opp.setBaseDirectory("<invalid>");
+    opp.setBaseFilename("<invalid>");
+    opp.setExtension(OutputPathProvider::GeneratedFileType::Report, "<invalid>");
+    expected = "<invalid>/<invalid>.<invalid>";
+    actual = opp.getOutputPathString(OutputPathProvider::GeneratedFileType::Report);
+    EXPECT_EQ(actual, expected);
 }
 
-
-TEST_F(TempDir_Fixture, Second_Test)
+class PersistableImplStub : public PersistableImpl
 {
-    EXPECT_EQ(1, 1);
-    ASSERT_THAT(0, Eq(0));
+    public:
+        // Persistable interface
+        void write(std::ostream& hFile) {}
+};
 
-    std::cout << "running T2" << std::endl;
+TEST_F(TempDir_Fixture, PersistableImpl_Test)
+{
+    auto opp = OutputPathProvider();
+    auto pis = PersistableImplStub();
+
+    // test in implicit CWD
+    std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
+    pis.setFile(filename);
+
+    auto expected = ValidationResult::SUCCESS;
+    auto actual = pis.validateFilename();
+    EXPECT_EQ(actual, expected);
+
+    // test in explicit/absolute dir, nonexisting
+    pis.setFile(nonExistingFile);
+
+    expected = ValidationResult::SUCCESS;
+    actual = pis.validateFilename();
+    EXPECT_EQ(actual, expected);
+
+    // test in explicit/absolute dir, existing
+    pis.setFile(existingFile);
+
+    auto not_expected = ValidationResult::SUCCESS;
+    actual = pis.validateFilename();
+    ASSERT_THAT(actual, Ne(not_expected));
+
+    auto actualValue = actual.value().what();
+    auto expectedValue = "already exists.";
+    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+
+    // allow overwriting
+    pis.setOverwrite(true);
+    expected = ValidationResult::SUCCESS;
+    actual = pis.validateFilename();
+    EXPECT_EQ(actual, expected);
+
+    // non-existing dir
+    pis.setFile(nonExistingSubdir / "foo");
+    actual = pis.validateFilename();
+    ASSERT_THAT(actual, Ne(not_expected));
+
+    actualValue = actual.value().what();
+    expectedValue = "does not exist.";
+    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+
+    // allow make dirs
+    pis.setMakePaths(true);
+    expected = ValidationResult::SUCCESS;
+    actual = pis.validateFilename();
+    EXPECT_EQ(actual, expected);
+
+    // parent "dir" is a file
+    pis.setMakePaths(true);
+    pis.setFile(existingFile / "foo");
+    not_expected = ValidationResult::SUCCESS;
+    actual = pis.validateFilename();
+    ASSERT_THAT(actual, Ne(not_expected));
+
+    actualValue = actual.value().what();
+    expectedValue = "is not a directory.";
+    EXPECT_THAT(actualValue, EndsWith(expectedValue));
 }

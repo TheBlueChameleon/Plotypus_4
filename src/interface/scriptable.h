@@ -7,7 +7,7 @@ namespace Plotypus
 {
     struct Scriptable : public Persistable
     {
-        virtual bool validate() = 0;
+        virtual bool validateScript() = 0;
     };
 }
 

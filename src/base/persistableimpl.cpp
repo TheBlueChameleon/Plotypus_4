@@ -43,15 +43,17 @@ namespace Plotypus
     std::ofstream PersistableImpl::getFileStream()
     {
         const auto validation = validateFilename();
-        if (validation.has_value())
+        validation.trigger();
+
+        const std::string filename = file.string();
+        auto hFile = std::ofstream(filename, std::ios_base::out);
+
+        if (!hFile.is_open())
         {
-            throw validation.value();
+            throw FileIOError("Could not create file: "s + filename);
         }
-        else
-        {
-            auto hFile = std::ofstream(file.string(), std::ios_base::out);
-            return hFile;
-        }
+
+        return hFile;
     }
 
     std::ostringstream PersistableImpl::getStringStream()
@@ -59,21 +61,21 @@ namespace Plotypus
         return std::ostringstream();
     }
 
-    const auto failure = makeValidationResult<FileIOError>;
+    const auto failure = ValidationResult::makeValidationResult<FileIOError>;
     ValidationResult PersistableImpl::validateFilename()
     {
         if (!overwrite)
         {
-            if (!std::filesystem::exists(file))
+            if (std::filesystem::exists(file))
             {
                 return failure("File '"s + file.string() + "' already exists.");
             }
         }
 
         const auto& parentDir = file.parent_path();
-        if (!std::filesystem::is_directory(parentDir))
+        if (parentDir.empty())
         {
-            return failure("'"s + parentDir.string() + "' is not a directory.");
+            return ValidationResult::SUCCESS;
         }
 
         if (!makePaths)
@@ -83,7 +85,14 @@ namespace Plotypus
                 return failure("Directory '"s + parentDir.string() + "' does not exist.");
             }
         }
+        else
+        {
+            if (std::filesystem::exists(parentDir) && !std::filesystem::is_directory(parentDir))
+            {
+                return failure("'"s + parentDir.string() + "' is not a directory.");
+            }
+        }
 
-        return VALIDATION_SUCCESS;
+        return ValidationResult::SUCCESS;
     }
 }

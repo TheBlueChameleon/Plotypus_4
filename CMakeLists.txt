@@ -19,7 +19,7 @@ add_library(Plotypus-lib SHARED
 
     src/typesystem/concepts.h
     src/typesystem/constants.h
-    src/typesystem/errors.h
+    src/typesystem/errors.h src/typesystem/errors.cpp
     src/typesystem/enums.h
     src/typesystem/types.h
 
@@ -29,6 +29,7 @@ add_library(Plotypus-lib SHARED
     src/interface/serializable.h
     src/interface/textable.h
 
+    src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
     src/base/persistableimpl.h src/base/persistableimpl.cpp
     src/base/polymorphiclist.h src/base/polymorphiclist.txx
 

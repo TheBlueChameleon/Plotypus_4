@@ -5,11 +5,13 @@
 
 namespace Plotypus
 {
-    // *INDENT-OFF*
-    class PlotypusError : public std::runtime_error {
-        public : PlotypusError (const std::string& m) : std::runtime_error(m) {};
+    class PlotypusError : public std::runtime_error
+    {
+        public :
+            PlotypusError (const std::string& m);
+
+            bool operator==(const PlotypusError& other) const;
     };
-    // *INDENT-ON*
 
 #define PLOTYPUS_ERROR(ErrorClassName) \
     class ErrorClassName : public PlotypusError { \

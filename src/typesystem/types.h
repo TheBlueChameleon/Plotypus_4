@@ -7,28 +7,6 @@
 namespace Plotypus
 {
     // ====================================================================== //
-    // errors
-
-    using ValidationResult = std::optional<PlotypusError>;
-
-    //! @brief returns a failed validation
-    template<typename T>
-    requires Derivative<T, PlotypusError>
-    ValidationResult makeValidationResult(const std::optional<std::string> message = std::optional<std::string>())
-    {
-        if (message.has_value())
-        {
-            return std::optional<T>(message.value());
-        }
-        else
-        {
-            return std::optional<T>();
-        }
-    }
-
-    const ValidationResult VALIDATION_SUCCESS = ValidationResult();
-
-    // ====================================================================== //
     // selectors
 
     template <typename T>

@@ -4,6 +4,7 @@
 #include <optional>
 
 #include "../typesystem/types.h"
+#include "../base/validationresult.h"
 
 namespace Plotypus
 {

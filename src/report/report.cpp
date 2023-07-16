@@ -2,10 +2,10 @@
 
 namespace Plotypus
 {
-    Report::Report()
-    {
+//    Report::Report()
+//    {
 
-    }
+//    }
 
 //    void Report::writeScript(std::ostream& hFile) const {}
 }

@@ -8,9 +8,11 @@
 #include "interface/collection.h"
 #include "interface/persistable.h"
 #include "interface/scriptable.h"
+#include "interface/serializable.h"
 #include "interface/textable.h"
 
 #include "base/polymorphiclist.h"
+#include "base/persistableimpl.h"
 
 #include "report/report.h"
 

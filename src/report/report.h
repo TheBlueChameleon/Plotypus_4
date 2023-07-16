@@ -3,17 +3,22 @@
 
 #include "../interface/scriptable.h"
 
+#include "outputPathProvider.h"
+
 namespace Plotypus
 {
-    class Report :
-        public Scriptable
-    {
-        public:
-            Report();
+//    class Report :
+//        public Scriptable,
+//        public OutputPathProvider
+//    {
+//        private:
+//        public:
+//            Report();
 
-            // Scriptable interface
-            //void writeScript(std::ostream& hFile) const;
-    };
+//            // Scriptable interface
+//            bool validate();
+//            void write(std::ostream& hFile);
+//    };
 }
 
 #endif // REPORT_H

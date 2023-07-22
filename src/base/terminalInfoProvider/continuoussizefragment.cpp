@@ -1,4 +1,5 @@
 #include "continuoussizefragment.h"
+#include <iostream>
 
 namespace Plotypus
 {
@@ -9,8 +10,23 @@ namespace Plotypus
             return size;
         }
 
+        void ContinuousSizeFragment::setSize(const double width, const double height)
+        {
+            setSize(std::make_pair(width, height));
+        }
+
         void ContinuousSizeFragment::setSize(ContinuousCoordinate_t newSize)
         {
+            if (newSize.first <= 0)
+            {
+                throw InvalidArgumentError("Attempted to set non-positive width");
+            }
+
+            if (newSize.second <= 0)
+            {
+                throw InvalidArgumentError("Attempted to set non-positive height");
+            }
+
             size = newSize;
         }
 
@@ -20,17 +36,17 @@ namespace Plotypus
         }
 
 
-        std::optional<LengthUnit> ContinuousSizeFragment::getUnit() const
+        std::optional<LengthUnit> ContinuousSizeFragment::getSizeUnit() const
         {
             return unit;
         }
 
-        void ContinuousSizeFragment::setUnit(LengthUnit newUnit)
+        void ContinuousSizeFragment::setSizeUnit(LengthUnit newUnit)
         {
             unit = newUnit;
         }
 
-        void ContinuousSizeFragment::clearUnit()
+        void ContinuousSizeFragment::clearSizeUnit()
         {
             unit.reset();
         }
@@ -52,10 +68,13 @@ namespace Plotypus
                 {
                     case Plotypus::LengthUnit::Default:
                         unitString = "";
+                        break;
                     case Plotypus::LengthUnit::Centimeter:
                         unitString = "cm";
+                        break;
                     case Plotypus::LengthUnit::Inch:
                         unitString = "in";
+                        break;
                 }
 
                 return "size " +

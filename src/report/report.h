@@ -15,7 +15,7 @@ namespace Plotypus
         public OutputPathProvider
     {
         private:
-            bool autoSetChildFileNames = true;
+            bool autoUpdateChildFileNames = true;
             PersistableImpl scriptPersistable;
 
             TerminalInfoProvider* tip = nullptr;
@@ -26,8 +26,8 @@ namespace Plotypus
         public:
             Report();
 
-            bool getSetUpdateChildFileNames() const;
-            void setSetUpdateChildFileNames(const bool newSetUpdateChildFileNames);
+            bool getAutoUpdateChildFileNames() const;
+            void setAutoUpdateChildFileNames(const bool newSetUpdateChildFileNames);
             void setChildFileNames();
 
             Persistable& getScriptFile();

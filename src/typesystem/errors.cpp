@@ -10,7 +10,7 @@ namespace Plotypus
     {
         if (typeid(*this) == typeid(other))
         {
-            return std::strcmp(this->what(), other.what());
+            return std::strcmp(this->what(), other.what()) == 0;
         }
         else
         {

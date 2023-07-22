@@ -14,14 +14,14 @@ namespace Plotypus
         installTerminal<TerminalInfo::PdfCairo>();
     }
 
-    bool Report::getSetUpdateChildFileNames() const
+    bool Report::getAutoUpdateChildFileNames() const
     {
-        return autoSetChildFileNames;
+        return autoUpdateChildFileNames;
     }
 
-    void Report::setSetUpdateChildFileNames(const bool newSetUpdateChildFileNames)
+    void Report::setAutoUpdateChildFileNames(const bool newSetUpdateChildFileNames)
     {
-        autoSetChildFileNames = newSetUpdateChildFileNames;
+        autoUpdateChildFileNames = newSetUpdateChildFileNames;
     }
 
     void Report::setChildFileNames()
@@ -84,7 +84,7 @@ namespace Plotypus
 
     void Report::compile()
     {
-        if (autoSetChildFileNames)
+        if (autoUpdateChildFileNames)
         {
             setChildFileNames();
         }
@@ -128,7 +128,7 @@ namespace Plotypus
             tip->reset();
         }
 
-        autoSetChildFileNames = true;
+        autoUpdateChildFileNames = true;
         scriptPersistable.reset();
     }
 

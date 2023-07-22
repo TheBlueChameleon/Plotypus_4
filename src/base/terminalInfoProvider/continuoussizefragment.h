@@ -17,12 +17,13 @@ namespace Plotypus
                 ContinuousSizeFragment() = default;
 
                 std::optional<ContinuousCoordinate_t> getSize() const;
+                void setSize(const double width, const double height);
                 void setSize(ContinuousCoordinate_t newSize);
                 void clearSize();
 
-                std::optional<LengthUnit> getUnit() const;
-                void setUnit(LengthUnit newUnit);
-                void clearUnit();
+                std::optional<LengthUnit> getSizeUnit() const;
+                void setSizeUnit(LengthUnit newUnit);
+                void clearSizeUnit();
 
                 // Fragment interface
                 void reset();

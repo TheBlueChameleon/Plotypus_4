@@ -14,12 +14,10 @@ namespace Plotypus
         public:
             ValidationResult() = default;
 
-            template<typename T>
-            requires Derivative<T, PlotypusError>
+            template<ErrorType T>
             ValidationResult(const T& error);
 
-            template<typename T>
-            requires Derivative<T, PlotypusError>
+            template<ErrorType T>
             static ValidationResult makeValidationResult(const std::optional<std::string> message = std::optional<std::string>());
 
             const PlotypusError& getError() const;

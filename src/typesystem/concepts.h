@@ -3,14 +3,22 @@
 
 #include <concepts>
 
-template<typename Derived, typename Base>
-concept Derivative = requires {std::derived_from<Derived, Base>;};
-
-template<typename T>
-concept Iterable = requires(T x)
+namespace Plotypus
 {
-    x.begin();
-    x.end();
-    typename T::iterator_category;
-};
+    template<typename T>
+    concept ErrorType = requires {std::derived_from<T, PlotypusError>;};
+
+    class TerminalInfoProvider;
+    template<typename T>
+    concept TerminalInfoProviderType = requires {std::derived_from<T, TerminalInfoProvider>;};
+
+    template<typename T>
+    concept Iterable = requires(T x)
+    {
+        x.begin();
+        x.end();
+        typename T::iterator_category;
+    };
+}
+
 #endif // CONCEPTS_H

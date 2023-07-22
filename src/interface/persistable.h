@@ -22,10 +22,10 @@ namespace Plotypus
         virtual bool getOverwrite() const = 0;
         virtual void setOverwrite(bool newOverwrite) = 0;
 
-        virtual std::ofstream getFileStream() = 0;
+        virtual std::ofstream getFileStream() const = 0;
         virtual std::ostringstream getStringStream() = 0;
 
-        virtual ValidationResult validate() = 0;
+        virtual ValidationResult validate() const = 0;
     };
 }
 

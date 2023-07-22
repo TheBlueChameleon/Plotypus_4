@@ -7,6 +7,10 @@ using namespace std::string_literals;
 
 namespace Plotypus
 {
+    PersistableImpl::PersistableImpl(const std::filesystem::path& file) :
+        file(file)
+    {}
+
     void PersistableImpl::reset()
     {
         file.clear();
@@ -44,10 +48,8 @@ namespace Plotypus
         overwrite = newOverwrite;
     }
 
-    std::ofstream PersistableImpl::getFileStream()
+    std::ofstream PersistableImpl::getFileStream() const
     {
-        validate().trigger();
-
         const std::string filename = file.string();
         auto hFile = std::ofstream(filename, std::ios_base::out);
 
@@ -65,7 +67,7 @@ namespace Plotypus
     }
 
     const auto failure = ValidationResult::makeValidationResult<FileIOError>;
-    ValidationResult PersistableImpl::validate()
+    ValidationResult PersistableImpl::validate() const
     {
         if (!overwrite)
         {

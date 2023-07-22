@@ -21,6 +21,7 @@ namespace Plotypus
     PLOTYPUS_ERROR(InvalidFilenameError);
     PLOTYPUS_ERROR(InvalidIndexError);
     PLOTYPUS_ERROR(InvalidArgumentError);
+    PLOTYPUS_ERROR(InvalidTypeError);
 
     PLOTYPUS_ERROR(FileIOError);
 

@@ -1,8 +1,7 @@
 #ifndef TIP_PDFCAIRO_H
 #define TIP_PDFCAIRO_H
 
-#include "../../interface/terminalInfoProvider.h"
-
+#include "../../base/terminalInfoProvider/abstractterminalinfoprovider.h"
 #include "../../base/terminalInfoProvider/enhancedfragment.h"
 #include "../../base/terminalInfoProvider/colorfragment.h"
 #include "../../base/terminalInfoProvider/fontfragment.h"
@@ -16,7 +15,7 @@ namespace Plotypus
     namespace TerminalInfo
     {
         class PdfCairo :
-            public TerminalInfoProvider,
+            public AbstractTerminalInfoProvider,
 
             public EnhancedFragment,
             public ColorFragment,
@@ -31,7 +30,7 @@ namespace Plotypus
 
                 // Scriptable interface
                 void reset();
-                ValidationResult validateScript();
+                ValidationResult validate() const;
                 void writeScript(std::ostream& hFile);
 
                 // TerminalInfoProvider interface

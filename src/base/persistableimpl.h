@@ -16,7 +16,7 @@ namespace Plotypus
             bool overwrite = false;
 
         public:
-            PersistableImpl() = default;
+            PersistableImpl(const std::filesystem::path& file);
 
             // Persistable interface
             void reset();
@@ -30,10 +30,10 @@ namespace Plotypus
             bool getOverwrite() const;
             void setOverwrite(bool newOverwrite);
 
-            virtual std::ofstream getFileStream();
+            virtual std::ofstream getFileStream() const;
             virtual std::ostringstream getStringStream();
 
-            ValidationResult validate();
+            ValidationResult validate() const;
     };
 }
 

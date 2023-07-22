@@ -6,11 +6,12 @@ namespace Plotypus
     namespace TerminalInfo
     {
         PdfCairo::PdfCairo(const std::filesystem::path& fileCreatedByScript) :
-            TerminalInfoProvider(fileCreatedByScript)
+            AbstractTerminalInfoProvider(fileCreatedByScript)
         {}
 
         void PdfCairo::reset()
         {
+            AbstractTerminalInfoProvider::reset();
             EnhancedFragment::reset();
             ColorFragment::reset();
             FontFragment::reset();
@@ -20,9 +21,9 @@ namespace Plotypus
             UserCodeFragment::reset();
         }
 
-        ValidationResult PdfCairo::validateScript()
+        ValidationResult PdfCairo::validate() const
         {
-            if (fileCreatedByScript.empty())
+            if (getFileCreatedByScript().empty())
             {
                 return ValidationResult::makeValidationResult<InvalidFilenameError>("No filename for the output PDF was set");
             }

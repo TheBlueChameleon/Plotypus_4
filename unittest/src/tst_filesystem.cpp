@@ -132,7 +132,7 @@ TEST_F(TempDir_Fixture, OutputPathProvider_Test)
 TEST_F(TempDir_Fixture, PersistableImpl_Test)
 {
     auto opp = OutputPathProvider();
-    auto pis = PersistableImpl();
+    auto pis = PersistableImpl("");
 
     // test in implicit CWD
     std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
@@ -168,6 +168,10 @@ TEST_F(TempDir_Fixture, PersistableImpl_Test)
 
     // non-existing dir
     pis.setPath(nonExistingSubdir / "foo");
+    actual = pis.validate();
+    EXPECT_EQ(actual, expected);
+
+    pis.setMakeDirectories(false);
     actual = pis.validate();
     ASSERT_THAT(actual, Ne(not_expected));
 

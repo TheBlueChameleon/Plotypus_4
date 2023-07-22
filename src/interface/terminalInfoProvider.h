@@ -7,19 +7,16 @@ namespace Plotypus
 {
     struct TerminalInfoProvider : public Scriptable
     {
-        protected:
-            std::filesystem::path fileCreatedByScript;
+        virtual std::string getDefaultExtension() = 0;
 
-        public:
-            TerminalInfoProvider(const std::filesystem::path& fileCreatedByScript) : fileCreatedByScript(fileCreatedByScript) {}
+        virtual const std::filesystem::path& getFileCreatedByScript() const = 0;
+        virtual void setFileCreatedByScript(const std::filesystem::path& newFileCreatedByScript) = 0;
 
-            virtual std::string getDefaultExtension() = 0;
-
-            template<TerminalInfoProviderType T>
-            T& as()
-            {
-                return dynamic_cast<T>(*this);
-            }
+        template<TerminalInfoProviderType T>
+        T& as()
+        {
+            return dynamic_cast<T>(*this);
+        }
     };
 }
 

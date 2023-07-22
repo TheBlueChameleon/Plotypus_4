@@ -26,6 +26,8 @@ add_library(Plotypus-lib SHARED
     src/interface/collection.h
     src/interface/fragment.h
     src/interface/persistable.h
+    src/interface/namedtype.h
+    src/interface/nonAssignable.h
     src/interface/scriptable.h
     src/interface/serializable.h
     src/interface/terminalInfoProvider.h
@@ -36,6 +38,7 @@ add_library(Plotypus-lib SHARED
     src/base/polymorphiclist.h src/base/polymorphiclist.txx
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
 
+    src/base/terminalInfoProvider/abstractterminalinfoprovider.h src/base/terminalInfoProvider/abstractterminalinfoprovider.cpp
     src/base/terminalInfoProvider/backgroundfragment.h src/base/terminalInfoProvider/backgroundfragment.cpp
     src/base/terminalInfoProvider/colorfragment.h src/base/terminalInfoProvider/colorfragment.cpp
     src/base/terminalInfoProvider/continuoussizefragment.h src/base/terminalInfoProvider/continuoussizefragment.cpp
@@ -44,7 +47,7 @@ add_library(Plotypus-lib SHARED
     src/base/terminalInfoProvider/lineendsfragment.h src/base/terminalInfoProvider/lineendsfragment.cpp
 
     src/report/outputPathProvider.h src/report/outputPathProvider.cpp
-    src/report/report.h src/report/report.cpp
+    src/report/report.h src/report/report.txx src/report/report.cpp
 
     src/report/terminalInfoProvider/pdfcairo.h src/report/terminalInfoProvider/pdfcairo.cpp
 )

@@ -6,9 +6,13 @@
 #include "typesystem/concepts.h"
 
 #include "interface/collection.h"
+#include "interface/fragment.h"
+#include "interface/namedtype.h"
+#include "interface/nonAssignable.h"
 #include "interface/persistable.h"
 #include "interface/scriptable.h"
 #include "interface/serializable.h"
+#include "interface/terminalInfoProvider.h""
 #include "interface/textable.h"
 
 #include "base/polymorphiclist.h"

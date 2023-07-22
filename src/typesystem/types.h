@@ -1,8 +1,9 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include <tuple>
+#include <functional>
 #include <optional>
+#include <tuple>
 
 namespace Plotypus
 {

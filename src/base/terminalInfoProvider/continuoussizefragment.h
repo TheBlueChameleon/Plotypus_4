@@ -11,7 +11,7 @@ namespace Plotypus
         {
             protected:
                 std::optional<ContinuousCoordinate_t> size;
-                LengthUnit                            unit;
+                std::optional<LengthUnit>             unit;
 
             public:
                 ContinuousSizeFragment() = default;
@@ -20,8 +20,9 @@ namespace Plotypus
                 void setSize(ContinuousCoordinate_t newSize);
                 void clearSize();
 
-                LengthUnit getUnit() const;
+                std::optional<LengthUnit> getUnit() const;
                 void setUnit(LengthUnit newUnit);
+                void clearUnit();
 
                 // Fragment interface
                 void reset();

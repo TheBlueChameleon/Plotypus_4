@@ -24,7 +24,6 @@ add_library(Plotypus-lib SHARED
     src/typesystem/types.h
 
     src/interface/collection.h
-    # src/interface/customizable.h
     src/interface/fragment.h
     src/interface/persistable.h
     src/interface/scriptable.h
@@ -32,7 +31,7 @@ add_library(Plotypus-lib SHARED
     src/interface/terminalInfoProvider.h
     src/interface/textable.h
 
-    src/base/customizableFragment.h src/base/customizableFragment.cpp
+    src/base/userCodeFragment.h src/base/userCodeFragment.cpp
     src/base/persistableimpl.h src/base/persistableimpl.cpp
     src/base/polymorphiclist.h src/base/polymorphiclist.txx
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp

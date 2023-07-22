@@ -12,6 +12,10 @@ namespace Plotypus
     template <typename T>
     using DataSelector_t = std::function<double (const T&)>;
 
+
+    template <typename T>
+    using TextSelector_t = std::function<const std::string& (const T&)>;
+
     // ====================================================================== //
     // positions
 

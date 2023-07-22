@@ -33,13 +33,13 @@ namespace Plotypus
             void reset();
 
             const std::filesystem::path& getBaseDirectory() const;
-            OutputPathProvider& setBaseDirectory(const std::filesystem::path& newBaseDirectory);
+            void setBaseDirectory(const std::filesystem::path& newBaseDirectory);
 
             const std::string& getBaseFilename() const;
-            OutputPathProvider& setBaseFilename(const std::string& newBaseFilename);
+            void setBaseFilename(const std::string& newBaseFilename);
 
             const std::string& getExtension(const GeneratedFileType filetype) const;
-            OutputPathProvider& setExtension(const GeneratedFileType filetype, const std::string& newExtension);
+            void setExtension(const GeneratedFileType filetype, const std::string& newExtension);
 
             std::filesystem::path getOutputPath(const GeneratedFileType filetype, const std::string& infix) const;
             std::filesystem::path getOutputPath(const GeneratedFileType filetype, const int page = -1, const int subplot = -1) const;

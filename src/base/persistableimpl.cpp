@@ -7,24 +7,31 @@ using namespace std::string_literals;
 
 namespace Plotypus
 {
-    const std::filesystem::path& PersistableImpl::getFile() const
+    void PersistableImpl::reset()
+    {
+        file.clear();
+        makeDirectories = false;
+        overwrite = false;
+    }
+
+    const std::filesystem::path& PersistableImpl::getPath() const
     {
         return file;
     }
 
-    void PersistableImpl::setFile(const std::filesystem::path& newFile)
+    void PersistableImpl::setPath(const std::filesystem::path& newFile)
     {
         file = newFile;
     }
 
-    bool PersistableImpl::getMakePaths() const
+    bool PersistableImpl::getMakeDirectories() const
     {
-        return makePaths;
+        return makeDirectories;
     }
 
-    void PersistableImpl::setMakePaths(bool newMakePaths)
+    void PersistableImpl::setMakeDirectories(bool newMakePaths)
     {
-        makePaths = newMakePaths;
+        makeDirectories = newMakePaths;
     }
 
     bool PersistableImpl::getOverwrite() const
@@ -39,8 +46,7 @@ namespace Plotypus
 
     std::ofstream PersistableImpl::getFileStream()
     {
-        const auto validation = validateFilename();
-        validation.trigger();
+        validate().trigger();
 
         const std::string filename = file.string();
         auto hFile = std::ofstream(filename, std::ios_base::out);
@@ -59,7 +65,7 @@ namespace Plotypus
     }
 
     const auto failure = ValidationResult::makeValidationResult<FileIOError>;
-    ValidationResult PersistableImpl::validateFilename()
+    ValidationResult PersistableImpl::validate()
     {
         if (!overwrite)
         {
@@ -75,7 +81,7 @@ namespace Plotypus
             return ValidationResult::SUCCESS;
         }
 
-        if (!makePaths)
+        if (!makeDirectories)
         {
             if (!std::filesystem::exists(parentDir))
             {

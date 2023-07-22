@@ -136,59 +136,59 @@ TEST_F(TempDir_Fixture, PersistableImpl_Test)
 
     // test in implicit CWD
     std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
-    pis.setFile(filename);
+    pis.setPath(filename);
 
     auto expected = ValidationResult::SUCCESS;
-    auto actual = pis.validateFilename();
+    auto actual = pis.validate();
     EXPECT_EQ(actual, expected);
 
     // test in explicit/absolute dir, nonexisting
-    pis.setFile(nonExistingFile);
+    pis.setPath(nonExistingFile);
 
     expected = ValidationResult::SUCCESS;
-    actual = pis.validateFilename();
+    actual = pis.validate();
     EXPECT_EQ(actual, expected);
 
     // test in explicit/absolute dir, existing
-    pis.setFile(existingFile);
+    pis.setPath(existingFile);
 
     auto not_expected = ValidationResult::SUCCESS;
-    actual = pis.validateFilename();
+    actual = pis.validate();
     ASSERT_THAT(actual, Ne(not_expected));
 
-    auto actualValue = actual.value().what();
+    auto actualValue = actual.getError().what();
     auto expectedValue = "already exists.";
     EXPECT_THAT(actualValue, EndsWith(expectedValue));
 
     // allow overwriting
     pis.setOverwrite(true);
     expected = ValidationResult::SUCCESS;
-    actual = pis.validateFilename();
+    actual = pis.validate();
     EXPECT_EQ(actual, expected);
 
     // non-existing dir
-    pis.setFile(nonExistingSubdir / "foo");
-    actual = pis.validateFilename();
+    pis.setPath(nonExistingSubdir / "foo");
+    actual = pis.validate();
     ASSERT_THAT(actual, Ne(not_expected));
 
-    actualValue = actual.value().what();
+    actualValue = actual.getError().what();
     expectedValue = "does not exist.";
     EXPECT_THAT(actualValue, EndsWith(expectedValue));
 
     // allow make dirs
-    pis.setMakePaths(true);
+    pis.setMakeDirectories(true);
     expected = ValidationResult::SUCCESS;
-    actual = pis.validateFilename();
+    actual = pis.validate();
     EXPECT_EQ(actual, expected);
 
     // parent "dir" is a file
-    pis.setMakePaths(true);
-    pis.setFile(existingFile / "foo");
+    pis.setMakeDirectories(true);
+    pis.setPath(existingFile / "foo");
     not_expected = ValidationResult::SUCCESS;
-    actual = pis.validateFilename();
+    actual = pis.validate();
     ASSERT_THAT(actual, Ne(not_expected));
 
-    actualValue = actual.value().what();
+    actualValue = actual.getError().what();
     expectedValue = "is not a directory.";
     EXPECT_THAT(actualValue, EndsWith(expectedValue));
 }

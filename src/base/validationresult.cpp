@@ -14,7 +14,7 @@ namespace Plotypus
     // ====================================================================== //
     // proper code
 
-    const PlotypusError& ValidationResult::value() const
+    const PlotypusError& ValidationResult::getError() const
     {
         if (error.has_value())
         {
@@ -22,7 +22,7 @@ namespace Plotypus
         }
         else
         {
-            throw UnsupportedOperationError("FOO");
+            throw UnsupportedOperationError("No error to get from this ValidationResult.");
         }
     }
 
@@ -30,7 +30,7 @@ namespace Plotypus
     {
         if(error.has_value())
         {
-            throw error;
+            throw error.value();
         }
     }
 
@@ -52,8 +52,8 @@ namespace Plotypus
         else
         {
             // both validate not ok
-            const auto& thisError = this->value();
-            const auto& otherError = other.value();
+            const auto& thisError = this->getError();
+            const auto& otherError = other.getError();
 
             return thisError == otherError;
         }

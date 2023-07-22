@@ -12,18 +12,20 @@ namespace Plotypus
         private:
             std::filesystem::path file;
 
-            bool makePaths = false;
+            bool makeDirectories = true;
             bool overwrite = false;
 
         public:
             PersistableImpl() = default;
 
             // Persistable interface
-            const std::filesystem::path& getFile() const;
-            void setFile(const std::filesystem::path& newFile);
+            void reset();
 
-            bool getMakePaths() const;
-            void setMakePaths(bool newMakePaths);
+            const std::filesystem::path& getPath() const;
+            void setPath(const std::filesystem::path& newFile);
+
+            bool getMakeDirectories() const;
+            void setMakeDirectories(bool newMakePaths);
 
             bool getOverwrite() const;
             void setOverwrite(bool newOverwrite);
@@ -31,7 +33,7 @@ namespace Plotypus
             virtual std::ofstream getFileStream();
             virtual std::ostringstream getStringStream();
 
-            ValidationResult validateFilename();
+            ValidationResult validate();
     };
 }
 

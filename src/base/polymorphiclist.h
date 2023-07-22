@@ -16,7 +16,6 @@ namespace Plotypus
             ~PolymorphicList();
 
             // Collection interface
-        public:
             size_t size() const;
             bool empty() const;
 

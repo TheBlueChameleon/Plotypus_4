@@ -22,7 +22,7 @@ namespace Plotypus
             requires Derivative<T, PlotypusError>
             static ValidationResult makeValidationResult(const std::optional<std::string> message = std::optional<std::string>());
 
-            const PlotypusError& value() const;
+            const PlotypusError& getError() const;
             void trigger() const;
 
             operator bool() const;

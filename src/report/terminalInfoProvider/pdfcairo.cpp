@@ -17,17 +17,17 @@ namespace Plotypus
             LineEndsFragment::reset();
             BackgroundFragment::reset();
             ContinuousSizeFragment::reset();
-            CustomizableFragment::reset();
+            UserCodeFragment::reset();
         }
 
-        bool PdfCairo::validateScript()
+        ValidationResult PdfCairo::validateScript()
         {
             if (fileCreatedByScript.empty())
             {
-                return false;
+                return ValidationResult::makeValidationResult<InvalidFilenameError>("No filename for the output PDF was set");
             }
 
-            return true;
+            return ValidationResult::SUCCESS;
         }
 
         void PdfCairo::writeScript(std::ostream& hFile)
@@ -39,7 +39,7 @@ namespace Plotypus
             hFile << LineEndsFragment::generateScriptFragment();
             hFile << BackgroundFragment::generateScriptFragment();
             hFile << ContinuousSizeFragment::generateScriptFragment();
-            hFile << CustomizableFragment::generateScriptFragment();
+            hFile << UserCodeFragment::generateScriptFragment();
 
             hFile << std::endl;
         }

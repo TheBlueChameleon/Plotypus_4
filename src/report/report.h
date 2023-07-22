@@ -7,17 +7,36 @@
 
 namespace Plotypus
 {
+    class TerminalInfoProvider;
+
     class Report :
         public Scriptable,
-        public PersistableImpl,
         public OutputPathProvider
     {
         private:
+            bool autoSetChildFileNames = true;
+            PersistableImpl outputPersistable;
+            PersistableImpl scriptPersistable;
+
+            TerminalInfoProvider* tip = nullptr;
+
         public:
-            Report();
+            Report() = default;
+
+            bool getSetUpdateChildFileNames() const;
+            void setSetUpdateChildFileNames(const bool newSetUpdateChildFileNames);
+            void setChildFileNames();
+
+            Persistable& getScriptFile();
+            Persistable& getOutputFile();
+
+            void compile();
+            void runScript();
 
             // Scriptable interface
-            bool validateScript();
+            void reset();
+
+            ValidationResult validateScript();
             void writeScript(std::ostream& hFile);
     };
 }

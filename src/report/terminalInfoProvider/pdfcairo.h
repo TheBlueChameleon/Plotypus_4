@@ -9,7 +9,7 @@
 #include "../../base/terminalInfoProvider/lineendsfragment.h"
 #include "../../base/terminalInfoProvider/backgroundfragment.h"
 #include "../../base/terminalInfoProvider/continuoussizefragment.h"
-#include "../../base/customizableFragment.h"
+#include "../../base/userCodeFragment.h"
 
 namespace Plotypus
 {
@@ -17,20 +17,21 @@ namespace Plotypus
     {
         class PdfCairo :
             public TerminalInfoProvider,
+
             public EnhancedFragment,
             public ColorFragment,
             public FontFragment,
             public LineEndsFragment,
             public BackgroundFragment,
             public ContinuousSizeFragment,
-            public CustomizableFragment
+            public UserCodeFragment
         {
             public:
                 PdfCairo(const std::filesystem::path& fileCreatedByScript);
 
                 // Scriptable interface
                 void reset();
-                bool validateScript();
+                ValidationResult validateScript();
                 void writeScript(std::ostream& hFile);
 
                 // TerminalInfoProvider interface

@@ -5,8 +5,9 @@
 
 namespace Plotypus
 {
-    struct Serializable : public Persistable
+    struct Serializable
     {
+        virtual void reset() = 0;
 
     };
 }

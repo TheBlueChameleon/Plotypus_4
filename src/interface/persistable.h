@@ -11,11 +11,13 @@ namespace Plotypus
 {
     struct Persistable
     {
-        virtual const std::filesystem::path& getFile() const = 0;
-        virtual void setFile(const std::filesystem::path& newFile) = 0;
+        virtual void reset() = 0;
 
-        virtual bool getMakePaths() const = 0;
-        virtual void setMakePaths(bool newMakePaths) = 0;
+        virtual const std::filesystem::path& getPath() const = 0;
+        virtual void setPath(const std::filesystem::path& newFile) = 0;
+
+        virtual bool getMakeDirectories() const = 0;
+        virtual void setMakeDirectories(bool newMakePaths) = 0;
 
         virtual bool getOverwrite() const = 0;
         virtual void setOverwrite(bool newOverwrite) = 0;
@@ -23,7 +25,7 @@ namespace Plotypus
         virtual std::ofstream getFileStream() = 0;
         virtual std::ostringstream getStringStream() = 0;
 
-        virtual ValidationResult validateFilename() = 0;
+        virtual ValidationResult validate() = 0;
     };
 }
 

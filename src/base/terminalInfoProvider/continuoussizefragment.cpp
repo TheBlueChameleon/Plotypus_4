@@ -20,7 +20,7 @@ namespace Plotypus
         }
 
 
-        LengthUnit ContinuousSizeFragment::getUnit() const
+        std::optional<LengthUnit> ContinuousSizeFragment::getUnit() const
         {
             return unit;
         }
@@ -28,6 +28,11 @@ namespace Plotypus
         void ContinuousSizeFragment::setUnit(LengthUnit newUnit)
         {
             unit = newUnit;
+        }
+
+        void ContinuousSizeFragment::clearUnit()
+        {
+            unit.reset();
         }
 
         void ContinuousSizeFragment::reset()
@@ -43,7 +48,7 @@ namespace Plotypus
                 ContinuousCoordinate_t sizeValue = size.value();
 
                 std::string unitString;
-                switch (unit)
+                switch (unit.value_or(Plotypus::LengthUnit::Default))
                 {
                     case Plotypus::LengthUnit::Default:
                         unitString = "";

@@ -7,7 +7,7 @@ namespace Plotypus
     {
         virtual void reset() = 0;
 
-        virtual bool validateScript() = 0;
+        virtual ValidationResult validateScript() = 0;
         virtual void writeScript(std::ostream& hFile) = 0;
     };
 }

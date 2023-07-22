@@ -18,10 +18,9 @@ namespace Plotypus
         return baseDirectory;
     }
 
-    OutputPathProvider& OutputPathProvider::setBaseDirectory(const std::filesystem::path& newBaseDirectory)
+    void OutputPathProvider::setBaseDirectory(const std::filesystem::path& newBaseDirectory)
     {
         baseDirectory = newBaseDirectory;
-        return *this;
     }
 
     const std::string& OutputPathProvider::getBaseFilename() const
@@ -29,10 +28,9 @@ namespace Plotypus
         return baseFilename;
     }
 
-    OutputPathProvider& OutputPathProvider::setBaseFilename(const std::string& newBaseFilename)
+    void OutputPathProvider::setBaseFilename(const std::string& newBaseFilename)
     {
         baseFilename = newBaseFilename;
-        return *this;
     }
 
     const std::string& OutputPathProvider::getExtension(const GeneratedFileType filetype) const
@@ -53,7 +51,7 @@ namespace Plotypus
         throw InvalidArgumentError("Unknown File Type");
     }
 
-    OutputPathProvider& OutputPathProvider::setExtension(const GeneratedFileType filetype, const std::string& newExtension)
+    void OutputPathProvider::setExtension(const GeneratedFileType filetype, const std::string& newExtension)
     {
         switch (filetype)
         {
@@ -68,8 +66,6 @@ namespace Plotypus
             case GeneratedFileType::Report:
                 extOut = newExtension;
         };
-
-        return *this;
     }
 
     std::pair<std::filesystem::path, std::string> OutputPathProvider::getRawBasePathAndExt(const GeneratedFileType filetype) const
@@ -102,8 +98,11 @@ namespace Plotypus
     {
         auto [path, ext] = getRawBasePathAndExt(filetype);
 
-        path += (infix.size() ? "_" + infix : "");
-        path += "." + ext;
+        // *INDENT-OFF*
+        if (!infix.empty()) {path += "_" + infix;}
+        if (!ext.empty())   {path += "." + ext;}
+        // *INDENT-ON*
+
         return path;
     }
 

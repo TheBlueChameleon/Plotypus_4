@@ -12,8 +12,10 @@ namespace Plotypus
             tip = nullptr;
         }
 
+        setExtension(GeneratedFileType::Report, T::getDefaultExtension());
         const auto pathToOutputFile = getOutputPath(GeneratedFileType::Report);
         tip = new T(pathToOutputFile);
+
     }
 
     template<TerminalInfoProviderType T>

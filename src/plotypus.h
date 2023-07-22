@@ -15,5 +15,6 @@
 #include "base/persistableimpl.h"
 
 #include "report/report.h"
+#include "report/terminalInfoProvider/pdfcairo.h"
 
 #endif // PLOTYPUS_H

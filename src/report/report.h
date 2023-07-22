@@ -31,7 +31,6 @@ namespace Plotypus
             void setChildFileNames();
 
             Persistable& getScriptFile();
-            Persistable& getOutputFile();
 
             const std::string& getRunCommand() const;
             void setRunCommand(const std::string& newRunCommand);

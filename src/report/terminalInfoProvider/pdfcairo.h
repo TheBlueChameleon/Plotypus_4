@@ -34,7 +34,7 @@ namespace Plotypus
                 void writeScript(std::ostream& hFile);
 
                 // TerminalInfoProvider interface
-                std::string getDefaultExtension();
+                static std::string getDefaultExtension();
         };
     }
 }

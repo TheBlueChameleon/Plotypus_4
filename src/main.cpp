@@ -12,5 +12,7 @@ int main()
     std::string script = report.getScriptString();
 
     std::cout << script << std::endl;
+    std::cout << report.getScriptFile().getPath() << std::endl;
+    std::cout << report.getTerminal<TerminalInfo::PdfCairo>().getFileCreatedByScript() << std::endl;
     return 0;
 }

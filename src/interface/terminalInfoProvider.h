@@ -7,7 +7,7 @@ namespace Plotypus
 {
     struct TerminalInfoProvider : public Scriptable
     {
-        virtual std::string getDefaultExtension() = 0;
+        static std::string getDefaultExtension();
 
         virtual const std::filesystem::path& getFileCreatedByScript() const = 0;
         virtual void setFileCreatedByScript(const std::filesystem::path& newFileCreatedByScript) = 0;

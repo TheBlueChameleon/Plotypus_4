@@ -1,13 +1,13 @@
 #ifndef REALSIZEFRAGMENT_H
 #define REALSIZEFRAGMENT_H
 
-#include "../../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/scriptfragment.h"
 
 namespace Plotypus
 {
     namespace TerminalInfo
     {
-        class ContinuousSizeFragment : public Fragment
+        class ContinuousSizeFragment : public ScriptFragment
         {
             protected:
                 std::optional<ContinuousCoordinate_t> size;

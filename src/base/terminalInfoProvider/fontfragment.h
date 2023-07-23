@@ -3,13 +3,13 @@
 
 #include <string_view>
 
-#include "../../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/scriptfragment.h"
 
 namespace Plotypus
 {
     namespace TerminalInfo
     {
-        class FontFragment : public Fragment
+        class FontFragment : public ScriptFragment
         {
             protected:
                 std::string font = "Sans,12";

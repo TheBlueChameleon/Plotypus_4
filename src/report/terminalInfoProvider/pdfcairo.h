@@ -35,9 +35,6 @@ namespace Plotypus
                 ValidationResult validate() const;
                 void writeScript(std::ostream& hFile);
 
-                // TerminalInfoProvider interface
-                static std::string getDefaultExtension();
-
                 // Persistable interface
                 const std::filesystem::path& getPath() const;
                 void setPath(const std::filesystem::path& newPath);
@@ -50,6 +47,9 @@ namespace Plotypus
 
                 std::ofstream getFileStream() const;
                 std::ostringstream getStringStream();
+
+                // TerminalInfoProvider interface
+                static std::string getDefaultExtension();
         };
     }
 }

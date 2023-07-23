@@ -1,11 +1,11 @@
 #ifndef SCRIPTABLEIMPL_H
 #define SCRIPTABLEIMPL_H
 
-#include "../../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/scriptfragment.h"
 
 namespace Plotypus
 {
-    class UserCodeFragment : public Fragment
+    class UserCodeFragment : public ScriptFragment
     {
         protected:
             std::optional<std::string> userCode;

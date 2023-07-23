@@ -1,13 +1,13 @@
 #ifndef ENHANCEDFRAGMENT_H
 #define ENHANCEDFRAGMENT_H
 
-#include "../../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/scriptfragment.h"
 
 namespace Plotypus
 {
     namespace TerminalInfo
     {
-        class EnhancedFragment : public Fragment
+        class EnhancedFragment : public ScriptFragment
         {
             protected:
                 bool enhanced = true;

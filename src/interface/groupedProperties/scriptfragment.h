@@ -5,7 +5,7 @@
 
 namespace Plotypus
 {
-    struct Fragment :
+    struct ScriptFragment :
         public Mutable
     {
         virtual std::string generateScriptFragment() const = 0;

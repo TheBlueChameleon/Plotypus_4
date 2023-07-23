@@ -1,13 +1,13 @@
 #ifndef BACKGROUNDFRAGMENT_H
 #define BACKGROUNDFRAGMENT_H
 
-#include "../../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/scriptfragment.h"
 
 namespace Plotypus
 {
     namespace TerminalInfo
     {
-        class BackgroundFragment : public Fragment
+        class BackgroundFragment : public ScriptFragment
         {
             protected:
                 std::optional<std::string> background = "";

@@ -30,12 +30,14 @@ add_library(Plotypus-lib SHARED
     src/interface/baseProperties/namedtype.h
     src/interface/baseProperties/nonAssignable.h
     src/interface/baseProperties/persistable.h
+    src/interface/baseProperties/userscriptinjectable.h
     src/interface/baseProperties/validatable.h
 
     src/interface/baseProperties/defaultImpl/defaultcollection.h src/interface/baseProperties/defaultImpl/defaultcollection.txx
     src/interface/baseProperties/defaultImpl/defaultpersistable.h src/interface/baseProperties/defaultImpl/defaultpersistable.cpp
+    src/interface/baseProperties/defaultImpl/defaultuserscriptinjectable.h src/interface/baseProperties/defaultImpl/defaultuserscriptinjectable.cpp
 
-    src/interface/groupedProperties/fragment.h
+    src/interface/groupedProperties/scriptfragment.h
     src/interface/groupedProperties/scriptable.h
     src/interface/groupedProperties/serializable.h
 

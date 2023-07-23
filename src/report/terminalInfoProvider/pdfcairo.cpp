@@ -40,7 +40,9 @@ namespace Plotypus
             hFile << BackgroundFragment::generateScriptFragment();
             hFile << ContinuousSizeFragment::generateScriptFragment();
             hFile << UserCodeFragment::generateScriptFragment();
+            hFile << std::endl;
 
+            hFile << "set output " << outputFile.getPath() << std::endl;
             hFile << std::endl;
         }
 

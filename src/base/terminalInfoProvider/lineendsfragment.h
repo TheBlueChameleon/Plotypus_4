@@ -1,14 +1,14 @@
 #ifndef LINEENDSFRAGMENT_H
 #define LINEENDSFRAGMENT_H
 
-#include "../../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/scriptfragment.h"
 #include "../../typesystem/enums.h"
 
 namespace Plotypus
 {
     namespace TerminalInfo
     {
-        class LineEndsFragment : public Fragment
+        class LineEndsFragment : public ScriptFragment
         {
             protected:
                 LineEnds lineEnds = LineEnds::Default;

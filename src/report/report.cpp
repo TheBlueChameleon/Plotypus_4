@@ -149,7 +149,13 @@ namespace Plotypus
 
     void Report::writeScript(std::ostream& hFile)
     {
+        writeUserScriptBeforeSetup(hFile);
         tip->writeScript(hFile);
+
+        writeUserScriptBeforeChildren(hFile);
+        // sheets
+
+        writeUserScriptCleanUp(hFile);
     }
 
     const std::filesystem::path& Report::getPath() const
@@ -190,5 +196,50 @@ namespace Plotypus
     std::ostringstream Report::getStringStream()
     {
         return scriptFile.getStringStream();
+    }
+
+    std::optional<std::string> Report::getUserScriptBeforeSetup() const
+    {
+        return userScripts.getUserScriptBeforeSetup();
+    }
+
+    void Report::setUserScriptBeforeSetup(const std::string& newUserScriptBeforeSetup)
+    {
+        userScripts.setUserScriptBeforeSetup(newUserScriptBeforeSetup);
+    }
+
+    std::optional<std::string> Report::getUserScriptBeforeChildren() const
+    {
+        return userScripts.getUserScriptBeforeChildren();
+    }
+
+    void Report::setUserScriptBeforeChildren(const std::string& newUserScriptBeforeChildren)
+    {
+        userScripts.setUserScriptBeforeChildren(newUserScriptBeforeChildren);
+    }
+
+    std::optional<std::string> Report::getUserScriptCleanUp() const
+    {
+        return userScripts.getUserScriptCleanUp();
+    }
+
+    void Report::setUserScriptCleanUp(const std::string& newUserScriptCleanUp)
+    {
+        userScripts.setUserScriptCleanUp(newUserScriptCleanUp);
+    }
+
+    void Report::writeUserScriptBeforeSetup(std::ostream& hFile)
+    {
+        userScripts.writeUserScriptBeforeSetup(hFile);
+    }
+
+    void Report::writeUserScriptBeforeChildren(std::ostream& hFile)
+    {
+        userScripts.writeUserScriptBeforeChildren(hFile);
+    }
+
+    void Report::writeUserScriptCleanUp(std::ostream& hFile)
+    {
+        userScripts.writeUserScriptCleanUp(hFile);
     }
 }

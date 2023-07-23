@@ -1,13 +1,13 @@
 #ifndef COLORFRAGMENT_H
 #define COLORFRAGMENT_H
 
-#include "../../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/scriptfragment.h"
 
 namespace Plotypus
 {
     namespace TerminalInfo
     {
-        class ColorFragment : public Fragment
+        class ColorFragment : public ScriptFragment
         {
             protected:
                 bool color = true;

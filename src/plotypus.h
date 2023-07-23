@@ -15,7 +15,7 @@
 #include "interface/baseProperties/defaultImpl/defaultcollection.h"
 #include "interface/baseProperties/defaultImpl/defaultpersistable.h"
 
-#include "interface/groupedProperties/fragment.h"
+#include "interface/groupedProperties/scriptfragment.h"
 #include "interface/groupedProperties/scriptable.h"
 #include "interface/groupedProperties/serializable.h"
 

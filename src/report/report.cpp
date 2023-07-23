@@ -6,14 +6,14 @@
 #include "report.h"
 #include "terminalInfoProvider/pdfcairo.h"
 
-#include "../base/util.h"
-
 namespace Plotypus
 {
-    Report::Report() :
-        path(getOutputPath(GeneratedFileType::Script))
+    Report::Report()
     {
         installTerminal<TerminalInfo::PdfCairo>();
+
+        const auto scriptPath = getOutputPath(GeneratedFileType::Script);
+        scriptFile.setPath(scriptPath);
     }
 
     bool Report::getAutoUpdateChildFileNames() const
@@ -29,7 +29,7 @@ namespace Plotypus
     void Report::setChildFileNames()
     {
         const auto scriptPath = getOutputPath(GeneratedFileType::Script);
-        path = scriptPath;
+        scriptFile.setPath(scriptPath);
 
         if (tip)
         {
@@ -64,7 +64,7 @@ namespace Plotypus
                 if (escapeMode)
                 {
                     // *INDENT-OFF*
-                    if (c == 'f') {result << path;}
+                    if (c == 'f') {result << scriptFile.getPath();}
                     else          {result << c;}
                     escapeMode = false;
                     // *INDENT-ON*
@@ -129,7 +129,7 @@ namespace Plotypus
 
         autoUpdateChildFileNames = true;
 
-        Util::resetPersistable(*this);
+        scriptFile.reset();
     }
 
     ValidationResult Report::validate() const
@@ -140,7 +140,7 @@ namespace Plotypus
         ValidationResult validation = tip->validate();
         if (!validation) {return validation;}
 
-        validation = Util::validatePersistable(*this);
+        validation = scriptFile.validate();
         if (!validation) {return validation;}
         // *INDENT-ON*
 
@@ -154,41 +154,41 @@ namespace Plotypus
 
     const std::filesystem::path& Report::getPath() const
     {
-        return path;
+        return scriptFile.getPath();
     }
 
     void Report::setPath(const std::filesystem::path& newPath)
     {
-        path = newPath;
+        scriptFile.setPath(newPath);
     }
 
     bool Report::getMakeDirectories() const
     {
-        return makeDirectories;
+        return scriptFile.getMakeDirectories();
     }
 
     void Report::setMakeDirectories(bool newMakeDirectories)
     {
-        makeDirectories = newMakeDirectories;
+        scriptFile.setMakeDirectories(newMakeDirectories);
     }
 
     bool Report::getOverwrite() const
     {
-        return overwrite;
+        return scriptFile.getOverwrite();
     }
 
     void Report::setOverwrite(bool newOverwrite)
     {
-        overwrite = newOverwrite;
+        scriptFile.setOverwrite(newOverwrite);
     }
 
     std::ofstream Report::getFileStream() const
     {
-        return Util::getFileStream(path);
+        return scriptFile.getFileStream();
     }
 
     std::ostringstream Report::getStringStream()
     {
-        return Util::getStringStream();
+        return scriptFile.getStringStream();
     }
 }

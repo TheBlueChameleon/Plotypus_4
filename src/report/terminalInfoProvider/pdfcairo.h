@@ -25,13 +25,10 @@ namespace Plotypus
             public UserCodeFragment
         {
             private:
-                std::filesystem::path path;
-
-                bool makeDirectories = true;
-                bool overwrite = false;
+                DefaultPersistable outputFile;
 
             public:
-                PdfCairo(const std::filesystem::path& fileCreatedByScript);
+                PdfCairo() = default;
 
                 // Scriptable interface
                 void reset();

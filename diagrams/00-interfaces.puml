@@ -31,6 +31,27 @@ together {
     interface NonAssignable {
         Deletes Copy Constructor and Copy Assignment
     }
+}
+
+' ---------------------------------------------------------------------------- '
+
+together {
+    interface Scriptable {
+        virtual void writeScript(std::ostream& hFile) = 0;
+    }
+    Scriptable -up-> Mutable
+    Scriptable -up-> Validatable
+    Scriptable -up-> NamedType
+
+    interface Serializable {}
+    Serializable -up-> Persistable
+    Serializable -up-> Mutable
+    Serializable -up-> Validatable
+
+    interface Fragment {
+        virtual std::string generateScriptFragment() const = 0;
+    }
+    Fragment -up-> Mutable
 
     interface Collection {
         size_t size() const = 0;
@@ -45,21 +66,7 @@ together {
         void forEach(std::function<void(T&)> action) = 0;
     }
 
-    Collection *-left- NonAssignable
-}
-
-' ---------------------------------------------------------------------------- '
-
-together {
-    interface Scriptable {
-        virtual void writeScript(std::ostream& hFile) = 0;
-    }
-
-    interface Serializable {}
-
-    interface Fragment {
-        virtual std::string generateScriptFragment() const = 0;
-    }
+    Collection *-up- NonAssignable
 }
 
 ' ---------------------------------------------------------------------------- '
@@ -69,21 +76,21 @@ together {
         {static} std::string getDefaultExtension();
         template<TerminalInfoProviderType T> T& as()
     }
+    TerminalInfoProvider -up-> Scriptable
+    TerminalInfoProvider -up-> Persistable
+    TerminalInfoProvider .up.  Fragment : " incorporates"
+
+    interface Sheet {
+        void writeScriptHead    (std::ostream& hFile) const = 0;
+        void writeScriptData    (std::ostream& hFile, const StylesCollection& stylesCollection) const = 0;
+        void writeScriptOverlays(std::ostream& hFile) const = 0;
+        void writeScriptFooter  (std::ostream& hFile, const int pageNum) const = 0;
+    }
+    Sheet -up-> Scriptable
+    Sheet -up-> Persistable
 }
 
 ' ---------------------------------------------------------------------------- '
 
-Scriptable -up-> Mutable
-Scriptable -up-> Validatable
-Scriptable -up-> NamedType
-
-Fragment -up-> Mutable
-
-Serializable -up-> Persistable
-Serializable -up-> Mutable
-Serializable -up-> Validatable
-
-TerminalInfoProvider -up-> Scriptable
-TerminalInfoProvider -up-> Persistable
 
 @enduml;

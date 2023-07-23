@@ -12,13 +12,14 @@
 #include "interface/baseProperties/nonAssignable.h"
 #include "interface/baseProperties/persistable.h"
 
+#include "interface/baseProperties/defaultImpl/defaultcollection.h"
+#include "interface/baseProperties/defaultImpl/defaultpersistable.h"
+
 #include "interface/groupedProperties/fragment.h"
 #include "interface/groupedProperties/scriptable.h"
 #include "interface/groupedProperties/serializable.h"
 
 #include "interface/terminalInfoProvider.h"
-
-#include "base/generic/polymorphiclist.h"
 
 #include "report/report.h"
 #include "report/terminalInfoProvider/pdfcairo.h"

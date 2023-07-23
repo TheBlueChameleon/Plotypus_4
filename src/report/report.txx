@@ -11,10 +11,11 @@ namespace Plotypus
             delete tip;
             tip = nullptr;
         }
+        tip = new T();
 
         setExtension(GeneratedFileType::Report, T::getDefaultExtension());
         const auto pathToOutputFile = getOutputPath(GeneratedFileType::Report);
-        tip = new T(pathToOutputFile);
+        tip->setPath(pathToOutputFile);
 
     }
 

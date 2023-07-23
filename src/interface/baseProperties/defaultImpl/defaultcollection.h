@@ -1,26 +1,27 @@
-#ifndef POLYMORPHICLIST_H
-#define POLYMORPHICLIST_H
+#ifndef DEFAULTCOLLECTION_H
+#define DEFAULTCOLLECTION_H
 
 #include <vector>
 
 namespace Plotypus
 {
     template<typename T>
-    class PolymorphicList : public Collection<T>
+    class DefaultCollection:
+        public Collection<T>
     {
         private:
             std::vector<T*> elements;
 
         public:
-            PolymorphicList() = default;
-            ~PolymorphicList();
+            DefaultCollection() = default;
+            ~DefaultCollection();
 
             // Collection interface
             size_t size() const;
             bool empty() const;
 
             bool operator ==(const Collection<T>& other);
-            bool operator ==(const PolymorphicList<T>& other);
+            bool operator ==(const DefaultCollection<T>& other);
 
             size_t add(T* element);
             void clear();
@@ -29,6 +30,6 @@ namespace Plotypus
     };
 }
 
-#include "polymorphiclist.txx"
+#include "defaultcollection.txx"
 
-#endif // POLYMORPHICLIST_H
+#endif // DEFAULTCOLLECTION_H

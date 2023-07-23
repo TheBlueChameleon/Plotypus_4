@@ -1,35 +1,34 @@
-#include "polymorphiclist.h"
-
-#include "../../typesystem/errors.h"
+#include "defaultcollection.h"
+#include "../../../typesystem/errors.h"
 
 namespace Plotypus
 {
     template<typename T>
-    PolymorphicList<T>::~PolymorphicList()
+    DefaultCollection<T>::~DefaultCollection()
     {
         clear();
     }
 
     template<typename T>
-    size_t PolymorphicList<T>::size() const
+    size_t DefaultCollection<T>::size() const
     {
         return elements.size();
     }
 
     template<typename T>
-    bool PolymorphicList<T>::empty() const
+    bool DefaultCollection<T>::empty() const
     {
         return elements.empty();
     }
 
     template<typename T>
-    bool PolymorphicList<T>::operator ==(const Collection<T>& other)
+    bool DefaultCollection<T>::operator ==(const Collection<T>& other)
     {
         return false;
     }
 
     template<typename T>
-    bool PolymorphicList<T>::operator ==(const PolymorphicList<T>& other)
+    bool DefaultCollection<T>::operator ==(const DefaultCollection<T>& other)
     {
         // *INDENT-OFF*
         if (!std::is_same<decltype(*this), decltype(other)>::value) {return false;}
@@ -47,14 +46,14 @@ namespace Plotypus
     }
 
     template<typename T>
-    size_t PolymorphicList<T>::add(T* element)
+    size_t DefaultCollection<T>::add(T* element)
     {
         elements.push_back(element);
         return elements.size();
     }
 
     template<typename T>
-    void PolymorphicList<T>::clear()
+    void DefaultCollection<T>::clear()
     {
         for (T* x : elements)
         {
@@ -64,7 +63,7 @@ namespace Plotypus
     }
 
     template<typename T>
-    void PolymorphicList<T>::forEach(std::function<void (T&)> action)
+    void DefaultCollection<T>::forEach(std::function<void (T&)> action)
     {
         if (action)
         {

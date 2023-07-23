@@ -11,14 +11,12 @@ TEST(TIP_PdfCairoSuite, FileNameAsserts)
 {
     using namespace Plotypus;
 
-    auto tip = TerminalInfo::PdfCairo("");
+    auto tip = TerminalInfo::PdfCairo();
 
     auto actual = tip.validate();
-    auto expected = ValidationResult::makeValidationResult<InvalidFilenameError>("No filename for the output PDF was set");
+    auto expected = ValidationResult::makeValidationResult<InvalidFilenameError>("Filename is empty.");
     ASSERT_EQ(bool(actual), false);
     EXPECT_EQ(actual, expected);
-
-
 }
 
 TEST(TIP_PdfCairoSuite, WriteScript)
@@ -27,7 +25,7 @@ TEST(TIP_PdfCairoSuite, WriteScript)
 
     std::stringstream buffer;
 
-    auto tip = TerminalInfo::PdfCairo("");
+    auto tip = TerminalInfo::PdfCairo();
 
     buffer.str("");
     tip.writeScript(buffer);

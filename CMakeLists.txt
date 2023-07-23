@@ -32,18 +32,20 @@ add_library(Plotypus-lib SHARED
     src/interface/baseProperties/persistable.h
     src/interface/baseProperties/validatable.h
 
+    src/interface/baseProperties/defaultImpl/defaultcollection.h src/interface/baseProperties/defaultImpl/defaultcollection.txx
+    src/interface/baseProperties/defaultImpl/defaultpersistable.h src/interface/baseProperties/defaultImpl/defaultpersistable.cpp
+
     src/interface/groupedProperties/fragment.h
     src/interface/groupedProperties/scriptable.h
     src/interface/groupedProperties/serializable.h
 
+    src/interface/sheet.h
     src/interface/terminalInfoProvider.h
 
     # base
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
-    src/base/util.h src/base/util.cpp
 
     src/base/generic/userCodeFragment.h src/base/generic/userCodeFragment.cpp
-    src/base/generic/polymorphiclist.h src/base/generic/polymorphiclist.txx
 
     src/base/terminalInfoProvider/backgroundfragment.h src/base/terminalInfoProvider/backgroundfragment.cpp
     src/base/terminalInfoProvider/colorfragment.h src/base/terminalInfoProvider/colorfragment.cpp

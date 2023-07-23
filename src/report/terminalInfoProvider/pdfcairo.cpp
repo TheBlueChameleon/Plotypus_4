@@ -2,16 +2,10 @@
 
 #include "pdfcairo.h"
 
-#include "../../base/util.h"
-
 namespace Plotypus
 {
     namespace TerminalInfo
     {
-        PdfCairo::PdfCairo(const std::filesystem::path& fileCreatedByScript) :
-            path(fileCreatedByScript)
-        {}
-
         void PdfCairo::reset()
         {
             EnhancedFragment::reset();
@@ -22,14 +16,15 @@ namespace Plotypus
             ContinuousSizeFragment::reset();
             UserCodeFragment::reset();
 
-            Util::resetPersistable(*this);
+            outputFile.reset();
         }
 
         ValidationResult PdfCairo::validate() const
         {
-            if (path.empty())
+            const ValidationResult outputFileValidation = outputFile.validate();
+            if (!outputFileValidation)
             {
-                return ValidationResult::makeValidationResult<InvalidFilenameError>("No filename for the output PDF was set");
+                return outputFileValidation;
             }
 
             return ValidationResult::SUCCESS;
@@ -56,42 +51,42 @@ namespace Plotypus
 
         const std::filesystem::path& PdfCairo::getPath() const
         {
-            return path;
+            return outputFile.getPath();
         }
 
         void PdfCairo::setPath(const std::filesystem::path& newPath)
         {
-            path = newPath;
+            outputFile.setPath(newPath);
         }
 
         bool PdfCairo::getMakeDirectories() const
         {
-            return makeDirectories;
+            return outputFile.getMakeDirectories();
         }
 
         void PdfCairo::setMakeDirectories(bool newMakeDirectories)
         {
-            makeDirectories = newMakeDirectories;
+            outputFile.setMakeDirectories(newMakeDirectories);
         }
 
         bool PdfCairo::getOverwrite() const
         {
-            return overwrite;
+            return outputFile.getOverwrite();
         }
 
         void PdfCairo::setOverwrite(bool newOverwrite)
         {
-            overwrite = newOverwrite;
+            outputFile.setOverwrite(newOverwrite);
         }
 
         std::ofstream PdfCairo::getFileStream() const
         {
-            return Util::getFileStream(path);
+            return outputFile.getFileStream();
         }
 
         std::ostringstream PdfCairo::getStringStream()
         {
-            return Util::getStringStream();
+            return outputFile.getStringStream();
         }
     }
 }

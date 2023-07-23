@@ -17,15 +17,12 @@ namespace Plotypus
         public OutputPathProvider
     {
         private:
-            std::filesystem::path path;
-
             TerminalInfoProvider* tip = nullptr;
+            DefaultPersistable scriptFile;
 
             std::string runCommand = "gnuplot $f";
 
             bool autoUpdateChildFileNames = true;
-            bool makeDirectories = true;
-            bool overwrite = false;
 
         public:
             Report();

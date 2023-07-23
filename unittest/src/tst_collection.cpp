@@ -55,16 +55,16 @@ TEST_F(Collection_Fixture, Collection_Test)
 {
     using namespace Plotypus;
     {
-        PolymorphicList<Base> pmList;
-        ASSERT_THAT(pmList.empty(), Eq(true));
-        ASSERT_THAT(pmList.size(), Eq(0));
+        DefaultCollection<Base> collection;
+        ASSERT_THAT(collection.empty(), Eq(true));
+        ASSERT_THAT(collection.size(), Eq(0));
 
-        pmList.add(new Base(1, log));
-        pmList.add(new Derived(2, log));
-        pmList.add(new Derived(3, log));
-        pmList.add(new Base(4, log));
+        collection.add(new Base(1, log));
+        collection.add(new Derived(2, log));
+        collection.add(new Derived(3, log));
+        collection.add(new Base(4, log));
 
-        pmList.forEach([](Base& x)
+        collection.forEach([](Base& x)
         {
             x.show();
         });

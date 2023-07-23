@@ -5,7 +5,7 @@
 #include <functional>
 #include <iterator>
 
-#include "../typesystem/concepts.h"
+#include "../../typesystem/concepts.h"
 
 namespace Plotypus
 {
@@ -15,7 +15,7 @@ namespace Plotypus
         virtual size_t size() const = 0;
         virtual bool empty() const = 0;
 
-        virtual bool operator=(const Collection<T>& other) = 0;
+        virtual bool operator==(const Collection<T>& other) = 0;
 
         virtual size_t add(T* element) = 0;
 

@@ -1,7 +1,6 @@
 #ifndef TIP_PDFCAIRO_H
 #define TIP_PDFCAIRO_H
 
-#include "../../base/terminalInfoProvider/abstractterminalinfoprovider.h"
 #include "../../base/terminalInfoProvider/enhancedfragment.h"
 #include "../../base/terminalInfoProvider/colorfragment.h"
 #include "../../base/terminalInfoProvider/fontfragment.h"
@@ -15,7 +14,7 @@ namespace Plotypus
     namespace TerminalInfo
     {
         class PdfCairo :
-            public AbstractTerminalInfoProvider,
+            public TerminalInfoProvider,
 
             public EnhancedFragment,
             public ColorFragment,
@@ -25,6 +24,12 @@ namespace Plotypus
             public ContinuousSizeFragment,
             public UserCodeFragment
         {
+            private:
+                std::filesystem::path path;
+
+                bool makeDirectories = true;
+                bool overwrite = false;
+
             public:
                 PdfCairo(const std::filesystem::path& fileCreatedByScript);
 
@@ -35,6 +40,19 @@ namespace Plotypus
 
                 // TerminalInfoProvider interface
                 static std::string getDefaultExtension();
+
+                // Persistable interface
+                const std::filesystem::path& getPath() const;
+                void setPath(const std::filesystem::path& newPath);
+
+                bool getMakeDirectories() const;
+                void setMakeDirectories(bool newMakeDirectories);
+
+                bool getOverwrite() const;
+                void setOverwrite(bool newOverwrite);
+
+                std::ofstream getFileStream() const;
+                std::ostringstream getStringStream();
         };
     }
 }

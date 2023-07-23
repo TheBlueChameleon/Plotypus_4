@@ -19,8 +19,8 @@ namespace Plotypus
             size_t size() const;
             bool empty() const;
 
-            bool operator =(const Collection<T>& other);
-            bool operator =(const PolymorphicList<T>& other);
+            bool operator ==(const Collection<T>& other);
+            bool operator ==(const PolymorphicList<T>& other);
 
             size_t add(T* element);
             void clear();

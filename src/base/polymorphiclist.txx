@@ -22,13 +22,13 @@ namespace Plotypus
     }
 
     template<typename T>
-    bool PolymorphicList<T>::operator =(const Collection<T>& other)
+    bool PolymorphicList<T>::operator ==(const Collection<T>& other)
     {
         return false;
     }
 
     template<typename T>
-    bool PolymorphicList<T>::operator =(const PolymorphicList<T>& other)
+    bool PolymorphicList<T>::operator ==(const PolymorphicList<T>& other)
     {
         // *INDENT-OFF*
         if (!std::is_same<decltype(*this), decltype(other)>::value) {return false;}

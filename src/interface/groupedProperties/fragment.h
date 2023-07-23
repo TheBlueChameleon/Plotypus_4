@@ -1,11 +1,13 @@
 #ifndef FRAGMENT_H
 #define FRAGMENT_H
 
+#include "../baseProperties/mutable.h"
+
 namespace Plotypus
 {
-    struct Fragment
+    struct Fragment :
+        public Mutable
     {
-        virtual void reset() = 0;
         virtual std::string generateScriptFragment() const = 0;
     };
 }

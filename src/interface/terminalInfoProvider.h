@@ -3,14 +3,15 @@
 
 #include "../typesystem/concepts.h"
 
+#include "groupedProperties/scriptable.h"
+
 namespace Plotypus
 {
-    struct TerminalInfoProvider : public Scriptable
+    struct TerminalInfoProvider :
+        public Scriptable,
+        public Persistable
     {
         static std::string getDefaultExtension();
-
-        virtual const std::filesystem::path& getFileCreatedByScript() const = 0;
-        virtual void setFileCreatedByScript(const std::filesystem::path& newFileCreatedByScript) = 0;
 
         template<TerminalInfoProviderType T>
         T& as()

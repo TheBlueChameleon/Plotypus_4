@@ -3,7 +3,7 @@
 
 #include <string_view>
 
-#include "../../interface/fragment.h"
+#include "../../interface/groupedProperties/fragment.h"
 
 namespace Plotypus
 {

@@ -17,28 +17,34 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(Plotypus-lib SHARED
     src/plotypus.h src/plotypus.cpp
 
+    # typesystem
     src/typesystem/concepts.h
     src/typesystem/constants.h
     src/typesystem/errors.h src/typesystem/errors.cpp
     src/typesystem/enums.h
     src/typesystem/types.h
 
-    src/interface/collection.h
-    src/interface/fragment.h
-    src/interface/persistable.h
-    src/interface/namedtype.h
-    src/interface/nonAssignable.h
-    src/interface/scriptable.h
-    src/interface/serializable.h
-    src/interface/terminalInfoProvider.h
-    src/interface/textable.h
+    # interfaces
+    src/interface/baseProperties/collection.h
+    src/interface/baseProperties/mutable.h
+    src/interface/baseProperties/namedtype.h
+    src/interface/baseProperties/nonAssignable.h
+    src/interface/baseProperties/persistable.h
+    src/interface/baseProperties/validatable.h
 
+    src/interface/groupedProperties/fragment.h
+    src/interface/groupedProperties/scriptable.h
+    src/interface/groupedProperties/serializable.h
+
+    src/interface/terminalInfoProvider.h
+
+    # base
     src/base/userCodeFragment.h src/base/userCodeFragment.cpp
-    src/base/persistableimpl.h src/base/persistableimpl.cpp
     src/base/polymorphiclist.h src/base/polymorphiclist.txx
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
 
-    src/base/terminalInfoProvider/abstractterminalinfoprovider.h src/base/terminalInfoProvider/abstractterminalinfoprovider.cpp
+    src/base/generic/util.h src/base/generic/util.cpp
+
     src/base/terminalInfoProvider/backgroundfragment.h src/base/terminalInfoProvider/backgroundfragment.cpp
     src/base/terminalInfoProvider/colorfragment.h src/base/terminalInfoProvider/colorfragment.cpp
     src/base/terminalInfoProvider/continuoussizefragment.h src/base/terminalInfoProvider/continuoussizefragment.cpp
@@ -46,6 +52,7 @@ add_library(Plotypus-lib SHARED
     src/base/terminalInfoProvider/fontfragment.h src/base/terminalInfoProvider/fontfragment.cpp
     src/base/terminalInfoProvider/lineendsfragment.h src/base/terminalInfoProvider/lineendsfragment.cpp
 
+    # report
     src/report/outputPathProvider.h src/report/outputPathProvider.cpp
     src/report/report.h src/report/report.txx src/report/report.cpp
 

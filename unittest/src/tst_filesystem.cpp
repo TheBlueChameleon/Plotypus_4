@@ -129,70 +129,70 @@ TEST_F(TempDir_Fixture, OutputPathProvider_Test)
     EXPECT_EQ(actual, expected);
 }
 
-TEST_F(TempDir_Fixture, PersistableImpl_Test)
-{
-    auto opp = OutputPathProvider();
-    auto pis = PersistableImpl("");
+//TEST_F(TempDir_Fixture, PersistableImpl_Test)
+//{
+//    auto opp = OutputPathProvider();
+//    auto pis = PersistableImpl("");
 
-    // test in implicit CWD
-    std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
-    pis.setPath(filename);
+//    // test in implicit CWD
+//    std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
+//    pis.setPath(filename);
 
-    auto expected = ValidationResult::SUCCESS;
-    auto actual = pis.validate();
-    EXPECT_EQ(actual, expected);
+//    auto expected = ValidationResult::SUCCESS;
+//    auto actual = pis.validate();
+//    EXPECT_EQ(actual, expected);
 
-    // test in explicit/absolute dir, nonexisting
-    pis.setPath(nonExistingFile);
+//    // test in explicit/absolute dir, nonexisting
+//    pis.setPath(nonExistingFile);
 
-    expected = ValidationResult::SUCCESS;
-    actual = pis.validate();
-    EXPECT_EQ(actual, expected);
+//    expected = ValidationResult::SUCCESS;
+//    actual = pis.validate();
+//    EXPECT_EQ(actual, expected);
 
-    // test in explicit/absolute dir, existing
-    pis.setPath(existingFile);
+//    // test in explicit/absolute dir, existing
+//    pis.setPath(existingFile);
 
-    auto not_expected = ValidationResult::SUCCESS;
-    actual = pis.validate();
-    ASSERT_THAT(actual, Ne(not_expected));
+//    auto not_expected = ValidationResult::SUCCESS;
+//    actual = pis.validate();
+//    ASSERT_THAT(actual, Ne(not_expected));
 
-    auto actualValue = actual.getError().what();
-    auto expectedValue = "already exists.";
-    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+//    auto actualValue = actual.getError().what();
+//    auto expectedValue = "already exists.";
+//    EXPECT_THAT(actualValue, EndsWith(expectedValue));
 
-    // allow overwriting
-    pis.setOverwrite(true);
-    expected = ValidationResult::SUCCESS;
-    actual = pis.validate();
-    EXPECT_EQ(actual, expected);
+//    // allow overwriting
+//    pis.setOverwrite(true);
+//    expected = ValidationResult::SUCCESS;
+//    actual = pis.validate();
+//    EXPECT_EQ(actual, expected);
 
-    // non-existing dir
-    pis.setPath(nonExistingSubdir / "foo");
-    actual = pis.validate();
-    EXPECT_EQ(actual, expected);
+//    // non-existing dir
+//    pis.setPath(nonExistingSubdir / "foo");
+//    actual = pis.validate();
+//    EXPECT_EQ(actual, expected);
 
-    pis.setMakeDirectories(false);
-    actual = pis.validate();
-    ASSERT_THAT(actual, Ne(not_expected));
+//    pis.setMakeDirectories(false);
+//    actual = pis.validate();
+//    ASSERT_THAT(actual, Ne(not_expected));
 
-    actualValue = actual.getError().what();
-    expectedValue = "does not exist.";
-    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+//    actualValue = actual.getError().what();
+//    expectedValue = "does not exist.";
+//    EXPECT_THAT(actualValue, EndsWith(expectedValue));
 
-    // allow make dirs
-    pis.setMakeDirectories(true);
-    expected = ValidationResult::SUCCESS;
-    actual = pis.validate();
-    EXPECT_EQ(actual, expected);
+//    // allow make dirs
+//    pis.setMakeDirectories(true);
+//    expected = ValidationResult::SUCCESS;
+//    actual = pis.validate();
+//    EXPECT_EQ(actual, expected);
 
-    // parent "dir" is a file
-    pis.setMakeDirectories(true);
-    pis.setPath(existingFile / "foo");
-    not_expected = ValidationResult::SUCCESS;
-    actual = pis.validate();
-    ASSERT_THAT(actual, Ne(not_expected));
+//    // parent "dir" is a file
+//    pis.setMakeDirectories(true);
+//    pis.setPath(existingFile / "foo");
+//    not_expected = ValidationResult::SUCCESS;
+//    actual = pis.validate();
+//    ASSERT_THAT(actual, Ne(not_expected));
 
-    actualValue = actual.getError().what();
-    expectedValue = "is not a directory.";
-    EXPECT_THAT(actualValue, EndsWith(expectedValue));
-}
+//    actualValue = actual.getError().what();
+//    expectedValue = "is not a directory.";
+//    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+//}

@@ -3,7 +3,7 @@
 
 #include <filesystem>
 
-#include "../interface/persistable.h"
+#include "../../interface/baseProperties/persistable.h"
 
 namespace Plotypus
 {
@@ -25,7 +25,7 @@ namespace Plotypus
             void setPath(const std::filesystem::path& newFile);
 
             bool getMakeDirectories() const;
-            void setMakeDirectories(bool newMakePaths);
+            void setMakeDirectories(bool newMakeDirectories);
 
             bool getOverwrite() const;
             void setOverwrite(bool newOverwrite);

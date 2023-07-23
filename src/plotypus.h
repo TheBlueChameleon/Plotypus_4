@@ -2,21 +2,23 @@
 #define PLOTYPUS_H
 
 #include "typesystem/enums.h"
+#include "typesystem/constants.h"
 #include "typesystem/errors.h"
 #include "typesystem/concepts.h"
+#include "typesystem/types.h"
 
-#include "interface/collection.h"
-#include "interface/fragment.h"
-#include "interface/namedtype.h"
-#include "interface/nonAssignable.h"
-#include "interface/persistable.h"
-#include "interface/scriptable.h"
-#include "interface/serializable.h"
-#include "interface/terminalInfoProvider.h""
-#include "interface/textable.h"
+#include "interface/baseProperties/collection.h"
+#include "interface/baseProperties/namedtype.h"
+#include "interface/baseProperties/nonAssignable.h"
+#include "interface/baseProperties/persistable.h"
+
+#include "interface/groupedProperties/fragment.h"
+#include "interface/groupedProperties/scriptable.h"
+#include "interface/groupedProperties/serializable.h"
+
+#include "interface/terminalInfoProvider.h"
 
 #include "base/polymorphiclist.h"
-#include "base/persistableimpl.h"
 
 #include "report/report.h"
 #include "report/terminalInfoProvider/pdfcairo.h"

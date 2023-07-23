@@ -7,7 +7,7 @@
 #include "../../base/terminalInfoProvider/lineendsfragment.h"
 #include "../../base/terminalInfoProvider/backgroundfragment.h"
 #include "../../base/terminalInfoProvider/continuoussizefragment.h"
-#include "../../base/userCodeFragment.h"
+#include "../../base/generic/userCodeFragment.h"
 
 namespace Plotypus
 {

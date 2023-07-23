@@ -18,7 +18,7 @@
 
 #include "interface/terminalInfoProvider.h"
 
-#include "base/polymorphiclist.h"
+#include "base/generic/polymorphiclist.h"
 
 #include "report/report.h"
 #include "report/terminalInfoProvider/pdfcairo.h"

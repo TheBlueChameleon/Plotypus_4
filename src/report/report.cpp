@@ -6,7 +6,7 @@
 #include "report.h"
 #include "terminalInfoProvider/pdfcairo.h"
 
-#include "../base/generic/util.h"
+#include "../base/util.h"
 
 namespace Plotypus
 {

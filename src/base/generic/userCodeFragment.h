@@ -1,7 +1,7 @@
 #ifndef SCRIPTABLEIMPL_H
 #define SCRIPTABLEIMPL_H
 
-#include "../interface/groupedProperties/fragment.h"
+#include "../../interface/groupedProperties/fragment.h"
 
 namespace Plotypus
 {

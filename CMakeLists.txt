@@ -39,11 +39,11 @@ add_library(Plotypus-lib SHARED
     src/interface/terminalInfoProvider.h
 
     # base
-    src/base/userCodeFragment.h src/base/userCodeFragment.cpp
-    src/base/polymorphiclist.h src/base/polymorphiclist.txx
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
+    src/base/util.h src/base/util.cpp
 
-    src/base/generic/util.h src/base/generic/util.cpp
+    src/base/generic/userCodeFragment.h src/base/generic/userCodeFragment.cpp
+    src/base/generic/polymorphiclist.h src/base/generic/polymorphiclist.txx
 
     src/base/terminalInfoProvider/backgroundfragment.h src/base/terminalInfoProvider/backgroundfragment.cpp
     src/base/terminalInfoProvider/colorfragment.h src/base/terminalInfoProvider/colorfragment.cpp

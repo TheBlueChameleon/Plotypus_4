@@ -9,7 +9,7 @@ namespace Plotypus
     {
         class ColorFragment : public ScriptFragment
         {
-            protected:
+            private:
                 bool color = true;
 
             public:

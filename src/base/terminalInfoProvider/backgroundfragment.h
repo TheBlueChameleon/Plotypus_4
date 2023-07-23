@@ -9,7 +9,7 @@ namespace Plotypus
     {
         class BackgroundFragment : public ScriptFragment
         {
-            protected:
+            private:
                 std::optional<std::string> background = "";
 
             public:

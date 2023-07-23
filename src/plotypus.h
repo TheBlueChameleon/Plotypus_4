@@ -20,8 +20,11 @@
 #include "interface/groupedProperties/serializable.h"
 
 #include "interface/terminalInfoProvider.h"
+#include "interface/sheet.h"
 
 #include "report/report.h"
 #include "report/terminalInfoProvider/pdfcairo.h"
+
+#include "sheet/emptysheet.h"
 
 #endif // PLOTYPUS_H

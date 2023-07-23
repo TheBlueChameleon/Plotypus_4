@@ -2,7 +2,7 @@
 
 namespace Plotypus
 {
-    namespace TerminalInfo
+    namespace SheetFragments
     {
         const std::string_view FontFragment::getFont() const
         {
@@ -26,17 +26,22 @@ namespace Plotypus
 
         void FontFragment::setFont(const std::string& newFontFace, const int newFontSize)
         {
-            return fontFragment.setFont(newFontFace, newFontSize);
+            fontFragment.setFont(newFontFace, newFontSize);
         }
 
         void FontFragment::reset()
         {
-            return fontFragment.reset();
+            fontFragment.reset();
         }
 
         std::string FontFragment::generateScriptFragment() const
         {
-            return "font " + std::string(getFont()) + " ";
+            std::ostringstream result;
+            result << "set font ";
+            result << '"' << getFont() << '"';
+            result << std::endl;
+
+            return result.str();
         }
     }
 }

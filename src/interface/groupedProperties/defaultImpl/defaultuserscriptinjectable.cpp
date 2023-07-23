@@ -56,4 +56,11 @@ namespace Plotypus
     {
         writeUserScript(hFile, userScriptCleanUp, "User CleanUp Code");
     }
+
+    void DefaultUserScriptInjectable::reset()
+    {
+        userScriptBeforeSetup.reset();
+        userScriptBeforeChildren.reset();
+        userScriptCleanUp.reset();
+    }
 }

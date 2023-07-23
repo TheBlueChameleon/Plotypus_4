@@ -10,7 +10,7 @@ namespace Plotypus
     {
         class LineEndsFragment : public ScriptFragment
         {
-            protected:
+            private:
                 LineEnds lineEnds = LineEnds::Default;
 
             public:

@@ -25,28 +25,32 @@ add_library(Plotypus-lib SHARED
     src/typesystem/types.h
 
     # interfaces
+    src/interface/sheet.h src/interface/sheet.cpp
+    src/interface/terminalInfoProvider.h
+
     src/interface/baseProperties/collection.h
     src/interface/baseProperties/mutable.h
     src/interface/baseProperties/namedtype.h
     src/interface/baseProperties/nonAssignable.h
     src/interface/baseProperties/persistable.h
-    src/interface/baseProperties/userscriptinjectable.h
     src/interface/baseProperties/validatable.h
 
     src/interface/baseProperties/defaultImpl/defaultcollection.h src/interface/baseProperties/defaultImpl/defaultcollection.txx
     src/interface/baseProperties/defaultImpl/defaultpersistable.h src/interface/baseProperties/defaultImpl/defaultpersistable.cpp
-    src/interface/baseProperties/defaultImpl/defaultuserscriptinjectable.h src/interface/baseProperties/defaultImpl/defaultuserscriptinjectable.cpp
 
     src/interface/groupedProperties/scriptfragment.h
     src/interface/groupedProperties/scriptable.h
     src/interface/groupedProperties/serializable.h
+    src/interface/groupedProperties/numbereditem.h
+    src/interface/groupedProperties/userscriptinjectable.h
 
-    src/interface/sheet.h
-    src/interface/terminalInfoProvider.h
+    src/interface/groupedProperties/defaultImpl/defaultnumbereditem.h src/interface/groupedProperties/defaultImpl/defaultnumbereditem.cpp
+    src/interface/groupedProperties/defaultImpl/defaultuserscriptinjectable.h src/interface/groupedProperties/defaultImpl/defaultuserscriptinjectable.cpp
 
     # base
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
 
+    src/base/generic/genericfontfragment.h src/base/generic/genericfontfragment.cpp
     src/base/generic/userCodeFragment.h src/base/generic/userCodeFragment.cpp
 
     src/base/terminalInfoProvider/backgroundfragment.h src/base/terminalInfoProvider/backgroundfragment.cpp
@@ -56,11 +60,17 @@ add_library(Plotypus-lib SHARED
     src/base/terminalInfoProvider/fontfragment.h src/base/terminalInfoProvider/fontfragment.cpp
     src/base/terminalInfoProvider/lineendsfragment.h src/base/terminalInfoProvider/lineendsfragment.cpp
 
+    src/base/sheet/fontfragment.h src/base/sheet/fontfragment.cpp
+    src/base/sheet/titlefragment.h src/base/sheet/titlefragment.cpp
+
     # report
     src/report/outputPathProvider.h src/report/outputPathProvider.cpp
     src/report/report.h src/report/report.txx src/report/report.cpp
 
     src/report/terminalInfoProvider/pdfcairo.h src/report/terminalInfoProvider/pdfcairo.cpp
+
+    # sheet
+    src/sheet/emptysheet.h src/sheet/emptysheet.cpp
 )
 
 set_target_properties(Plotypus-lib PROPERTIES

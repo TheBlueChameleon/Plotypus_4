@@ -3,12 +3,13 @@
 
 #include "../interface/baseProperties/nonAssignable.h"
 #include "../interface/baseProperties/persistable.h"
-#include "../interface/baseProperties/userscriptinjectable.h"
 
 #include "../interface/baseProperties/defaultImpl/defaultpersistable.h"
-#include "../interface/baseProperties/defaultImpl/defaultuserscriptinjectable.h"
 
+#include "../interface/groupedProperties/userscriptinjectable.h"
 #include "../interface/groupedProperties/scriptable.h"
+
+#include "../interface/groupedProperties/defaultImpl/defaultuserscriptinjectable.h"
 
 #include "../interface/terminalInfoProvider.h"
 

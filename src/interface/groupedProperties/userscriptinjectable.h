@@ -1,9 +1,11 @@
 #ifndef USERSCRIPTINJECTABLE_H
 #define USERSCRIPTINJECTABLE_H
 
+#include "../baseProperties/mutable.h"
+
 namespace Plotypus
 {
-    struct UserScriptInjectable
+    struct UserScriptInjectable : public Mutable
     {
         //! @todo introduce clear options
 

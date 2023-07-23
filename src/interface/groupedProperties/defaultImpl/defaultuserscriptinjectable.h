@@ -5,7 +5,8 @@
 
 namespace Plotypus
 {
-    class DefaultUserScriptInjectable : public UserScriptInjectable
+    class DefaultUserScriptInjectable:
+        public UserScriptInjectable
     {
         private:
             std::optional<std::string> userScriptBeforeSetup;
@@ -29,6 +30,8 @@ namespace Plotypus
             void writeUserScriptBeforeSetup(std::ostream& hFile);
             void writeUserScriptBeforeChildren(std::ostream& hFile);
             void writeUserScriptCleanUp(std::ostream& hFile);
+
+            void reset();
     };
 }
 

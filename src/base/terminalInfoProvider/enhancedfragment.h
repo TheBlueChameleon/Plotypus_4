@@ -9,7 +9,7 @@ namespace Plotypus
     {
         class EnhancedFragment : public ScriptFragment
         {
-            protected:
+            private:
                 bool enhanced = true;
 
             public:

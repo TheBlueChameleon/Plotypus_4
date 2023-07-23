@@ -9,7 +9,7 @@ namespace Plotypus
     {
         class ContinuousSizeFragment : public ScriptFragment
         {
-            protected:
+            private:
                 std::optional<ContinuousCoordinate_t> size;
                 std::optional<LengthUnit>             unit;
 

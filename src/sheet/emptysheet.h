@@ -1,0 +1,68 @@
+#ifndef EMPTYSHEET_H
+#define EMPTYSHEET_H
+
+#include "../interface/sheet.h"
+
+#include "../interface/baseProperties/defaultImpl/defaultpersistable.h"
+
+#include "../interface/groupedProperties/defaultImpl/defaultnumbereditem.h"
+
+#include "../base/sheet/fontfragment.h"
+#include "../base/sheet/titlefragment.h"
+
+namespace Plotypus
+{
+    class EmptySheet :
+        public Sheet,
+
+        public SheetFragments::TitleFragment,
+        public SheetFragments::FontFragment
+    {
+        private:
+            DefaultNumberedItem number;
+            DefaultPersistable file;
+            DefaultUserScriptInjectable userCode;
+
+        public:
+            EmptySheet() = default;
+
+            // Validatable interface
+            ValidationResult validate() const;
+
+            // Mutable interface
+            void reset();
+
+            // Persistable interface
+            const std::filesystem::path& getPath() const;
+            void setPath(const std::filesystem::path& newPath);
+            bool getMakeDirectories() const;
+            void setMakeDirectories(bool newMakeDirectories);
+            bool getOverwrite() const;
+            void setOverwrite(bool newOverwrite);
+            std::ofstream getFileStream() const;
+            std::ostringstream getStringStream();
+
+            // Sheet interface
+            void writeScriptHead(std::ostream& hFile) const;
+            void writeScriptData(std::ostream& hFile) const;
+            void writeScriptOverlays(std::ostream& hFile) const;
+            void writeScriptFooter(std::ostream& hFile) const;
+
+            // NumberedItem interface
+            size_t getNumber() const;
+            void setNumber(size_t number);
+
+            // UserScriptInjectable interface
+            std::optional<std::string> getUserScriptBeforeSetup() const;
+            void setUserScriptBeforeSetup(const std::string& newUserScriptBeforeSetup);
+            std::optional<std::string> getUserScriptBeforeChildren() const;
+            void setUserScriptBeforeChildren(const std::string& newUserScriptBeforeChildren);
+            std::optional<std::string> getUserScriptCleanUp() const;
+            void setUserScriptCleanUp(const std::string& newUserScriptCleanUp);
+            void writeUserScriptBeforeSetup(std::ostream& hFile);
+            void writeUserScriptBeforeChildren(std::ostream& hFile);
+            void writeUserScriptCleanUp(std::ostream& hFile);
+    };
+}
+
+#endif // EMPTYSHEET_H

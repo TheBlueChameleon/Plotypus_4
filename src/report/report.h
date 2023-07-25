@@ -48,9 +48,9 @@ namespace Plotypus
             template<TerminalInfoProviderType T>
             T& getTerminal();
 
-            void compile();
-            void writeScript();
-            void runScript();
+            void compile() const;
+            void writeScript() const;
+            void runScript() const;
 
             std::string getScriptString();
 

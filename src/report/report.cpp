@@ -65,40 +65,36 @@ namespace Plotypus
         bool escapeMode = false;
         for (const char c : runCommand)
         {
-            if (c != '$')
-            {
-                result << c;
-            }
-            else
-            {
-                // *INDENT-OFF*
+            // *INDENT-OFF*
+            if (c != '$') {result << c;}
+            else {
                 if (escapeMode) {
                     if (c == 'f') {result << scriptFile.getPath();}
                     else          {result << c;}
                     escapeMode = false;
                 }
                 else {escapeMode = true;}
-                // *INDENT-ON*
             }
+            // *INDENT-ON*
         }
 
         return result.str();
     }
 
-    void Report::compile()
+    void Report::compile() const
     {
         writeScript();
         runScript();
     }
 
-    void Report::writeScript()
+    void Report::writeScript() const
     {
         validate().trigger();
         auto hFile = getFileStream();
         writeScript(hFile);
     }
 
-    void Report::runScript()
+    void Report::runScript() const
     {
         const std::string runCommand = getParsedRunCommand();
         const int error = std::system(runCommand.data());
@@ -145,6 +141,8 @@ namespace Plotypus
         validation = scriptFile.validate();
         if (!validation) {return validation;}
         // *INDENT-ON*
+
+        //for (const auto* sheet)
 
         return ValidationResult::SUCCESS;
     }

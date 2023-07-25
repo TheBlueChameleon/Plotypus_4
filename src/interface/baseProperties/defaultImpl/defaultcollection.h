@@ -27,6 +27,17 @@ namespace Plotypus
             void clear();
 
             void forEach(std::function<void (T&)> action);
+
+            // iterator interface
+            using value_type = typename decltype(elements)::value_type;
+            using iterator = typename decltype(elements)::iterator;
+            using const_iterator = typename decltype(elements)::const_iterator;
+
+            iterator begin();
+            const_iterator cbegin() const;
+
+            iterator end();
+            const_iterator cend() const;
     };
 }
 

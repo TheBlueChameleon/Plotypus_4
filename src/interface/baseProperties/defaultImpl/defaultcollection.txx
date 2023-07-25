@@ -77,4 +77,30 @@ namespace Plotypus
             throw InvalidArgumentError("No valid callable provided");
         }
     }
+
+
+
+    template<typename T>
+    typename DefaultCollection<T>::iterator DefaultCollection<T>::begin()
+    {
+        return elements.begin();
+    }
+
+    template<typename T>
+    typename DefaultCollection<T>::const_iterator DefaultCollection<T>::cbegin() const
+    {
+        return elements.cbegin();
+    }
+
+    template<typename T>
+    typename DefaultCollection<T>::iterator DefaultCollection<T>::end()
+    {
+        return elements.end();
+    }
+
+    template<typename T>
+    typename DefaultCollection<T>::const_iterator DefaultCollection<T>::cend() const
+    {
+        return elements.cend();
+    }
 }

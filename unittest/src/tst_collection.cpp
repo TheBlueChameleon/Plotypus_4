@@ -1,4 +1,5 @@
 #include <iostream>
+#include <numeric>
 #include <sstream>
 
 #include <gtest/gtest.h>
@@ -33,6 +34,11 @@ class Collection_Fixture : public ::testing::Test
                 {
                     log << "BASE: i = " << i << std::endl;
                 }
+
+                int get() const
+                {
+                    return i;
+                }
         };
 
         class Derived : public Base
@@ -53,6 +59,9 @@ class Collection_Fixture : public ::testing::Test
 
 TEST_F(Collection_Fixture, Collection_Test)
 {
+    std::vector<int> reads;
+    int sum;
+
     using namespace Plotypus;
     {
         DefaultCollection<Base> collection;
@@ -68,6 +77,22 @@ TEST_F(Collection_Fixture, Collection_Test)
         {
             x.show();
         });
+
+        for (const auto x : collection)
+        {
+            reads.push_back(x->get());
+        }
+
+
+        for ([[maybe_unused]] auto x : collection)
+        {
+            reads.push_back(x->get());
+        }
+
+        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto elm)
+        {
+            return acc + elm->get();
+        });
     }
 
     std::string expected =
@@ -81,7 +106,11 @@ TEST_F(Collection_Fixture, Collection_Test)
         "DTOR virtual Collection_Fixture::Derived::~Derived() @3\n"
         "DTOR virtual Collection_Fixture::Base::~Base() @3\n"
         "DTOR virtual Collection_Fixture::Base::~Base() @4\n";
+    EXPECT_EQ(log.str(), expected);
 
-    EXPECT_THAT(log.str(), Eq(expected));
+    std::vector<int> expectedReads {1, 2, 3, 4, 1, 2, 3, 4};
+    EXPECT_EQ(reads, expectedReads);
+
+    EXPECT_EQ(sum, 10);
 }
 

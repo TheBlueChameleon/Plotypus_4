@@ -51,6 +51,11 @@ namespace Plotypus
             return "pdf";
         }
 
+        const std::string PdfCairo::getTypeName()
+        {
+            return "pdfCairo";
+        }
+
         const std::filesystem::path& PdfCairo::getPath() const
         {
             return outputFile.getPath();

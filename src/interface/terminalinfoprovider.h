@@ -9,7 +9,8 @@ namespace Plotypus
 {
     struct TerminalInfoProvider :
         public Scriptable,
-        public Persistable
+        public Persistable,
+        public NamedType
     {
         static std::string getDefaultExtension();
 

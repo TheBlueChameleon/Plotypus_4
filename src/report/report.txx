@@ -20,14 +20,21 @@ namespace Plotypus
     }
 
     template<TerminalInfoProviderType T>
-    T Report::getTerminal()
+    T& Report::getTerminal()
     {
         if (!tip)
         {
             throw InvalidTypeError("No TerminalInfoProvider installed");
         }
 
-        return *dynamic_cast<T*>(tip);
+        if (auto typedTip = dynamic_cast<T*>(tip))
+        {
+            return *typedTip;
+        }
+        else
+        {
+            throw InvalidTypeError("Currently installed TerminalInfoProvider is of type '" + tip->getTypeName() + "', but a '" + T::getTypeName() + "' was requested." );
+        }
     }
 }
 #endif // REPORT_TXX

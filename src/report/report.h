@@ -46,7 +46,7 @@ namespace Plotypus
             template<TerminalInfoProviderType T>
             T& installTerminal();
             template<TerminalInfoProviderType T>
-            T getTerminal();
+            T& getTerminal();
 
             void compile();
             void writeScript();

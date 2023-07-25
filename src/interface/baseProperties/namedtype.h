@@ -5,7 +5,10 @@ namespace Plotypus
 {
     struct NamedType
     {
-        virtual const std::string& getTypeName() const = 0;
+        static const std::string getTypeName()
+        {
+            return "(unnamed Type)";
+        };
     };
 }
 #endif // NAMEDTYPE_H

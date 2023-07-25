@@ -30,7 +30,7 @@ namespace Plotypus
             return ValidationResult::SUCCESS;
         }
 
-        void PdfCairo::writeScript(std::ostream& hFile)
+        void PdfCairo::writeScript(std::ostream& hFile) const
         {
             hFile << "set term pdfcairo ";
             hFile << EnhancedFragment::generateScriptFragment();

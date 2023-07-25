@@ -2,7 +2,7 @@
 
 namespace Plotypus
 {
-    void DefaultUserScriptInjectable::writeUserScript(std::ostream& hFile, const std::optional<std::string> script, const char* label)
+    void DefaultUserScriptInjectable::writeUserScript(std::ostream& hFile, const std::optional<std::string> script, const char* label) const
     {
         if (script.has_value())
         {
@@ -42,17 +42,17 @@ namespace Plotypus
     }
 
 
-    void DefaultUserScriptInjectable::writeUserScriptBeforeSetup(std::ostream& hFile)
+    void DefaultUserScriptInjectable::writeUserScriptBeforeSetup(std::ostream& hFile) const
     {
         writeUserScript(hFile, userScriptBeforeSetup, "User Setup Code");
     }
 
-    void DefaultUserScriptInjectable::writeUserScriptBeforeChildren(std::ostream& hFile)
+    void DefaultUserScriptInjectable::writeUserScriptBeforeChildren(std::ostream& hFile) const
     {
         writeUserScript(hFile, userScriptBeforeChildren, "User Child-Preparation Code");
     }
 
-    void DefaultUserScriptInjectable::writeUserScriptCleanUp(std::ostream& hFile)
+    void DefaultUserScriptInjectable::writeUserScriptCleanUp(std::ostream& hFile) const
     {
         writeUserScript(hFile, userScriptCleanUp, "User CleanUp Code");
     }

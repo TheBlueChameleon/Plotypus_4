@@ -15,7 +15,7 @@ namespace Plotypus
         public NumberedItem,
         public UserScriptInjectable
     {
-        virtual void writeScript(std::ostream& hFile);
+        virtual void writeScript(std::ostream& hFile) const;
 
         virtual void writeScriptHead    (std::ostream& hFile) const = 0;
         virtual void writeScriptData    (std::ostream& hFile) const = 0;

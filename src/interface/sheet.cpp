@@ -2,7 +2,7 @@
 
 namespace Plotypus
 {
-    void Sheet::writeScript(std::ostream& hFile)
+    void Sheet::writeScript(std::ostream& hFile) const
     {
         writeUserScriptBeforeSetup(hFile);
         writeScriptHead(hFile);

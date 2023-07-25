@@ -13,7 +13,7 @@ namespace Plotypus
             std::optional<std::string> userScriptBeforeChildren;
             std::optional<std::string> userScriptCleanUp;
 
-            void writeUserScript(std::ostream& hFile, const std::optional<std::string> script, const char* label);
+            void writeUserScript(std::ostream& hFile, const std::optional<std::string> script, const char* label) const;
 
         public:
             DefaultUserScriptInjectable() = default;
@@ -27,9 +27,9 @@ namespace Plotypus
             std::optional<std::string> getUserScriptCleanUp() const;
             void setUserScriptCleanUp(const std::string& newUserScriptCleanUp);
 
-            void writeUserScriptBeforeSetup(std::ostream& hFile);
-            void writeUserScriptBeforeChildren(std::ostream& hFile);
-            void writeUserScriptCleanUp(std::ostream& hFile);
+            void writeUserScriptBeforeSetup(std::ostream& hFile) const;
+            void writeUserScriptBeforeChildren(std::ostream& hFile) const;
+            void writeUserScriptCleanUp(std::ostream& hFile) const;
 
             void reset();
     };

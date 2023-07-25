@@ -138,17 +138,17 @@ namespace Plotypus
         userCode.setUserScriptCleanUp(newUserScriptCleanUp);
     }
 
-    void EmptySheet::writeUserScriptBeforeSetup(std::ostream& hFile)
+    void EmptySheet::writeUserScriptBeforeSetup(std::ostream& hFile) const
     {
         userCode.writeUserScriptBeforeSetup(hFile);
     }
 
-    void EmptySheet::writeUserScriptBeforeChildren(std::ostream& hFile)
+    void EmptySheet::writeUserScriptBeforeChildren(std::ostream& hFile) const
     {
         userCode.writeUserScriptBeforeChildren(hFile);
     }
 
-    void EmptySheet::writeUserScriptCleanUp(std::ostream& hFile)
+    void EmptySheet::writeUserScriptCleanUp(std::ostream& hFile) const
     {
         userCode.writeUserScriptCleanUp(hFile);
     }

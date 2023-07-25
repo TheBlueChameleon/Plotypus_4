@@ -154,7 +154,7 @@ namespace Plotypus
         return ValidationResult::SUCCESS;
     }
 
-    void Report::writeScript(std::ostream& hFile)
+    void Report::writeScript(std::ostream& hFile) const
     {
         writeUserScriptBeforeSetup(hFile);
         tip->writeScript(hFile);
@@ -235,17 +235,17 @@ namespace Plotypus
         userScripts.setUserScriptCleanUp(newUserScriptCleanUp);
     }
 
-    void Report::writeUserScriptBeforeSetup(std::ostream& hFile)
+    void Report::writeUserScriptBeforeSetup(std::ostream& hFile) const
     {
         userScripts.writeUserScriptBeforeSetup(hFile);
     }
 
-    void Report::writeUserScriptBeforeChildren(std::ostream& hFile)
+    void Report::writeUserScriptBeforeChildren(std::ostream& hFile) const
     {
         userScripts.writeUserScriptBeforeChildren(hFile);
     }
 
-    void Report::writeUserScriptCleanUp(std::ostream& hFile)
+    void Report::writeUserScriptCleanUp(std::ostream& hFile) const
     {
         userScripts.writeUserScriptCleanUp(hFile);
     }

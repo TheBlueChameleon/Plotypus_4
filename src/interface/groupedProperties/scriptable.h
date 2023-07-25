@@ -10,7 +10,7 @@ namespace Plotypus
         public Mutable,
         public Validatable
     {
-        virtual void writeScript(std::ostream& hFile) = 0;
+        virtual void writeScript(std::ostream& hFile) const = 0;
     };
 }
 

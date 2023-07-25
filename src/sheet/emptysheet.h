@@ -63,9 +63,9 @@ namespace Plotypus
             void setUserScriptBeforeChildren(const std::string& newUserScriptBeforeChildren);
             std::optional<std::string> getUserScriptCleanUp() const;
             void setUserScriptCleanUp(const std::string& newUserScriptCleanUp);
-            void writeUserScriptBeforeSetup(std::ostream& hFile);
-            void writeUserScriptBeforeChildren(std::ostream& hFile);
-            void writeUserScriptCleanUp(std::ostream& hFile);
+            void writeUserScriptBeforeSetup(std::ostream& hFile) const;
+            void writeUserScriptBeforeChildren(std::ostream& hFile) const;
+            void writeUserScriptCleanUp(std::ostream& hFile) const;
     };
 }
 

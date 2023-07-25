@@ -18,9 +18,9 @@ namespace Plotypus
         virtual std::optional<std::string> getUserScriptCleanUp() const = 0;
         virtual void setUserScriptCleanUp(const std::string& newUserScriptCleanUp) = 0;
 
-        virtual void writeUserScriptBeforeSetup(std::ostream& hFile) = 0;
-        virtual void writeUserScriptBeforeChildren(std::ostream& hFile) = 0;
-        virtual void writeUserScriptCleanUp(std::ostream& hFile) = 0;
+        virtual void writeUserScriptBeforeSetup(std::ostream& hFile) const = 0;
+        virtual void writeUserScriptBeforeChildren(std::ostream& hFile) const = 0;
+        virtual void writeUserScriptCleanUp(std::ostream& hFile) const = 0;
     };
 }
 #endif // USERSCRIPTINJECTABLE_H

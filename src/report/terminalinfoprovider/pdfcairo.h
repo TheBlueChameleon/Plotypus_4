@@ -33,7 +33,7 @@ namespace Plotypus
                 // Scriptable interface
                 void reset();
                 ValidationResult validate() const;
-                void writeScript(std::ostream& hFile);
+                void writeScript(std::ostream& hFile) const;
 
                 // Persistable interface
                 const std::filesystem::path& getPath() const;

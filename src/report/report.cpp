@@ -105,7 +105,7 @@ namespace Plotypus
         }
     }
 
-    std::string Report::getScriptString()
+    std::string Report::getScriptString() const
     {
         validate().trigger();
         auto buffer = getStringStream();
@@ -193,7 +193,7 @@ namespace Plotypus
         return scriptFile.getFileStream();
     }
 
-    std::ostringstream Report::getStringStream()
+    std::ostringstream Report::getStringStream() const
     {
         return scriptFile.getStringStream();
     }

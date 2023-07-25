@@ -70,7 +70,7 @@ namespace Plotypus
         return file.getFileStream();
     }
 
-    std::ostringstream EmptySheet::getStringStream()
+    std::ostringstream EmptySheet::getStringStream() const
     {
         return file.getStringStream();
     }

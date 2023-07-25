@@ -101,7 +101,7 @@ namespace Plotypus
             return outputFile.getFileStream();
         }
 
-        std::ostringstream PdfCairo::getStringStream()
+        std::ostringstream PdfCairo::getStringStream() const
         {
             return outputFile.getStringStream();
         }

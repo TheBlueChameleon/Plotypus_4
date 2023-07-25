@@ -39,7 +39,7 @@ namespace Plotypus
             void setAllowNullPath(bool newAllowNullPath);
 
             std::ofstream getFileStream() const;
-            std::ostringstream getStringStream();
+            std::ostringstream getStringStream() const;
 
             // Validatable interface
             ValidationResult validate() const;

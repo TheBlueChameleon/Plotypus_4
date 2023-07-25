@@ -52,7 +52,7 @@ namespace Plotypus
             void writeScript() const;
             void runScript() const;
 
-            std::string getScriptString();
+            std::string getScriptString() const;
 
             // PropagatingPersistable interface
             const std::filesystem::path& getPath() const;
@@ -78,7 +78,7 @@ namespace Plotypus
             void writeScript(std::ostream& hFile) const;
 
             std::ofstream getFileStream() const;
-            std::ostringstream getStringStream();
+            std::ostringstream getStringStream() const;
 
             // UserScriptInjectable interface
             std::optional<std::string> getUserScriptBeforeSetup() const;

@@ -65,7 +65,7 @@ namespace Plotypus
         return DefaultPersistable::getFileStream();
     }
 
-    std::ostringstream DefaultPropagatingPersistable::getStringStream()
+    std::ostringstream DefaultPropagatingPersistable::getStringStream() const
     {
         return DefaultPersistable::getStringStream();
     }

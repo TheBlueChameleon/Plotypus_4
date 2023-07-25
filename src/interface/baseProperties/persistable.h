@@ -23,7 +23,7 @@ namespace Plotypus
         virtual void setAllowNullPath(bool newAllowNullPath) = 0;
 
         virtual std::ofstream getFileStream() const = 0;
-        virtual std::ostringstream getStringStream() = 0;
+        virtual std::ostringstream getStringStream() const = 0;
     };
 }
 

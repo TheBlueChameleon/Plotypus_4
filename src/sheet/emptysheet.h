@@ -44,7 +44,7 @@ namespace Plotypus
             bool getAllowNullPath() const;
             void setAllowNullPath(bool newAllowNullPath);
             std::ofstream getFileStream() const;
-            std::ostringstream getStringStream();
+            std::ostringstream getStringStream() const;
 
             // Sheet interface
             void writeScriptHead(std::ostream& hFile) const;

@@ -111,7 +111,7 @@ namespace Plotypus
         return hFile;
     }
 
-    std::ostringstream DefaultPersistable::getStringStream()
+    std::ostringstream DefaultPersistable::getStringStream() const
     {
         return std::ostringstream();
     }

@@ -1,25 +1,25 @@
 #ifndef REPORT_H
 #define REPORT_H
 
-#include "../interface/baseProperties/nonAssignable.h"
+#include "../interface/baseProperties/nonassignable.h"
 #include "../interface/baseProperties/persistable.h"
 
-#include "../interface/baseProperties/defaultImpl/defaultpersistable.h"
+#include "../interface/baseProperties/defaultImpl/defaultpropagatingpersistable.h"
 
 #include "../interface/groupedProperties/userscriptinjectable.h"
 #include "../interface/groupedProperties/scriptable.h"
 
 #include "../interface/groupedProperties/defaultImpl/defaultuserscriptinjectable.h"
 
-#include "../interface/terminalInfoProvider.h"
+#include "../interface/terminalinfoprovider.h"
 
-#include "outputPathProvider.h"
+#include "outputpathprovider.h"
 
 namespace Plotypus
 {
     class Report :
         public NonAssignable,
-        public Persistable,
+        public PropagatingPersistable,
         public Scriptable,
         public UserScriptInjectable,
 
@@ -27,18 +27,16 @@ namespace Plotypus
     {
         private:
             TerminalInfoProvider* tip = nullptr;
-            DefaultPersistable scriptFile;
+            DefaultPropagatingPersistable scriptFile;
             DefaultUserScriptInjectable userScripts;
 
-            std::string runCommand = "gnuplot $f";
+            DefaultCollection<Sheet> sheets;
 
-            bool autoUpdateChildFileNames = true;
+            std::string runCommand = "gnuplot $f";
 
         public:
             Report();
 
-            bool getAutoUpdateChildFileNames() const;
-            void setAutoUpdateChildFileNames(const bool newSetUpdateChildFileNames);
             void setChildFileNames();
 
             const std::string& getRunCommand() const;
@@ -56,7 +54,7 @@ namespace Plotypus
 
             std::string getScriptString();
 
-            // Persistable interface
+            // PropagatingPersistable interface
             const std::filesystem::path& getPath() const;
             void setPath(const std::filesystem::path& newPath);
 
@@ -65,6 +63,12 @@ namespace Plotypus
 
             bool getOverwrite() const;
             void setOverwrite(bool newOverwrite);
+
+            bool getPropagateUpdateChildFileNames() const;
+            void setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames);
+
+            bool getAllowNullPath() const;
+            void setAllowNullPath(bool newAllowNullPath);
 
             // Scriptable interface
             void reset();

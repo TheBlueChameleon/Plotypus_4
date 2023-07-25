@@ -19,6 +19,9 @@ namespace Plotypus
         virtual bool getOverwrite() const = 0;
         virtual void setOverwrite(bool newOverwrite) = 0;
 
+        virtual bool getAllowNullPath() const = 0;
+        virtual void setAllowNullPath(bool newAllowNullPath) = 0;
+
         virtual std::ofstream getFileStream() const = 0;
         virtual std::ostringstream getStringStream() = 0;
     };

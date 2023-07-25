@@ -1,49 +1,37 @@
-#ifndef DEFAULTPERSISTABLE_H
-#define DEFAULTPERSISTABLE_H
+#ifndef DEFAULTPROPAGATINGPERSISTABLE_H
+#define DEFAULTPROPAGATINGPERSISTABLE_H
 
-#include "../mutable.h"
-#include "../persistable.h"
-#include "../validatable.h"
+#include "../propagatingpersistable.h"
+
+#include "defaultpersistable.h"
 
 namespace Plotypus
 {
-    class DefaultPersistable:
-        public Mutable,
-        public Persistable,
-        public Validatable
+    class DefaultPropagatingPersistable :
+        public PropagatingPersistable,
+        public DefaultPersistable
     {
         private:
-            std::filesystem::path path;
-
-            bool makeDirectories = true;
-            bool overwrite = false;
-            bool allowNullPath = false;
+            bool propagateUpdateChildFileNames = true;
 
         public:
-            DefaultPersistable() = default;
+            DefaultPropagatingPersistable() = default;
 
-            // Mutable interface
-            void reset();
+            bool getPropagateUpdateChildFileNames() const;
+            void setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames);
 
             // Persistable interface
             const std::filesystem::path& getPath() const;
             void setPath(const std::filesystem::path& newPath);
-
             bool getMakeDirectories() const;
             void setMakeDirectories(bool newMakeDirectories);
-
             bool getOverwrite() const;
             void setOverwrite(bool newOverwrite);
-
             bool getAllowNullPath() const;
             void setAllowNullPath(bool newAllowNullPath);
-
             std::ofstream getFileStream() const;
             std::ostringstream getStringStream();
-
-            // Validatable interface
-            ValidationResult validate() const;
     };
 }
 
-#endif // DEFAULTPERSISTABLE_H
+#endif // DEFAULTPROPAGATINGPERSISTABLE_H

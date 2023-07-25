@@ -52,6 +52,16 @@ namespace Plotypus
         file.setOverwrite(newOverwrite);
     }
 
+    bool EmptySheet::getAllowNullPath() const
+    {
+        return file.getAllowNullPath();
+    }
+
+    void EmptySheet::setAllowNullPath(bool newAllowNullPath)
+    {
+        file.setAllowNullPath(newAllowNullPath);
+    }
+
     std::ofstream EmptySheet::getFileStream() const
     {
         return file.getFileStream();
@@ -64,7 +74,8 @@ namespace Plotypus
 
     void EmptySheet::writeScriptHead(std::ostream& hFile) const
     {
-        // clean sheets commands
+        hFile << SheetFragments::CleanSheetFragment::generateCleanSheetOnScriptFragment();
+
         // set origin x, y
         // set size w, h
 
@@ -74,7 +85,7 @@ namespace Plotypus
 
     void EmptySheet::writeScriptData(std::ostream& hFile) const
     {
-        // hFile << "plot [0:1][1:0] 1/0 t\"\"  # dummy plot for empty page" << std::endl << std::endl;
+        hFile << "plot [0:1][1:0] 1/0 t\"\"  # dummy plot for empty page" << std::endl << std::endl;
     }
 
     void EmptySheet::writeScriptOverlays(std::ostream& hFile) const
@@ -84,7 +95,7 @@ namespace Plotypus
 
     void EmptySheet::writeScriptFooter(std::ostream& hFile) const
     {
-
+        hFile << SheetFragments::CleanSheetFragment::generateCleanSheetOffScriptFragment();
     }
 
     size_t EmptySheet::getNumber() const

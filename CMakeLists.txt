@@ -26,17 +26,19 @@ add_library(Plotypus-lib SHARED
 
     # interfaces
     src/interface/sheet.h src/interface/sheet.cpp
-    src/interface/terminalInfoProvider.h
+    src/interface/terminalinfoprovider.h
 
     src/interface/baseProperties/collection.h
     src/interface/baseProperties/mutable.h
     src/interface/baseProperties/namedtype.h
-    src/interface/baseProperties/nonAssignable.h
+    src/interface/baseProperties/nonassignable.h
     src/interface/baseProperties/persistable.h
+    src/interface/baseProperties/propagatingpersistable.h
     src/interface/baseProperties/validatable.h
 
     src/interface/baseProperties/defaultImpl/defaultcollection.h src/interface/baseProperties/defaultImpl/defaultcollection.txx
     src/interface/baseProperties/defaultImpl/defaultpersistable.h src/interface/baseProperties/defaultImpl/defaultpersistable.cpp
+    src/interface/baseProperties/defaultImpl/defaultpropagatingpersistable.h src/interface/baseProperties/defaultImpl/defaultpropagatingpersistable.cpp
 
     src/interface/groupedProperties/scriptfragment.h
     src/interface/groupedProperties/scriptable.h
@@ -51,23 +53,24 @@ add_library(Plotypus-lib SHARED
     src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
 
     src/base/generic/genericfontfragment.h src/base/generic/genericfontfragment.cpp
-    src/base/generic/userCodeFragment.h src/base/generic/userCodeFragment.cpp
+    src/base/generic/usercodefragment.h src/base/generic/usercodefragment.cpp
 
-    src/base/terminalInfoProvider/backgroundfragment.h src/base/terminalInfoProvider/backgroundfragment.cpp
-    src/base/terminalInfoProvider/colorfragment.h src/base/terminalInfoProvider/colorfragment.cpp
-    src/base/terminalInfoProvider/continuoussizefragment.h src/base/terminalInfoProvider/continuoussizefragment.cpp
-    src/base/terminalInfoProvider/enhancedfragment.h src/base/terminalInfoProvider/enhancedfragment.cpp
-    src/base/terminalInfoProvider/fontfragment.h src/base/terminalInfoProvider/fontfragment.cpp
-    src/base/terminalInfoProvider/lineendsfragment.h src/base/terminalInfoProvider/lineendsfragment.cpp
+    src/base/terminalinfoprovider/backgroundfragment.h src/base/terminalinfoprovider/backgroundfragment.cpp
+    src/base/terminalinfoprovider/colorfragment.h src/base/terminalinfoprovider/colorfragment.cpp
+    src/base/terminalinfoprovider/continuoussizefragment.h src/base/terminalinfoprovider/continuoussizefragment.cpp
+    src/base/terminalinfoprovider/enhancedfragment.h src/base/terminalinfoprovider/enhancedfragment.cpp
+    src/base/terminalinfoprovider/fontfragment.h src/base/terminalinfoprovider/fontfragment.cpp
+    src/base/terminalinfoprovider/lineendsfragment.h src/base/terminalinfoprovider/lineendsfragment.cpp
 
+    src/base/sheet/cleansheetfragment.h src/base/sheet/cleansheetfragment.cpp
     src/base/sheet/fontfragment.h src/base/sheet/fontfragment.cpp
     src/base/sheet/titlefragment.h src/base/sheet/titlefragment.cpp
 
     # report
-    src/report/outputPathProvider.h src/report/outputPathProvider.cpp
+    src/report/outputpathprovider.h src/report/outputpathprovider.cpp
     src/report/report.h src/report/report.txx src/report/report.cpp
 
-    src/report/terminalInfoProvider/pdfcairo.h src/report/terminalInfoProvider/pdfcairo.cpp
+    src/report/terminalinfoprovider/pdfcairo.h src/report/terminalinfoprovider/pdfcairo.cpp
 
     # sheet
     src/sheet/emptysheet.h src/sheet/emptysheet.cpp

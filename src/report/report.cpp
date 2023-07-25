@@ -1,10 +1,10 @@
 #include <fstream>
 #include <iostream>
 
-#include "../interface/terminalInfoProvider.h"
+#include "../interface/terminalinfoprovider.h"
 
 #include "report.h"
-#include "terminalInfoProvider/pdfcairo.h"
+#include "terminalinfoprovider/pdfcairo.h"
 
 namespace Plotypus
 {
@@ -16,14 +16,24 @@ namespace Plotypus
         scriptFile.setPath(scriptPath);
     }
 
-    bool Report::getAutoUpdateChildFileNames() const
+    bool Report::getPropagateUpdateChildFileNames() const
     {
-        return autoUpdateChildFileNames;
+        return scriptFile.getPropagateUpdateChildFileNames();
     }
 
-    void Report::setAutoUpdateChildFileNames(const bool newSetUpdateChildFileNames)
+    void Report::setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames)
     {
-        autoUpdateChildFileNames = newSetUpdateChildFileNames;
+        scriptFile.setPropagateUpdateChildFileNames(newPropagateUpdateChildFileNames);
+    }
+
+    bool Report::getAllowNullPath() const
+    {
+        return scriptFile.getAllowNullPath();
+    }
+
+    void Report::setAllowNullPath(bool newAllowNullPath)
+    {
+        scriptFile.setAllowNullPath(newAllowNullPath);
     }
 
     void Report::setChildFileNames()
@@ -81,10 +91,6 @@ namespace Plotypus
 
     void Report::compile()
     {
-        if (autoUpdateChildFileNames)
-        {
-            setChildFileNames();
-        }
         writeScript();
         runScript();
     }
@@ -127,9 +133,10 @@ namespace Plotypus
 
         runCommand = "gnuplot $f";
 
-        autoUpdateChildFileNames = true;
+        setPropagateUpdateChildFileNames(true);
 
         scriptFile.reset();
+        sheets.clear();
     }
 
     ValidationResult Report::validate() const

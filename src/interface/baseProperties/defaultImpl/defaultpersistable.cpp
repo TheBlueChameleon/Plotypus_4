@@ -56,16 +56,6 @@ namespace Plotypus
         overwrite = false;
     }
 
-    bool DefaultPersistable::getAllowNullPath() const
-    {
-        return allowNullPath;
-    }
-
-    void DefaultPersistable::setAllowNullPath(bool newAllowNullPath)
-    {
-        allowNullPath = newAllowNullPath;
-    }
-
     const std::filesystem::path& DefaultPersistable::getPath() const
     {
         return path;
@@ -94,6 +84,16 @@ namespace Plotypus
     void DefaultPersistable::setOverwrite(bool newOverwrite)
     {
         overwrite = newOverwrite;
+    }
+
+    bool DefaultPersistable::getAllowNullPath() const
+    {
+        return allowNullPath;
+    }
+
+    void DefaultPersistable::setAllowNullPath(bool newAllowNullPath)
+    {
+        allowNullPath = newAllowNullPath;
     }
 
     std::ofstream DefaultPersistable::getFileStream() const

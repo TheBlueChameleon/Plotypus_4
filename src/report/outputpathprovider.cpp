@@ -1,4 +1,4 @@
-#include "outputPathProvider.h"
+#include "outputpathprovider.h"
 
 namespace Plotypus
 {

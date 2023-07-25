@@ -1,13 +1,13 @@
 #ifndef TIP_PDFCAIRO_H
 #define TIP_PDFCAIRO_H
 
-#include "../../base/terminalInfoProvider/enhancedfragment.h"
-#include "../../base/terminalInfoProvider/colorfragment.h"
-#include "../../base/terminalInfoProvider/fontfragment.h"
-#include "../../base/terminalInfoProvider/lineendsfragment.h"
-#include "../../base/terminalInfoProvider/backgroundfragment.h"
-#include "../../base/terminalInfoProvider/continuoussizefragment.h"
-#include "../../base/generic/userCodeFragment.h"
+#include "../../base/terminalinfoprovider/enhancedfragment.h"
+#include "../../base/terminalinfoprovider/colorfragment.h"
+#include "../../base/terminalinfoprovider/fontfragment.h"
+#include "../../base/terminalinfoprovider/lineendsfragment.h"
+#include "../../base/terminalinfoprovider/backgroundfragment.h"
+#include "../../base/terminalinfoprovider/continuoussizefragment.h"
+#include "../../base/generic/usercodefragment.h"
 
 namespace Plotypus
 {
@@ -44,6 +44,9 @@ namespace Plotypus
 
                 bool getOverwrite() const;
                 void setOverwrite(bool newOverwrite);
+
+                bool getAllowNullPath() const;
+                void setAllowNullPath(bool newAllowNullPath);
 
                 std::ofstream getFileStream() const;
                 std::ostringstream getStringStream();

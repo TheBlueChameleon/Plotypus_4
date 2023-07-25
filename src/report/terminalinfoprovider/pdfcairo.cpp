@@ -81,6 +81,16 @@ namespace Plotypus
             outputFile.setOverwrite(newOverwrite);
         }
 
+        bool PdfCairo::getAllowNullPath() const
+        {
+            return outputFile.getAllowNullPath();
+        }
+
+        void PdfCairo::setAllowNullPath(bool newAllowNullPath)
+        {
+            outputFile.setAllowNullPath(newAllowNullPath);
+        }
+
         std::ofstream PdfCairo::getFileStream() const
         {
             return outputFile.getFileStream();

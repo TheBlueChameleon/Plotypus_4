@@ -9,7 +9,7 @@
 
 #include "interface/baseProperties/collection.h"
 #include "interface/baseProperties/namedtype.h"
-#include "interface/baseProperties/nonAssignable.h"
+#include "interface/baseProperties/nonassignable.h"
 #include "interface/baseProperties/persistable.h"
 
 #include "interface/baseProperties/defaultImpl/defaultcollection.h"
@@ -19,11 +19,11 @@
 #include "interface/groupedProperties/scriptable.h"
 #include "interface/groupedProperties/serializable.h"
 
-#include "interface/terminalInfoProvider.h"
+#include "interface/terminalinfoprovider.h"
 #include "interface/sheet.h"
 
 #include "report/report.h"
-#include "report/terminalInfoProvider/pdfcairo.h"
+#include "report/terminalinfoprovider/pdfcairo.h"
 
 #include "sheet/emptysheet.h"
 

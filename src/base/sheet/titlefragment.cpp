@@ -4,25 +4,6 @@ namespace Plotypus
 {
     namespace SheetFragments
     {
-        std::pair<std::string_view, std::string_view> TitleFragment::findHalves() const
-        {
-            const size_t splitPoint = font.find(',');
-            std::string_view first, second;
-
-            if (splitPoint == std::string::npos)
-            {
-                first  = font;
-                second = "";
-            }
-            else
-            {
-                first  = std::string_view(font.begin(), font.begin() + splitPoint);
-                second = std::string_view(font.begin() + splitPoint + 1, font.end());
-            }
-
-            return std::make_pair(first, second);
-        }
-
         std::optional<std::string> TitleFragment::getTitle() const
         {
             return title;

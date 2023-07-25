@@ -7,6 +7,7 @@
 
 #include "../interface/groupedProperties/defaultImpl/defaultnumbereditem.h"
 
+#include "../base/sheet/cleansheetfragment.h"
 #include "../base/sheet/fontfragment.h"
 #include "../base/sheet/titlefragment.h"
 
@@ -16,7 +17,8 @@ namespace Plotypus
         public Sheet,
 
         public SheetFragments::TitleFragment,
-        public SheetFragments::FontFragment
+        public SheetFragments::FontFragment,
+        public SheetFragments::CleanSheetFragment
     {
         private:
             DefaultNumberedItem number;
@@ -39,6 +41,8 @@ namespace Plotypus
             void setMakeDirectories(bool newMakeDirectories);
             bool getOverwrite() const;
             void setOverwrite(bool newOverwrite);
+            bool getAllowNullPath() const;
+            void setAllowNullPath(bool newAllowNullPath);
             std::ofstream getFileStream() const;
             std::ostringstream getStringStream();
 

@@ -70,8 +70,10 @@ namespace Plotypus
             bool getAllowNullPath() const;
             void setAllowNullPath(bool newAllowNullPath);
 
-            // Scriptable interface
+            // Mutable interface
             void reset();
+
+            // Scriptable interface
             ValidationResult validate() const;
             void writeScript(std::ostream& hFile) const;
 

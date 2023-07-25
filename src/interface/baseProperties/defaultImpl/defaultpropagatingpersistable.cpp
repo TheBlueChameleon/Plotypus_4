@@ -14,6 +14,12 @@ namespace Plotypus
         propagateUpdateChildFileNames = newPropagateUpdateChildFileNames;
     }
 
+    void DefaultPropagatingPersistable::reset()
+    {
+        DefaultPersistable::reset();
+        propagateUpdateChildFileNames = true;
+    }
+
     const std::filesystem::path& DefaultPropagatingPersistable::getPath() const
     {
         return DefaultPersistable::getPath();

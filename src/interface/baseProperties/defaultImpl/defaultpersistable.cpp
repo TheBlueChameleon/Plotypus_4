@@ -52,8 +52,10 @@ namespace Plotypus
     void DefaultPersistable::reset()
     {
         path.clear();
+
         makeDirectories = true;
         overwrite = false;
+        allowNullPath = false;
     }
 
     const std::filesystem::path& DefaultPersistable::getPath() const

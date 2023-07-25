@@ -63,7 +63,7 @@ namespace Plotypus
         std::stringstream result;
 
         bool escapeMode = false;
-        for (const auto c : runCommand)
+        for (const char c : runCommand)
         {
             if (c != '$')
             {
@@ -71,18 +71,14 @@ namespace Plotypus
             }
             else
             {
-                if (escapeMode)
-                {
-                    // *INDENT-OFF*
+                // *INDENT-OFF*
+                if (escapeMode) {
                     if (c == 'f') {result << scriptFile.getPath();}
                     else          {result << c;}
                     escapeMode = false;
-                    // *INDENT-ON*
                 }
-                else
-                {
-                    escapeMode = true;
-                }
+                else {escapeMode = true;}
+                // *INDENT-ON*
             }
         }
 
@@ -131,12 +127,11 @@ namespace Plotypus
             tip->reset();
         }
 
-        runCommand = "gnuplot $f";
-
-        setPropagateUpdateChildFileNames(true);
-
         scriptFile.reset();
+        userScripts.reset();
         sheets.clear();
+
+        runCommand = "gnuplot $f";
     }
 
     ValidationResult Report::validate() const

@@ -17,6 +17,9 @@ namespace Plotypus
 
     void EmptySheet::reset()
     {
+        TitleFragment::reset();
+        FontFragment::reset();
+
         number.reset();
         file.reset();
         userCode.reset();

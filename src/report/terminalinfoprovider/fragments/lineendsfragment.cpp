@@ -1,5 +1,5 @@
 #include "lineendsfragment.h"
-#include "../../typesystem/errors.h"
+#include "typesystem/errors.h"
 
 namespace Plotypus
 {

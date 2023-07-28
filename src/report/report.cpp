@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "../interface/terminalinfoprovider.h"
+#include "terminalinfoprovider/terminalinfoprovider.h"
 
 #include "report.h"
 #include "terminalinfoprovider/pdfcairo.h"
@@ -140,9 +140,12 @@ namespace Plotypus
 
         validation = scriptFile.validate();
         if (!validation) {return validation;}
-        // *INDENT-ON*
 
-        //for (const auto* sheet)
+        for (auto sheet = sheets.cbegin(); sheet != sheets.cend(); ++sheet) {
+            validation = (*sheet)->validate();
+            if (!validation) {return validation;}
+        }
+        // *INDENT-ON*
 
         return ValidationResult::SUCCESS;
     }

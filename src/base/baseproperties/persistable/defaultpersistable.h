@@ -5,6 +5,8 @@
 #include "../persistable.h"
 #include "../validatable.h"
 
+#include "base/validationresult/validationresult.h"
+
 namespace Plotypus
 {
     class DefaultPersistable:

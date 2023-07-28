@@ -1,15 +1,16 @@
 #ifndef EMPTYSHEET_H
 #define EMPTYSHEET_H
 
-#include "../interface/sheet.h"
+#include "sheet.h"
 
-#include "../interface/baseProperties/defaultImpl/defaultpersistable.h"
+#include "base/baseproperties/persistable/defaultpersistable.h"
 
-#include "../interface/groupedProperties/defaultImpl/defaultnumbereditem.h"
+#include "base/groupedproperties/defaultImpl/defaultnumbereditem.h"
+#include "base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h"
 
-#include "../base/sheet/cleansheetfragment.h"
-#include "../base/sheet/fontfragment.h"
-#include "../base/sheet/titlefragment.h"
+#include "fragments/cleansheetfragment.h"
+#include "fragments/fontfragment.h"
+#include "fragments/titlefragment.h"
 
 namespace Plotypus
 {

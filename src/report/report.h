@@ -1,19 +1,17 @@
 #ifndef REPORT_H
 #define REPORT_H
 
-#include "../interface/baseProperties/nonassignable.h"
-#include "../interface/baseProperties/persistable.h"
+#include "base/baseproperties/nonassignable.h"
+#include "base/baseproperties/persistable.h"
+#include "base/baseproperties/persistable/defaultpropagatingpersistable.h"
 
-#include "../interface/baseProperties/defaultImpl/defaultpropagatingpersistable.h"
-
-#include "../interface/groupedProperties/userscriptinjectable.h"
-#include "../interface/groupedProperties/scriptable.h"
-
-#include "../interface/groupedProperties/defaultImpl/defaultuserscriptinjectable.h"
-
-#include "../interface/terminalinfoprovider.h"
+#include "base/groupedproperties/userscriptinjectable.h"
+#include "base/groupedproperties/scriptable.h"
+#include "base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h"
 
 #include "outputpathprovider.h"
+
+#include "terminalinfoprovider/terminalinfoprovider.h"
 
 namespace Plotypus
 {
@@ -97,5 +95,7 @@ namespace Plotypus
 }
 
 #include "report.txx"
+
+#include <base/baseproperties/propagatingpersistable.h>
 
 #endif // REPORT_H

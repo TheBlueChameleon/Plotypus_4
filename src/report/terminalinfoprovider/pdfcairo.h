@@ -1,13 +1,13 @@
 #ifndef TIP_PDFCAIRO_H
 #define TIP_PDFCAIRO_H
 
-#include "../../base/terminalinfoprovider/enhancedfragment.h"
-#include "../../base/terminalinfoprovider/colorfragment.h"
-#include "../../base/terminalinfoprovider/fontfragment.h"
-#include "../../base/terminalinfoprovider/lineendsfragment.h"
-#include "../../base/terminalinfoprovider/backgroundfragment.h"
-#include "../../base/terminalinfoprovider/continuoussizefragment.h"
-#include "../../base/generic/usercodefragment.h"
+#include "fragments/enhancedfragment.h"
+#include "fragments/colorfragment.h"
+#include "fragments/fontfragment.h"
+#include "fragments/lineendsfragment.h"
+#include "fragments/backgroundfragment.h"
+#include "fragments/continuoussizefragment.h"
+#include "base/fragments/usercodefragment.h"
 
 namespace Plotypus
 {

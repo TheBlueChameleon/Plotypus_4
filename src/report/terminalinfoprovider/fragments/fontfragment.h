@@ -1,11 +1,14 @@
-#ifndef SHEET_FONTFRAGMENT_H
-#define SHEET_FONTFRAGMENT_H
+#ifndef TERMINAL_FONTFRAGMENT_H
+#define TERMINAL_FONTFRAGMENT_H
 
-#include "../../interface/groupedProperties/scriptfragment.h"
+#include <string_view>
+
+#include "base/groupedproperties/scriptfragment.h"
+#include "base/fragments/genericfontfragment.h"
 
 namespace Plotypus
 {
-    namespace SheetFragments
+    namespace TerminalInfo
     {
         class FontFragment : public ScriptFragment
         {
@@ -28,5 +31,4 @@ namespace Plotypus
         };
     }
 }
-
-#endif // SHEET_FONTFRAGMENT_H
+#endif // TERMINAL_FONTFRAGMENT_H

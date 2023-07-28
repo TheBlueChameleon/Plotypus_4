@@ -1,8 +1,8 @@
 #ifndef SERIALIZABLE_H
 #define SERIALIZABLE_H
 
-#include "../baseProperties/mutable.h"
-#include "../baseProperties/persistable.h"
+#include "base/baseproperties/mutable.h"
+#include "base/baseproperties/persistable.h"
 
 namespace Plotypus
 {

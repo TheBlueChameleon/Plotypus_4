@@ -17,8 +17,11 @@ namespace Plotypus
         public:
             DefaultPropagatingPersistable() = default;
 
+            // PropagatingPersistable interface
             bool getPropagateUpdateChildFileNames() const;
             void setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames);
+
+            // void propagate(Collection<Persistable> children);
 
             // Mutable interface
             void reset();

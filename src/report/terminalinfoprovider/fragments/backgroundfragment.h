@@ -1,7 +1,7 @@
 #ifndef BACKGROUNDFRAGMENT_H
 #define BACKGROUNDFRAGMENT_H
 
-#include "../../interface/groupedProperties/scriptfragment.h"
+#include "base/groupedproperties/scriptfragment.h"
 
 namespace Plotypus
 {

@@ -24,56 +24,58 @@ add_library(Plotypus-lib SHARED
     src/typesystem/enums.h
     src/typesystem/types.h
 
-    # interfaces
-    src/interface/sheet.h src/interface/sheet.cpp
-    src/interface/terminalinfoprovider.h
-
-    src/interface/baseProperties/collection.h
-    src/interface/baseProperties/mutable.h
-    src/interface/baseProperties/namedtype.h
-    src/interface/baseProperties/nonassignable.h
-    src/interface/baseProperties/persistable.h
-    src/interface/baseProperties/propagatingpersistable.h
-    src/interface/baseProperties/validatable.h
-
-    src/interface/baseProperties/defaultImpl/defaultcollection.h src/interface/baseProperties/defaultImpl/defaultcollection.txx
-    src/interface/baseProperties/defaultImpl/defaultpersistable.h src/interface/baseProperties/defaultImpl/defaultpersistable.cpp
-    src/interface/baseProperties/defaultImpl/defaultpropagatingpersistable.h src/interface/baseProperties/defaultImpl/defaultpropagatingpersistable.cpp
-
-    src/interface/groupedProperties/scriptfragment.h
-    src/interface/groupedProperties/scriptable.h
-    src/interface/groupedProperties/serializable.h
-    src/interface/groupedProperties/numbereditem.h
-    src/interface/groupedProperties/userscriptinjectable.h
-
-    src/interface/groupedProperties/defaultImpl/defaultnumbereditem.h src/interface/groupedProperties/defaultImpl/defaultnumbereditem.cpp
-    src/interface/groupedProperties/defaultImpl/defaultuserscriptinjectable.h src/interface/groupedProperties/defaultImpl/defaultuserscriptinjectable.cpp
-
     # base
-    src/base/validationresult.h src/base/validationresult.txx src/base/validationresult.cpp
+    src/base/baseproperties/collection.h
+    src/base/baseproperties/mutable.h
+    src/base/baseproperties/namedtype.h
+    src/base/baseproperties/nonassignable.h
+    src/base/baseproperties/persistable.h
+    src/base/baseproperties/propagatingpersistable.h
+    src/base/baseproperties/validatable.h
 
-    src/base/generic/genericfontfragment.h src/base/generic/genericfontfragment.cpp
-    src/base/generic/usercodefragment.h src/base/generic/usercodefragment.cpp
+    src/base/baseproperties/collection/defaultcollection.h src/base/baseproperties/collection/defaultcollection.txx
+    src/base/baseproperties/persistable/defaultpersistable.h src/base/baseproperties/persistable/defaultpersistable.cpp
+    src/base/baseproperties/persistable/defaultpropagatingpersistable.h src/base/baseproperties/persistable/defaultpropagatingpersistable.cpp
 
-    src/base/terminalinfoprovider/backgroundfragment.h src/base/terminalinfoprovider/backgroundfragment.cpp
-    src/base/terminalinfoprovider/colorfragment.h src/base/terminalinfoprovider/colorfragment.cpp
-    src/base/terminalinfoprovider/continuoussizefragment.h src/base/terminalinfoprovider/continuoussizefragment.cpp
-    src/base/terminalinfoprovider/enhancedfragment.h src/base/terminalinfoprovider/enhancedfragment.cpp
-    src/base/terminalinfoprovider/fontfragment.h src/base/terminalinfoprovider/fontfragment.cpp
-    src/base/terminalinfoprovider/lineendsfragment.h src/base/terminalinfoprovider/lineendsfragment.cpp
+    src/base/groupedproperties/scriptfragment.h
+    src/base/groupedproperties/scriptable.h
+    src/base/groupedproperties/serializable.h
+    src/base/groupedproperties/numbereditem.h
+    src/base/groupedproperties/userscriptinjectable.h
 
-    src/base/sheet/cleansheetfragment.h src/base/sheet/cleansheetfragment.cpp
-    src/base/sheet/fontfragment.h src/base/sheet/fontfragment.cpp
-    src/base/sheet/titlefragment.h src/base/sheet/titlefragment.cpp
+    src/base/groupedproperties/defaultImpl/defaultnumbereditem.h src/base/groupedproperties/defaultImpl/defaultnumbereditem.cpp
+    src/base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h src/base/groupedproperties/defaultImpl/defaultuserscriptinjectable.cpp
+
+    src/base/validationresult/validationresult.h src/base/validationresult/validationresult.txx src/base/validationresult/validationresult.cpp
+
+    src/base/fragments/genericfontfragment.h src/base/fragments/genericfontfragment.cpp
+    src/base/fragments/usercodefragment.h src/base/fragments/usercodefragment.cpp
 
     # report
     src/report/outputpathprovider.h src/report/outputpathprovider.cpp
     src/report/report.h src/report/report.txx src/report/report.cpp
 
+    src/report/terminalinfoprovider/terminalinfoprovider.h
     src/report/terminalinfoprovider/pdfcairo.h src/report/terminalinfoprovider/pdfcairo.cpp
 
+    src/report/terminalinfoprovider/fragments/backgroundfragment.h src/report/terminalinfoprovider/fragments/backgroundfragment.cpp
+    src/report/terminalinfoprovider/fragments/colorfragment.h src/report/terminalinfoprovider/fragments/colorfragment.cpp
+    src/report/terminalinfoprovider/fragments/continuoussizefragment.h src/report/terminalinfoprovider/fragments/continuoussizefragment.cpp
+    src/report/terminalinfoprovider/fragments/enhancedfragment.h src/report/terminalinfoprovider/fragments/enhancedfragment.cpp
+    src/report/terminalinfoprovider/fragments/fontfragment.h src/report/terminalinfoprovider/fragments/fontfragment.cpp
+    src/report/terminalinfoprovider/fragments/lineendsfragment.h src/report/terminalinfoprovider/fragments/lineendsfragment.cpp
+
     # sheet
+    src/sheet/sheet.h src/sheet/sheet.cpp
     src/sheet/emptysheet.h src/sheet/emptysheet.cpp
+
+    src/sheet/fragments/cleansheetfragment.h src/sheet/fragments/cleansheetfragment.cpp
+    src/sheet/fragments/fontfragment.h src/sheet/fragments/fontfragment.cpp
+    src/sheet/fragments/titlefragment.h src/sheet/fragments/titlefragment.cpp
+)
+
+target_include_directories(Plotypus-lib PUBLIC
+    src/
 )
 
 set_target_properties(Plotypus-lib PROPERTIES

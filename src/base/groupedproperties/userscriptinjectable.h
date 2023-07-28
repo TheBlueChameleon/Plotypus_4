@@ -1,7 +1,7 @@
 #ifndef USERSCRIPTINJECTABLE_H
 #define USERSCRIPTINJECTABLE_H
 
-#include "../baseProperties/mutable.h"
+#include "base/baseproperties/mutable.h"
 
 namespace Plotypus
 {

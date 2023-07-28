@@ -9,6 +9,8 @@ namespace Plotypus
     {
         virtual bool getPropagateUpdateChildFileNames() const = 0;
         virtual void setPropagateUpdateChildFileNames(const bool newSetUpdateChildFileNames) = 0;
+
+        // virtual void propagate(Collection<Persistable> children) = 0;
     };
 }
 

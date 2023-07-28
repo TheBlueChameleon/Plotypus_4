@@ -1,7 +1,7 @@
 #ifndef COLORFRAGMENT_H
 #define COLORFRAGMENT_H
 
-#include "../../interface/groupedProperties/scriptfragment.h"
+#include "base/groupedproperties/scriptfragment.h"
 
 namespace Plotypus
 {

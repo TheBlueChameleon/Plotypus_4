@@ -1,7 +1,7 @@
 #ifndef VALIDATABLE_H
 #define VALIDATABLE_H
 
-#include "../../base/validationresult.h"
+#include "base/validationresult/validationresult.h"
 
 namespace Plotypus
 {

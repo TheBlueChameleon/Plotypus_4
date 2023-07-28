@@ -7,23 +7,24 @@
 #include "typesystem/concepts.h"
 #include "typesystem/types.h"
 
-#include "interface/baseProperties/collection.h"
-#include "interface/baseProperties/namedtype.h"
-#include "interface/baseProperties/nonassignable.h"
-#include "interface/baseProperties/persistable.h"
+#include "base/baseproperties/collection.h"
+#include "base/baseproperties/namedtype.h"
+#include "base/baseproperties/nonassignable.h"
+#include "base/baseproperties/persistable.h"
 
-#include "interface/baseProperties/defaultImpl/defaultcollection.h"
-#include "interface/baseProperties/defaultImpl/defaultpersistable.h"
+#include "base/baseproperties/collection/defaultcollection.h"
+#include "base/baseproperties/persistable/defaultpersistable.h"
 
-#include "interface/groupedProperties/scriptfragment.h"
-#include "interface/groupedProperties/scriptable.h"
-#include "interface/groupedProperties/serializable.h"
+#include "base/groupedproperties/scriptfragment.h"
+#include "base/groupedproperties/scriptable.h"
+#include "base/groupedproperties/serializable.h"
 
-#include "interface/terminalinfoprovider.h"
-#include "interface/sheet.h"
+#include "sheet/sheet.h"
+#include "sheet/emptysheet.h"
 
 #include "report/report.h"
 #include "report/terminalinfoprovider/pdfcairo.h"
+#include "report/terminalinfoprovider/terminalinfoprovider.h"
 
 #include "sheet/emptysheet.h"
 

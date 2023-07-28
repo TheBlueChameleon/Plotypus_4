@@ -1,9 +1,9 @@
 #ifndef TERMINALINFOPROVIDER_H
 #define TERMINALINFOPROVIDER_H
 
-#include "../typesystem/concepts.h"
+#include "typesystem/concepts.h"
 
-#include "groupedProperties/scriptable.h"
+#include "base/groupedproperties/scriptable.h"
 
 namespace Plotypus
 {

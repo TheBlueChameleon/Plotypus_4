@@ -109,4 +109,16 @@ namespace Plotypus
         const T** ptr =const_cast<const typename ConstIterator::pointer>(elements.end().base());
         return ConstIterator(ptr);
     }
+
+    template<typename T>
+    typename Array<T>::ConstIterator Array<T>::begin() const
+    {
+        return this->cbegin();
+    }
+
+    template<typename T>
+    typename Array<T>::ConstIterator Array<T>::end() const
+    {
+        return this->cend();
+    }
 }

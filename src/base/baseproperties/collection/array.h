@@ -48,6 +48,9 @@ namespace Plotypus
             // ArrayConstIterable interface
             ConstIterator cbegin() const;
             ConstIterator cend() const;
+
+            ConstIterator begin() const;
+            ConstIterator end() const;
     };
 }
 

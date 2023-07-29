@@ -26,14 +26,12 @@ namespace Plotypus
         return tmp;
     }
 
-// member
     template<typename T>
     typename ArrayIterable<T>::Iterator::reference ArrayIterable<T>::Iterator::operator*()
     {
         return **mPtr;
     }
 
-// friend
     template<typename T>
     typename ArrayIterable<T>::Iterator::reference operator*(const typename ArrayIterable<T>::Iterator& it)
     {

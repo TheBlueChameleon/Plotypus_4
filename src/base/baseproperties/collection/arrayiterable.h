@@ -56,12 +56,12 @@ namespace Plotypus
                     difference_type operator-(const Iterator& it) const;
 
                     //     std::iter_difference<I> operators
-                    Iterator& operator+=(difference_type diff);
-                    Iterator& operator-=(difference_type diff);
-                    Iterator operator+(difference_type diff) const;
-                    Iterator operator-(difference_type diff) const;
-                    friend Iterator operator+(difference_type diff, const Iterator& it);
-                    friend Iterator operator-(difference_type diff, const Iterator& it);
+                    Iterator&       operator+=(difference_type diff);
+                    Iterator&       operator-=(difference_type diff);
+                    Iterator        operator+ (difference_type diff) const;
+                    Iterator        operator- (difference_type diff) const;
+                    friend Iterator operator+ (difference_type diff, const Iterator& it);
+                    friend Iterator operator- (difference_type diff, const Iterator& it);
                     reference operator[](difference_type diff) const;
 
                     // std::contiguous_iterator<I>

@@ -92,6 +92,9 @@ namespace Plotypus
 
             virtual ConstIterator cbegin() const = 0;
             virtual ConstIterator cend() const = 0;
+
+            virtual ConstIterator begin() const = 0;
+            virtual ConstIterator end() const = 0;
     };
 }
 

@@ -36,6 +36,11 @@ namespace Plotypus
         scriptFile.setAllowNullPath(newAllowNullPath);
     }
 
+    const std::string Report::getTypeName()
+    {
+        return "Report";
+    }
+
     void Report::setChildFileNames()
     {
         const auto scriptPath = getOutputPath(GeneratedFileType::Script);
@@ -132,21 +137,34 @@ namespace Plotypus
 
     ValidationResult Report::validate() const
     {
-        // *INDENT-OFF*
-        if (!tip) {return ValidationResult::makeValidationResult<IncompleteDescritporError>("No TerminalInfoProvider was set");}
+        ValidationResult result;
 
-        ValidationResult validation = tip->validate();
-        if (!validation) {return validation;}
-
-        validation = scriptFile.validate();
-        if (!validation) {return validation;}
-
-        for (auto& sheet : sheets) {
-            validation = sheet.validate();
-            if (!validation) {return validation;}
+        if (!tip)
+        {
+            result.addError<IncompleteDescritporError>("No TerminalInfoProvider was set", getTypeName());
+            return result;
         }
 
-        // *INDENT-ON*
+        ValidationResult validation = tip->validate();
+        if (!validation)
+        {
+            return validation;
+        }
+
+        validation = scriptFile.validate();
+        if (!validation)
+        {
+            return validation;
+        }
+
+        for (auto& sheet : sheets)
+        {
+            validation = sheet.validate();
+            if (!validation)
+            {
+                return validation;
+            }
+        }
 
         return ValidationResult::SUCCESS;
     }

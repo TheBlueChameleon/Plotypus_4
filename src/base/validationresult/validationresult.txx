@@ -3,22 +3,12 @@
 namespace Plotypus
 {
     template<ErrorType T>
-    ValidationResult::ValidationResult(const T& error)
+    void ValidationResult::addError(const std::string& message, const std::string& stackTraceElement)
     {
-        this->error = std::optional<T>(error);
-    }
-
-
-    template<ErrorType T>
-    ValidationResult ValidationResult::makeValidationResult(const std::optional<std::string> message)
-    {
-        if (message.has_value())
-        {
-            return ValidationResult(T(message.value()));
-        }
-        else
-        {
-            return ValidationResult();
-        }
+        ValidationResultElement element = std::make_pair(
+                                              new T(message),
+                                              std::list<std::string>(1, stackTraceElement)
+                                          );
+        errors.push_back(std::move(element));
     }
 }

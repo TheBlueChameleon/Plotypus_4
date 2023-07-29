@@ -10,6 +10,7 @@
 namespace Plotypus
 {
     class DefaultPersistable:
+        public NamedType,
         public Mutable,
         public Persistable,
         public Validatable
@@ -23,6 +24,9 @@ namespace Plotypus
 
         public:
             DefaultPersistable() = default;
+
+            // NamedType interface
+            static const std::string getTypeName();
 
             // Mutable interface
             void reset();

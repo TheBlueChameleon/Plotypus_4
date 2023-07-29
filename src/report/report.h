@@ -16,6 +16,7 @@
 namespace Plotypus
 {
     class Report :
+        public NamedType,
         public NonAssignable,
         public PropagatingPersistable,
         public Scriptable,
@@ -67,6 +68,9 @@ namespace Plotypus
 
             bool getAllowNullPath() const;
             void setAllowNullPath(bool newAllowNullPath);
+
+            // NamedType interface
+            static const std::string getTypeName();
 
             // Mutable interface
             void reset();

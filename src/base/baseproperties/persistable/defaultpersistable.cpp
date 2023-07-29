@@ -6,14 +6,21 @@ using namespace std::string_literals;
 
 namespace Plotypus
 {
-    const auto failure = ValidationResult::makeValidationResult<FileIOError>;
+
     ValidationResult DefaultPersistable::validate() const
     {
+        ValidationResult result;
+
+        auto fail = [&result] (const std::string& message)
+        {
+            result.addError<FileIOError>(message, getTypeName());
+        };
+
         if (!allowNullPath)
         {
             if (path.empty())
             {
-                return failure("Filename is empty.");
+                fail("Filename is empty.");
             }
         }
 
@@ -21,32 +28,39 @@ namespace Plotypus
         {
             if (std::filesystem::exists(path))
             {
-                return failure("File '"s + path.string() + "' already exists.");
+                fail("File '"s + path.string() + "' already exists.");
             }
         }
 
         const auto& parentDir = path.parent_path();
-        if (parentDir.empty()) // implicitly in CWD -- always valid
+        if (parentDir.empty())
         {
-            return ValidationResult::SUCCESS;
-        }
-
-        if (!makeDirectories)
-        {
-            if (!std::filesystem::exists(parentDir))
-            {
-                return failure("Directory '"s + parentDir.string() + "' does not exist.");
-            }
+            // implicitly in CWD -- always valid
         }
         else
         {
-            if (std::filesystem::exists(parentDir) && !std::filesystem::is_directory(parentDir))
+            if (!makeDirectories)
             {
-                return failure("'"s + parentDir.string() + "' is not a directory.");
+                if (!std::filesystem::exists(parentDir))
+                {
+                    fail("Directory '"s + parentDir.string() + "' does not exist.");
+                }
+            }
+            else
+            {
+                if (std::filesystem::exists(parentDir) && !std::filesystem::is_directory(parentDir))
+                {
+                    fail("'"s + parentDir.string() + "' is not a directory.");
+                }
             }
         }
 
-        return ValidationResult::SUCCESS;
+        return result;
+    }
+
+    const std::string DefaultPersistable::getTypeName()
+    {
+        return "DefaultPersistable";
     }
 
     void DefaultPersistable::reset()

@@ -14,50 +14,91 @@ namespace Plotypus
     // ====================================================================== //
     // proper code
 
-    const PlotypusError& ValidationResult::getError() const
+    ValidationResult::~ValidationResult()
     {
-        if (error.has_value())
+        for (auto& error : errors)
         {
-            return error.value();
+            delete error.first;
+        }
+    }
+
+    void ValidationResult::absorbValidationResult(ValidationResult& subResult, const std::string& stackTraceElement)
+    {
+        for (auto& error : subResult.errors)
+        {
+            error.second.push_front(stackTraceElement);
+            errors.push_back(std::move(error));
+        }
+
+        subResult.errors.clear();
+    }
+
+    const std::list<ValidationResult::ValidationResultElement>& ValidationResult::getErrors() const
+    {
+        return errors;
+    }
+
+    const std::optional<ValidationResult::ValidationResultElement> ValidationResult::getFirstError() const
+    {
+        if (errors.empty())
+        {
+            return std::optional<ValidationResult::ValidationResultElement>();
         }
         else
         {
-            throw UnsupportedOperationError("No error to get from this ValidationResult.");
+            return std::optional(errors.front());
         }
     }
 
     void ValidationResult::trigger() const
     {
-        if(error.has_value())
+        if (!errors.empty())
         {
-            throw error.value();
+            const auto& x = errors.front().first;
+            throw* x;
         }
     }
 
     ValidationResult::operator bool() const
     {
-        return !error.has_value();
+        return errors.empty();
     }
 
     bool ValidationResult::operator==(const ValidationResult& other) const
     {
-        if (*this && other) // both validateD ok
+        return this->errors == other.errors;
+    }
+
+    void ValidationResult::writeValidationResults(std::ostream& stream) const
+    {
+        if (*this)
         {
-            return true;
-        }
-        else if (bool(*this) != bool(other)) // one but not both validated ok
-        {
-            return false;
+            stream << "NO ERRORS" << std::endl;
         }
         else
         {
-            // both validate not ok
-            const auto& thisError = this->getError();
-            const auto& otherError = other.getError();
-
-            return thisError == otherError;
+            for (const auto& [error, stackTrace] : errors)
+            {
+                stream << "ERROR: " << error->what() << std::endl;
+                for (size_t indent = 0; const auto& element: stackTrace)
+                {
+                    ++indent;
+                    stream << std::string(indent, ' ') << "from " << element << std::endl;
+                }
+            }
         }
     }
 
+    std::string ValidationResult::getValidationReport() const
+    {
+        std::stringstream buffer;
+        writeValidationResults(buffer);
+        return buffer.str();
+    }
 
+    std::ostream& operator<<(std::ostream& os, const ValidationResult& validationResult)
+    {
+        validationResult.writeValidationResults(os);
+        return os;
+    }
 }

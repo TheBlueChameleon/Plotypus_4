@@ -13,6 +13,7 @@
 #include "base/baseproperties/persistable.h"
 
 #include "base/baseproperties/collection/array.h"
+#include "base/baseproperties/collection/fifo.h"
 #include "base/baseproperties/persistable/defaultpersistable.h"
 
 #include "base/groupedproperties/scriptfragment.h"

@@ -57,7 +57,7 @@ class Collection_Fixture : public ::testing::Test
         };
 };
 
-TEST_F(Collection_Fixture, Collection_Test)
+TEST_F(Collection_Fixture, Array_Test)
 {
     std::vector<int> reads;
     int sum;
@@ -72,6 +72,8 @@ TEST_F(Collection_Fixture, Collection_Test)
         collection.add(new Derived(2, log));
         collection.add(new Derived(3, log));
         collection.add(new Base(4, log));
+
+        ASSERT_THAT(collection.size(), Eq(4));
 
         collection.forEach([](const Base& x)
         {
@@ -89,7 +91,7 @@ TEST_F(Collection_Fixture, Collection_Test)
             reads.push_back(x.get());
         }
 
-        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto elm)
+        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto& elm)
         {
             return acc + elm.get();
         });
@@ -114,3 +116,61 @@ TEST_F(Collection_Fixture, Collection_Test)
     EXPECT_EQ(sum, 10);
 }
 
+TEST_F(Collection_Fixture, FiFo_Test)
+{
+    std::vector<int> reads;
+    int sum;
+
+    using namespace Plotypus;
+    {
+        FiFo<Base> collection;
+        ASSERT_THAT(collection.empty(), Eq(true));
+        ASSERT_THAT(collection.size(), Eq(0));
+
+        collection.add(new Base(1, log));
+        collection.add(new Derived(2, log));
+        collection.add(new Derived(3, log));
+        collection.add(new Base(4, log));
+
+        ASSERT_THAT(collection.size(), Eq(4));
+
+        collection.forEach([](const Base& x)
+        {
+            x.show();
+        });
+
+        for (const auto& x : collection)
+        {
+            reads.push_back(x.get());
+        }
+
+
+        for ([[maybe_unused]] const auto& x : collection)
+        {
+            reads.push_back(x.get());
+        }
+
+        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto& elm)
+        {
+            return acc + elm.get();
+        });
+    }
+
+    std::string expected =
+        "BASE: i = 1\n"
+        "DERIVED: i = 2\n"
+        "DERIVED: i = 3\n"
+        "BASE: i = 4\n"
+        "DTOR virtual Collection_Fixture::Base::~Base() @1\n"
+        "DTOR virtual Collection_Fixture::Derived::~Derived() @2\n"
+        "DTOR virtual Collection_Fixture::Base::~Base() @2\n"
+        "DTOR virtual Collection_Fixture::Derived::~Derived() @3\n"
+        "DTOR virtual Collection_Fixture::Base::~Base() @3\n"
+        "DTOR virtual Collection_Fixture::Base::~Base() @4\n";
+    EXPECT_EQ(log.str(), expected);
+
+    std::vector<int> expectedReads {1, 2, 3, 4, 1, 2, 3, 4};
+    EXPECT_EQ(reads, expectedReads);
+
+    EXPECT_EQ(sum, 10);
+}

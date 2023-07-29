@@ -36,6 +36,9 @@ add_library(Plotypus-lib SHARED
     src/base/baseproperties/collection/array.h src/base/baseproperties/collection/array.txx
     src/base/baseproperties/collection/arrayiterable.h src/base/baseproperties/collection/arrayiterable.txx
     src/base/baseproperties/collection/arrayconstiterable.h src/base/baseproperties/collection/arrayconstiterable.txx
+    src/base/baseproperties/collection/fifo.h src/base/baseproperties/collection/fifo.txx
+    src/base/baseproperties/collection/fifoiterable.h src/base/baseproperties/collection/fifoiterable.txx
+    src/base/baseproperties/collection/fifoconstiterable.h src/base/baseproperties/collection/fifoconstiterable.txx
 
     src/base/baseproperties/persistable/defaultpersistable.h src/base/baseproperties/persistable/defaultpersistable.cpp
     src/base/baseproperties/persistable/defaultpropagatingpersistable.h src/base/baseproperties/persistable/defaultpropagatingpersistable.cpp

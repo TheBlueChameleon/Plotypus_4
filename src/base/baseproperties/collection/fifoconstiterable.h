@@ -19,7 +19,7 @@ namespace Plotypus
                     using pointer              = T*;
                     using reference            = T&;
                     using element_type         = T;
-                    using native_iterator_type = typename std::list<T*>::iterator;
+                    using native_iterator_type = typename std::list<T*>::const_iterator;
 
                 private:
                     native_iterator_type iter;

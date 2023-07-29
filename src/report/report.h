@@ -28,7 +28,7 @@ namespace Plotypus
             DefaultPropagatingPersistable scriptFile;
             DefaultUserScriptInjectable userScripts;
 
-            DefaultCollection<Sheet> sheets;
+            Array<Sheet> sheets;
 
             std::string runCommand = "gnuplot $f";
 

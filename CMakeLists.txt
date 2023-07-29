@@ -33,7 +33,10 @@ add_library(Plotypus-lib SHARED
     src/base/baseproperties/propagatingpersistable.h
     src/base/baseproperties/validatable.h
 
-    src/base/baseproperties/collection/defaultcollection.h src/base/baseproperties/collection/defaultcollection.txx
+    src/base/baseproperties/collection/array.h src/base/baseproperties/collection/array.txx
+    src/base/baseproperties/collection/arrayiterable.h src/base/baseproperties/collection/arrayiterable.txx
+    src/base/baseproperties/collection/arrayconstiterable.h src/base/baseproperties/collection/arrayconstiterable.txx
+
     src/base/baseproperties/persistable/defaultpersistable.h src/base/baseproperties/persistable/defaultpersistable.cpp
     src/base/baseproperties/persistable/defaultpropagatingpersistable.h src/base/baseproperties/persistable/defaultpropagatingpersistable.cpp
 
@@ -46,10 +49,10 @@ add_library(Plotypus-lib SHARED
     src/base/groupedproperties/defaultImpl/defaultnumbereditem.h src/base/groupedproperties/defaultImpl/defaultnumbereditem.cpp
     src/base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h src/base/groupedproperties/defaultImpl/defaultuserscriptinjectable.cpp
 
-    src/base/validationresult/validationresult.h src/base/validationresult/validationresult.txx src/base/validationresult/validationresult.cpp
-
     src/base/fragments/genericfontfragment.h src/base/fragments/genericfontfragment.cpp
     src/base/fragments/usercodefragment.h src/base/fragments/usercodefragment.cpp
+
+    src/base/validationresult/validationresult.h src/base/validationresult/validationresult.txx src/base/validationresult/validationresult.cpp
 
     # report
     src/report/outputpathprovider.h src/report/outputpathprovider.cpp

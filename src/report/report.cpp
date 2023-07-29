@@ -141,8 +141,8 @@ namespace Plotypus
         validation = scriptFile.validate();
         if (!validation) {return validation;}
 
-        for (auto sheet = sheets.cbegin(); sheet != sheets.cend(); ++sheet) {
-            validation = (*sheet)->validate();
+        for (auto iter = sheets.cbegin(); iter != sheets.cend(); ++iter) {
+            validation = (*iter).validate();
             if (!validation) {return validation;}
         }
         // *INDENT-ON*

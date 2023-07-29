@@ -30,7 +30,7 @@ class Collection_Fixture : public ::testing::Test
                     log << "DTOR " << __PRETTY_FUNCTION__ << " @" << i << std::endl;
                 }
 
-                virtual void show()
+                virtual void show() const
                 {
                     log << "BASE: i = " << i << std::endl;
                 }
@@ -50,7 +50,7 @@ class Collection_Fixture : public ::testing::Test
                     log << "DTOR " << __PRETTY_FUNCTION__ << " @" << i << std::endl;
                 }
 
-                virtual void show()
+                virtual void show() const
                 {
                     log << "DERIVED: i = " << i << std::endl;
                 }
@@ -64,7 +64,7 @@ TEST_F(Collection_Fixture, Collection_Test)
 
     using namespace Plotypus;
     {
-        DefaultCollection<Base> collection;
+        Array<Base> collection;
         ASSERT_THAT(collection.empty(), Eq(true));
         ASSERT_THAT(collection.size(), Eq(0));
 
@@ -73,25 +73,25 @@ TEST_F(Collection_Fixture, Collection_Test)
         collection.add(new Derived(3, log));
         collection.add(new Base(4, log));
 
-        collection.forEach([](Base& x)
+        collection.forEach([](const Base& x)
         {
             x.show();
         });
 
-        for (const auto x : collection)
+        for (const auto& x : collection)
         {
-            reads.push_back(x->get());
+            reads.push_back(x.get());
         }
 
 
-        for ([[maybe_unused]] auto x : collection)
+        for ([[maybe_unused]] const auto& x : collection)
         {
-            reads.push_back(x->get());
+            reads.push_back(x.get());
         }
 
         sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto elm)
         {
-            return acc + elm->get();
+            return acc + elm.get();
         });
     }
 

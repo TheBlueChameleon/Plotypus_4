@@ -9,6 +9,6 @@ namespace Plotypus
                                               new T(message),
                                               std::list<std::string>(1, stackTraceElement)
                                           );
-        errors.push_back(std::move(element));
+        results.push_back(std::move(element));
     }
 }

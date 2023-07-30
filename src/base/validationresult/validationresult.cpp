@@ -1,3 +1,6 @@
+#include <iostream>
+#include <ranges>
+
 #include "validationresult.h"
 
 namespace Plotypus
@@ -14,23 +17,48 @@ namespace Plotypus
     // ====================================================================== //
     // proper code
 
+    ValidationResult::ValidationResult(ValidationResult&& other)
+    {
+        results = other.results;
+        other.results.clear();
+    }
+
+    ValidationResult::ValidationResult(const ValidationResult& other)
+    {
+        if (!other)
+        {
+            for (const auto& [errorPtr, stackTrace] : other.results)
+            {
+                results.push_back(std::make_pair(errorPtr->getDuplicate(), stackTrace));
+            }
+        }
+    }
+
+    ValidationResult& ValidationResult::operator=(ValidationResult other)
+    {
+        results = other.results;
+        other.results.clear();
+        return *this;
+    }
+
     ValidationResult::~ValidationResult()
     {
-        for (auto& error : errors)
+        for (auto& result : results)
         {
-            delete error.first;
+            delete result.first;
         }
+        results.clear();
     }
 
     void ValidationResult::absorbValidationResult(ValidationResult& subResult, const std::string& stackTraceElement)
     {
-        for (auto& error : subResult.errors)
+        for (auto& result : subResult.results)
         {
-            error.second.push_front(stackTraceElement);
-            errors.push_back(std::move(error));
+            result.second.push_front(stackTraceElement);
+            results.push_back(std::move(result));
         }
 
-        subResult.errors.clear();
+        subResult.results.clear();
     }
 
     void ValidationResult::absorbValidationResult(ValidationResult&& subResult, const std::string& stackTraceElement)
@@ -38,54 +66,70 @@ namespace Plotypus
         absorbValidationResult(subResult, stackTraceElement);
     }
 
-    const std::list<ValidationResult::ValidationResultElement>& ValidationResult::getErrors() const
+    const std::list<std::string> ValidationResult::getMessages() const
     {
-        return errors;
+        std::list<std::string> messages;
+
+        std::transform(results.begin(), results.end(),
+                       std::back_inserter(messages),
+                       [] (const ValidationResultElement& result)
+        {
+            return result.first->what();
+        }
+                      );
+
+        return messages;
     }
 
-    const std::optional<ValidationResult::ValidationResultElement> ValidationResult::getFirstError() const
+    const std::list<ValidationResult::ValidationResultElement>& ValidationResult::getResults() const
     {
-        if (errors.empty())
+        return results;
+    }
+
+    const std::optional<ValidationResult::ValidationResultElement> ValidationResult::getFirstResult() const
+    {
+        if (results.empty())
         {
             return std::optional<ValidationResult::ValidationResultElement>();
         }
         else
         {
-            return std::optional(errors.front());
+            return std::optional(results.front());
         }
     }
 
     void ValidationResult::trigger() const
     {
-        if (!errors.empty())
+        if (!results.empty())
         {
-            const auto& x = errors.front().first;
-            throw* x;
+            const auto* firstError = results.front().first;
+            firstError->trigger();
         }
     }
 
     ValidationResult::operator bool() const
     {
-        return errors.empty();
+        return results.empty();
     }
 
     bool ValidationResult::operator==(const ValidationResult& other) const
     {
-        return this->errors == other.errors;
+        return this->results == other.results;
     }
 
     void ValidationResult::writeValidationResults(std::ostream& stream) const
     {
         if (*this)
         {
-            stream << "NO ERRORS" << std::endl;
+            stream << "--- NO ERRORS ---" << std::endl;
         }
         else
         {
-            for (const auto& [error, stackTrace] : errors)
+            for (const auto& [error, stackTrace] : results)
             {
-                stream << "ERROR: " << error->what() << std::endl;
-                for (size_t indent = 0; const auto& element: stackTrace)
+                stream << error->what() << std::endl;
+                auto view = std::ranges::reverse_view(stackTrace);
+                for (size_t indent = 0; const auto& element: view)
                 {
                     ++indent;
                     stream << std::string(indent, ' ') << "from " << element << std::endl;

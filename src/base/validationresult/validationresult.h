@@ -12,10 +12,16 @@ namespace Plotypus
             const static ValidationResult SUCCESS;
 
         private:
-            std::list<ValidationResultElement> errors;
+            std::list<ValidationResultElement> results;
 
         public:
             ValidationResult() = default;
+            ValidationResult(const ValidationResult& other);
+            ValidationResult(ValidationResult&& other);
+
+            // copy assignment (copy-and-swap idiom)
+            ValidationResult& operator=(ValidationResult other);
+
             ~ValidationResult();
 
             template<ErrorType T>
@@ -24,8 +30,9 @@ namespace Plotypus
             void absorbValidationResult(ValidationResult& subResult, const std::string& stackTraceElement);
             void absorbValidationResult(ValidationResult&& subResult, const std::string& stackTraceElement);
 
-            const std::list<ValidationResultElement>& getErrors() const;
-            const std::optional<ValidationResultElement> getFirstError() const;
+            const std::list<ValidationResultElement>& getResults() const;
+            const std::optional<ValidationResultElement> getFirstResult() const;
+            const std::list<std::string> getMessages() const;
 
             void trigger() const;
 

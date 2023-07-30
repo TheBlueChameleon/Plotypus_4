@@ -16,5 +16,15 @@ namespace Plotypus
         {
             return false;
         }
+    }
+
+    void PlotypusError::trigger() const
+    {
+        throw* this;
+    }
+
+    PlotypusError* PlotypusError::getDuplicate() const
+    {
+        return new PlotypusError(this->what());
     };
 }

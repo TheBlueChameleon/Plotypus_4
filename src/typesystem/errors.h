@@ -11,11 +11,17 @@ namespace Plotypus
             PlotypusError (const std::string& m);
 
             bool operator==(const PlotypusError& other) const;
+
+            virtual void trigger() const;
+            virtual PlotypusError* getDuplicate() const;
     };
 
 #define PLOTYPUS_ERROR(ErrorClassName) \
     class ErrorClassName : public PlotypusError { \
-        public : ErrorClassName (const std::string & m) : PlotypusError(m) {} \
+        public : \
+            ErrorClassName (const std::string & m) : PlotypusError(#ErrorClassName ": " + m) {} \
+            virtual void trigger() const {throw *this;}; \
+            virtual ErrorClassName* getDuplicate() const {return new ErrorClassName(this->what());} \
     }
 
     PLOTYPUS_ERROR(InvalidFilenameError);

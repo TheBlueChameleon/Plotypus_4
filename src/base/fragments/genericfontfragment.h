@@ -6,7 +6,7 @@ namespace Plotypus
     class GenericFontFragment : public ScriptFragment
     {
         private:
-            std::string                 font = "Sans,12";
+            std::string font = "Sans,12";
 
             std::pair<std::string_view, std::string_view> findHalves() const;
         public:

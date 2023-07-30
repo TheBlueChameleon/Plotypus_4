@@ -53,7 +53,8 @@ namespace Plotypus
 
                 // TerminalInfoProvider interface
                 static std::string getDefaultExtension();
-                static const std::string getTypeName();
+                std::string getInstanceName() const;
+                static std::string getTypeName();
         };
     }
 }

@@ -36,7 +36,12 @@ namespace Plotypus
         scriptFile.setAllowNullPath(newAllowNullPath);
     }
 
-    const std::string Report::getTypeName()
+    std::string Report::getInstanceName() const
+    {
+        return getTypeName();
+    }
+
+    std::string Report::getTypeName()
     {
         return "Report";
     }
@@ -138,35 +143,24 @@ namespace Plotypus
     ValidationResult Report::validate() const
     {
         ValidationResult result;
+        const std::string typeName = getTypeName();
 
         if (!tip)
         {
-            result.addError<IncompleteDescritporError>("No TerminalInfoProvider was set", getTypeName());
+            result.addError<IncompleteDescritporError>("No TerminalInfoProvider was set", typeName);
             return result;
         }
 
-        ValidationResult validation = tip->validate();
-        if (!validation)
-        {
-            return validation;
-        }
+        result.absorbValidationResult(tip->validate(), typeName);
+        result.absorbValidationResult(scriptFile.validate(), typeName);
 
-        validation = scriptFile.validate();
-        if (!validation)
-        {
-            return validation;
-        }
 
         for (auto& sheet : sheets)
         {
-            validation = sheet.validate();
-            if (!validation)
-            {
-                return validation;
-            }
+            result.absorbValidationResult(sheet.validate(), typeName);
         }
 
-        return ValidationResult::SUCCESS;
+        return result;
     }
 
     void Report::writeScript(std::ostream& hFile) const

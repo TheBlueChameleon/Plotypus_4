@@ -10,6 +10,7 @@
 namespace Plotypus
 {
     struct Sheet:
+        public NamedType,
         public Scriptable,
         public Persistable,
         public NumberedItem,

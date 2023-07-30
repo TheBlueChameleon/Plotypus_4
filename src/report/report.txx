@@ -33,7 +33,7 @@ namespace Plotypus
         }
         else
         {
-            throw InvalidTypeError("Currently installed TerminalInfoProvider is of type '" + tip->getTypeName() + "', but a '" + T::getTypeName() + "' was requested." );
+            throw InvalidTypeError("Currently installed TerminalInfoProvider is of type '" + tip->getInstanceName() + "', but a '" + T::getTypeName() + "' was requested." );
         }
     }
 }

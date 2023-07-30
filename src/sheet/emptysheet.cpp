@@ -6,13 +6,10 @@ namespace Plotypus
 {
     ValidationResult Plotypus::EmptySheet::validate() const
     {
-        ValidationResult validation = file.validate();
-        if (!validation)
-        {
-            return validation;
-        }
+        ValidationResult result;
+        result.absorbValidationResult(file.validate(), getInstanceName());
 
-        return validation;
+        return result;
     }
 
     void EmptySheet::reset()
@@ -111,6 +108,11 @@ namespace Plotypus
         number.setNumber(newNumber);
     }
 
+    std::string EmptySheet::getNumberText() const
+    {
+        return number.getNumberText();
+    }
+
     std::optional<std::string> EmptySheet::getUserScriptBeforeSetup() const
     {
         return userCode.getUserScriptBeforeSetup();
@@ -154,5 +156,15 @@ namespace Plotypus
     void EmptySheet::writeUserScriptCleanUp(std::ostream& hFile) const
     {
         userCode.writeUserScriptCleanUp(hFile);
+    }
+
+    std::string EmptySheet::getInstanceName() const
+    {
+        return getTypeName() + getNumberText();
+    }
+
+    std::string EmptySheet::getTypeName()
+    {
+        return "EmptySheet";
     }
 }

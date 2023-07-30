@@ -21,13 +21,9 @@ namespace Plotypus
 
         ValidationResult PdfCairo::validate() const
         {
-            const ValidationResult outputFileValidation = outputFile.validate();
-            if (!outputFileValidation)
-            {
-                return outputFileValidation;
-            }
-
-            return ValidationResult::SUCCESS;
+            ValidationResult result;
+            result.absorbValidationResult(outputFile.validate(), getTypeName());
+            return result;
         }
 
         void PdfCairo::writeScript(std::ostream& hFile) const
@@ -51,7 +47,12 @@ namespace Plotypus
             return "pdf";
         }
 
-        const std::string PdfCairo::getTypeName()
+        std::string PdfCairo::getInstanceName() const
+        {
+            return getTypeName();
+        }
+
+        std::string PdfCairo::getTypeName()
         {
             return "pdfCairo";
         }

@@ -33,6 +33,11 @@ namespace Plotypus
         subResult.errors.clear();
     }
 
+    void ValidationResult::absorbValidationResult(ValidationResult&& subResult, const std::string& stackTraceElement)
+    {
+        absorbValidationResult(subResult, stackTraceElement);
+    }
+
     const std::list<ValidationResult::ValidationResultElement>& ValidationResult::getErrors() const
     {
         return errors;

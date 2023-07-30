@@ -70,7 +70,8 @@ namespace Plotypus
             void setAllowNullPath(bool newAllowNullPath);
 
             // NamedType interface
-            static const std::string getTypeName();
+            std::string getInstanceName() const;
+            static std::string getTypeName();
 
             // Mutable interface
             void reset();

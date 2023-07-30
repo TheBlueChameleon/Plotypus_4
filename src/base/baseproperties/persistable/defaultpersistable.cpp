@@ -6,12 +6,11 @@ using namespace std::string_literals;
 
 namespace Plotypus
 {
-
     ValidationResult DefaultPersistable::validate() const
     {
         ValidationResult result;
 
-        auto fail = [&result] (const std::string& message)
+        auto fail = [&result, this] (const std::string& message)
         {
             result.addError<FileIOError>(message, getTypeName());
         };
@@ -58,7 +57,12 @@ namespace Plotypus
         return result;
     }
 
-    const std::string DefaultPersistable::getTypeName()
+    std::string DefaultPersistable::getInstanceName() const
+    {
+        return getTypeName();
+    }
+
+    std::string DefaultPersistable::getTypeName()
     {
         return "DefaultPersistable";
     }

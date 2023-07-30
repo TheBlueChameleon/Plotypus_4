@@ -22,6 +22,7 @@ namespace Plotypus
             void addError(const std::string& message, const std::string& stackTraceElement);
 
             void absorbValidationResult(ValidationResult& subResult, const std::string& stackTraceElement);
+            void absorbValidationResult(ValidationResult&& subResult, const std::string& stackTraceElement);
 
             const std::list<ValidationResultElement>& getErrors() const;
             const std::optional<ValidationResultElement> getFirstError() const;

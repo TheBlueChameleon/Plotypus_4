@@ -12,6 +12,18 @@ namespace Plotypus
         number = newNumber;
     }
 
+    std::string DefaultNumberedItem::getNumberText() const
+    {
+        if (number != NO_NUMBER)
+        {
+            return "# " + std::to_string(number);
+        }
+        else
+        {
+            return "";
+        }
+    }
+
     void DefaultNumberedItem::reset()
     {
         number = 0;

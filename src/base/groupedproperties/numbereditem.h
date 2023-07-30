@@ -10,6 +10,7 @@ namespace Plotypus
     {
         virtual size_t getNumber() const = 0;
         virtual void setNumber(size_t number) = 0;
+        virtual std::string getNumberText() const = 0;
     };
 }
 #endif // NUMBEREDITEM_H

@@ -56,6 +56,7 @@ namespace Plotypus
             // NumberedItem interface
             size_t getNumber() const;
             void setNumber(size_t number);
+            std::string getNumberText() const;
 
             // UserScriptInjectable interface
             std::optional<std::string> getUserScriptBeforeSetup() const;
@@ -67,6 +68,10 @@ namespace Plotypus
             void writeUserScriptBeforeSetup(std::ostream& hFile) const;
             void writeUserScriptBeforeChildren(std::ostream& hFile) const;
             void writeUserScriptCleanUp(std::ostream& hFile) const;
+
+            // NamedType interface
+            std::string getInstanceName() const;
+            static std::string getTypeName();
     };
 }
 

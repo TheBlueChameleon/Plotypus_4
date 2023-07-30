@@ -29,13 +29,13 @@ namespace Plotypus
         void PdfCairo::writeScript(std::ostream& hFile) const
         {
             hFile << "set term pdfcairo ";
-            hFile << EnhancedFragment::generateScriptFragment();
-            hFile << ColorFragment::generateScriptFragment();
-            hFile << FontFragment::generateScriptFragment();
-            hFile << LineEndsFragment::generateScriptFragment();
-            hFile << BackgroundFragment::generateScriptFragment();
-            hFile << ContinuousSizeFragment::generateScriptFragment();
-            hFile << UserCodeFragment::generateScriptFragment();
+            EnhancedFragment::writeScriptFragment(hFile);
+            ColorFragment::writeScriptFragment(hFile);
+            FontFragment::writeScriptFragment(hFile);
+            LineEndsFragment::writeScriptFragment(hFile);
+            BackgroundFragment::writeScriptFragment(hFile);
+            ContinuousSizeFragment::writeScriptFragment(hFile);
+            UserCodeFragment::writeScriptFragment(hFile);
             hFile << std::endl;
 
             hFile << "set output " << outputFile.getPath() << std::endl;

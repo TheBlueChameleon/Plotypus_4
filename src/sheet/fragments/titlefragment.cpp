@@ -50,22 +50,15 @@ namespace Plotypus
             title.reset();
         }
 
-        std::string TitleFragment::generateScriptFragment() const
+        void TitleFragment::writeScriptFragment(std::ostream& hFile) const
         {
             if (title.has_value())
             {
                 const std::string& title_v = title.value();
-                std::ostringstream result;
 
-                result << "set title " << '"';
-                result << "{/" << fontFragment.getFont() << " " << title_v << "}";
-                result << '"' << std::endl;
-
-                return result.str();
-            }
-            else
-            {
-                return "";
+                hFile << "set title " << '"';
+                hFile << "{/" << fontFragment.getFont() << " " << title_v << "}";
+                hFile << '"' << std::endl;
             }
         }
     }

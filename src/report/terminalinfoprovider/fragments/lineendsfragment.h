@@ -19,9 +19,9 @@ namespace Plotypus
                 LineEnds getLineEnds() const;
                 void setLineEnds(LineEnds newLineEnds);
 
-                // Fragment interface
+                // ScriptFragment interface
                 void reset();
-                std::string generateScriptFragment() const;
+                void writeScriptFragment(std::ostream& hFile) const;
         };
     }
 }

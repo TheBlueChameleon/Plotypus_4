@@ -8,7 +8,8 @@ namespace Plotypus
     struct ScriptFragment :
         public Mutable
     {
-        virtual std::string generateScriptFragment() const = 0;
+        virtual void writeScriptFragment(std::ostream& hFile) const = 0;
+        virtual std::string generateScriptFragment() const;
     };
 }
 #endif // FRAGMENT_H

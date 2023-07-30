@@ -23,7 +23,7 @@ namespace Plotypus
             void reset();
 
             // ScriptFragment interface
-            std::string generateScriptFragment() const;
+            void writeScriptFragment(std::ostream& hFile) const;
     };
 }
 

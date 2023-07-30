@@ -24,9 +24,9 @@ namespace Plotypus
 
                 void setFont(const std::string& newFontFace, const int newFontSize);
 
-                // Fragment interface
+                // ScriptFragment interface
                 void reset();
-                std::string generateScriptFragment() const;
+                void writeScriptFragment(std::ostream& hFile) const;
         };
     }
 }

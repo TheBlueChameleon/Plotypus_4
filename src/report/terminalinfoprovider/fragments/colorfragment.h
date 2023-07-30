@@ -17,9 +17,9 @@ namespace Plotypus
                 bool getColor() const;
                 void setColor(bool newColor);
 
-                // Fragment interface
+                // ScriptFragment interface
                 void reset();
-                std::string generateScriptFragment() const;
+                void writeScriptFragment(std::ostream& hFile) const;
         };
     }
 }

@@ -43,7 +43,7 @@ add_library(Plotypus-lib SHARED
     src/base/baseproperties/persistable/defaultpersistable.h src/base/baseproperties/persistable/defaultpersistable.cpp
     src/base/baseproperties/persistable/defaultpropagatingpersistable.h src/base/baseproperties/persistable/defaultpropagatingpersistable.cpp
 
-    src/base/groupedproperties/scriptfragment.h
+    src/base/groupedproperties/scriptfragment.h src/base/groupedproperties/scriptfragment.cpp
     src/base/groupedproperties/scriptable.h
     src/base/groupedproperties/serializable.h
     src/base/groupedproperties/numbereditem.h

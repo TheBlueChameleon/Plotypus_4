@@ -54,8 +54,8 @@ namespace Plotypus
         font = "Sans,12";
     }
 
-    std::string GenericFontFragment::generateScriptFragment() const
+    void GenericFontFragment::writeScriptFragment(std::ostream& hFile) const
     {
-        return "";
+        hFile << std::quoted(font) << " ";
     }
 }

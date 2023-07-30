@@ -57,7 +57,7 @@ namespace Plotypus
             unit = LengthUnit::Default;
         }
 
-        std::string ContinuousSizeFragment::generateScriptFragment() const
+        void ContinuousSizeFragment::writeScriptFragment(std::ostream& hFile) const
         {
             if(size.has_value())
             {
@@ -77,13 +77,9 @@ namespace Plotypus
                         break;
                 }
 
-                return "size " +
-                       std::to_string(sizeValue.first) + unitString + "," +
-                       std::to_string(sizeValue.second) + unitString + " ";
-            }
-            else
-            {
-                return "";
+                hFile << "size "
+                      << std::to_string(sizeValue.first) << unitString << ","
+                      << std::to_string(sizeValue.second) << unitString << " ";
             }
         }
     }

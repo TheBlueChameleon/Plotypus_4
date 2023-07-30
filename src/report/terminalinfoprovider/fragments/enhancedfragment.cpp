@@ -19,15 +19,15 @@ namespace Plotypus
             enhanced = true;
         }
 
-        std::string EnhancedFragment::generateScriptFragment() const
+        void EnhancedFragment::writeScriptFragment(std::ostream& hFile) const
         {
             if (enhanced)
             {
-                return "enhanced ";
+                hFile << "enhanced ";
             }
             else
             {
-                return "noenhanced ";
+                hFile << "noenhanced ";
             }
         }
     }

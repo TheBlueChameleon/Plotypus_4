@@ -2,11 +2,6 @@
 
 namespace Plotypus
 {
-    void UserCodeFragment::reset()
-    {
-        userCode.reset();
-    }
-
     std::optional<std::string> UserCodeFragment::getUserCode() const
     {
         return userCode;
@@ -27,15 +22,16 @@ namespace Plotypus
         userCode.reset();
     }
 
-    std::string UserCodeFragment::generateScriptFragment() const
+    void UserCodeFragment::reset()
+    {
+        userCode.reset();
+    }
+
+    void UserCodeFragment::writeScriptFragment(std::ostream& hFile) const
     {
         if (userCode.has_value())
         {
-            return userCode.value() + " ";
-        }
-        else
-        {
-            return "";
+            hFile << userCode.value() << " ";
         }
     }
 }

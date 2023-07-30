@@ -19,9 +19,9 @@ namespace Plotypus
                 void setBackground(const std::string& newBackground);
                 void clearBackground();
 
-                // Fragment interface
+                // ScriptFragment interface
                 void reset();
-                std::string generateScriptFragment() const;
+                void writeScriptFragment(std::ostream& hFile) const;
         };
     }
 }

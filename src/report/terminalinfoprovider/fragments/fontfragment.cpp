@@ -34,9 +34,10 @@ namespace Plotypus
             return fontFragment.reset();
         }
 
-        std::string FontFragment::generateScriptFragment() const
+        void FontFragment::writeScriptFragment(std::ostream& hFile) const
         {
-            return "font " + std::string(getFont()) + " ";
+            hFile << "font ";
+            fontFragment.writeScriptFragment(hFile);
         }
     }
 }

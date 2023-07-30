@@ -76,11 +76,11 @@ namespace Plotypus
     {
         hFile << SheetFragments::CleanSheetFragment::generateCleanSheetOnScriptFragment();
 
-        // set origin x, y
-        // set size w, h
+        // TODO set origin x, y
+        // TODO set size w, h
 
-        hFile << SheetFragments::FontFragment::generateScriptFragment();
-        hFile << SheetFragments::TitleFragment::generateScriptFragment();
+        SheetFragments::FontFragment::writeScriptFragment(hFile);
+        SheetFragments::TitleFragment::writeScriptFragment(hFile);
     }
 
     void EmptySheet::writeScriptData(std::ostream& hFile) const

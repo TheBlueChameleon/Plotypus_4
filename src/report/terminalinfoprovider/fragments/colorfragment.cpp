@@ -19,15 +19,15 @@ namespace Plotypus
             color = true;
         }
 
-        std::string ColorFragment::generateScriptFragment() const
+        void ColorFragment::writeScriptFragment(std::ostream& hFile) const
         {
             if (color)
             {
-                return "color ";
+                hFile << "color ";
             }
             else
             {
-                return "mono ";
+                hFile << "mono ";
             }
         }
     }

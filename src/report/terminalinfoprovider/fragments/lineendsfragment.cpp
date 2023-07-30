@@ -20,18 +20,18 @@ namespace Plotypus
             lineEnds = LineEnds::Default;
         }
 
-        std::string LineEndsFragment::generateScriptFragment() const
+        void LineEndsFragment::writeScriptFragment(std::ostream& hFile) const
         {
             switch (lineEnds)
             {
                 case LineEnds::Default:
-                    return "";
+                    hFile << "";
                 case LineEnds::Rounded:
-                    return "rounded ";
+                    hFile << "rounded ";
                 case LineEnds::Square:
-                    return "square ";
+                    hFile << "square ";
                 case LineEnds::Butt:
-                    return "butt ";
+                    hFile << "butt ";
             }
 
             throw InvalidArgumentError("Unknown LineEnds type.");

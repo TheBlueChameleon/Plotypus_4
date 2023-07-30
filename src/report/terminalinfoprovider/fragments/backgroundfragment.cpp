@@ -24,15 +24,11 @@ namespace Plotypus
             clearBackground();
         }
 
-        std::string BackgroundFragment::generateScriptFragment() const
+        void BackgroundFragment::writeScriptFragment(std::ostream& hFile) const
         {
             if (background.has_value())
             {
-                return "background " + background.value() + " ";
-            }
-            else
-            {
-                return "";
+                hFile << "background " << background.value() << " ";
             }
         }
     }

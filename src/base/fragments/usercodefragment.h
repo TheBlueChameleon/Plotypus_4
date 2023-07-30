@@ -18,9 +18,9 @@ namespace Plotypus
             void setUserCode(const std::string& newOptions);
             void clearUserCode();
 
-            // Fragment interface
+            // ScriptFragment interface
             void reset();
-            std::string generateScriptFragment() const;
+            void writeScriptFragment(std::ostream& hFile) const;
     };
 }
 

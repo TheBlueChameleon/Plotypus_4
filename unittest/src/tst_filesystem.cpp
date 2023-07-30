@@ -69,12 +69,11 @@ class TempDir_Fixture : public ::testing::Test
             existingSubdir = root / existingSubdirName;
             createDirOrStop(existingSubdir);
 
-            nonExistingSubdir = root / nonExistingSubdirName;
-
             existingFile = existingSubdir / existingFileName;
             createFileOrStop(existingFile);
 
-            nonExistingFile  = existingSubdir / nonExistingFileName;
+            nonExistingSubdir = root / nonExistingSubdirName;
+            nonExistingFile   = existingSubdir / nonExistingFileName;
         }
 
         static void TearDownTestSuite()
@@ -100,99 +99,95 @@ std::filesystem::path TempDir_Fixture::nonExistingFile   = std::filesystem::path
 bool TempDir_Fixture::ready = false;
 
 
-TEST_F(TempDir_Fixture, OutputPathProvider_Test)
+TEST_F(TempDir_Fixture, DefaultPersistable_Default_Test)
 {
-    auto opp = OutputPathProvider();
+    OutputPathProvider opp;
+    DefaultPersistable dpa;
 
-    std::string expected = "report.pdf";
-    std::string actual = opp.getOutputPathString(OutputPathProvider::GeneratedFileType::Report);
-    EXPECT_EQ(actual, expected);
+    // test in implicit CWD
+    std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
+    dpa.setPath(filename);
 
-    expected = "report_foo.pdf";
-    actual = opp.getOutputPathString(OutputPathProvider::GeneratedFileType::Report, "foo");
-    EXPECT_EQ(actual, expected);
-
-    expected = "report_99.pdf";
-    actual = opp.getOutputPathString(OutputPathProvider::GeneratedFileType::Report, 99);
-    EXPECT_EQ(actual, expected);
-
-    expected = "report_99_1.pdf";
-    actual = opp.getOutputPathString(OutputPathProvider::GeneratedFileType::Report, 99, 1);
-    EXPECT_EQ(actual, expected);
-
-    // actually no checks for invalid characters in filenames
-    opp.setBaseDirectory("<invalid>");
-    opp.setBaseFilename("<invalid>");
-    opp.setExtension(OutputPathProvider::GeneratedFileType::Report, "<invalid>");
-    expected = "<invalid>/<invalid>.<invalid>";
-    actual = opp.getOutputPathString(OutputPathProvider::GeneratedFileType::Report);
+    const ValidationResult expected = ValidationResult::SUCCESS;
+    const ValidationResult actual = dpa.validate();
     EXPECT_EQ(actual, expected);
 }
 
-TEST_F(TempDir_Fixture, PersistableImpl_Test)
+TEST_F(TempDir_Fixture, DefaultPersistable_NonExFileInExDir_Test)
 {
-//    auto opp = OutputPathProvider();
-//    auto dpa = DefaultPersistable();
+    DefaultPersistable dpa;
+    dpa.setPath(nonExistingFile);
 
-//    // test in implicit CWD
-//    std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
-//    dpa.setPath(filename);
+    const ValidationResult expected = ValidationResult::SUCCESS;
+    const ValidationResult actual = dpa.validate();
+    EXPECT_EQ(actual, expected);
+}
 
-//    auto expected = ValidationResult::SUCCESS;
-//    auto actual = dpa.validate();
-//    EXPECT_EQ(actual, expected);
+TEST_F(TempDir_Fixture, DefaultPersistable_ExFileInExDir_Test)
+{
+    DefaultPersistable dpa;
+    dpa.setPath(existingFile);
 
-//    // test in explicit/absolute dir, nonexisting
-//    dpa.setPath(nonExistingFile);
+    const ValidationResult actual = dpa.validate();
+    ASSERT_FALSE(actual);
+    ASSERT_TRUE (actual.getFirstResult());
+    EXPECT_THROW(actual.trigger(), FileIOError);
 
-//    expected = ValidationResult::SUCCESS;
-//    actual = dpa.validate();
-//    EXPECT_EQ(actual, expected);
+    const std::list<std::string> messages = actual.getMessages();
+    auto expectedValue = "already exists.";
+    ASSERT_EQ(messages.size(), 1);
+    EXPECT_THAT(messages.front(), EndsWith(expectedValue));
+}
 
-//    // test in explicit/absolute dir, existing
-//    dpa.setPath(existingFile);
+TEST_F(TempDir_Fixture, DefaultPersistable_ExFileOverwritable_Test)
+{
+    DefaultPersistable dpa;
+    dpa.setPath(existingFile);
+    dpa.setOverwrite(true);
 
-//    auto not_expected = ValidationResult::SUCCESS;
-//    actual = dpa.validate();
-//    ASSERT_THAT(actual, Ne(not_expected));
+    const ValidationResult expected = ValidationResult::SUCCESS;
+    const ValidationResult actual = dpa.validate();
+    EXPECT_EQ(actual, expected);
+}
 
-//    auto actualValue = actual.getError().what();
-//    auto expectedValue = "already exists.";
-//    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+TEST_F(TempDir_Fixture, DefaultPersistable_NonExDir_Test)
+{
+    DefaultPersistable dpa;
+    dpa.setPath(nonExistingSubdir / "foo");
 
-//    // allow overwriting
-//    dpa.setOverwrite(true);
-//    expected = ValidationResult::SUCCESS;
-//    actual = dpa.validate();
-//    EXPECT_EQ(actual, expected);
+    const ValidationResult expected = ValidationResult::SUCCESS;
+    const ValidationResult actual = dpa.validate();
+    ASSERT_EQ(actual, expected);
+}
 
-//    // non-existing dir
-//    dpa.setPath(nonExistingSubdir / "foo");
-//    actual = dpa.validate();
-//    EXPECT_EQ(actual, expected);
+TEST_F(TempDir_Fixture, DefaultPersistable_NonExDirNoMakeDir_Test)
+{
+    DefaultPersistable dpa;
+    dpa.setPath(nonExistingSubdir / "foo");
+    dpa.setMakeDirectories(false);
 
-//    dpa.setMakeDirectories(false);
-//    actual = dpa.validate();
-//    ASSERT_THAT(actual, Ne(not_expected));
+    const ValidationResult actual = dpa.validate();
+    ASSERT_FALSE(actual);
+    EXPECT_THROW(actual.trigger(), FileIOError);
 
-//    actualValue = actual.getError().what();
-//    expectedValue = "does not exist.";
-//    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+    const std::list<std::string> messages = actual.getMessages();
+    const auto expectedValue = "does not exist.";
+    ASSERT_EQ(messages.size(), 1);
+    EXPECT_THAT(messages.front(), EndsWith(expectedValue));
+}
 
-//    // allow make dirs
-//    dpa.setMakeDirectories(true);
-//    expected = ValidationResult::SUCCESS;
-//    actual = dpa.validate();
-//    EXPECT_EQ(actual, expected);
+TEST_F(TempDir_Fixture, DefaultPersistable_FileAsDir_Test)
+{
+    DefaultPersistable dpa;
+    dpa.setPath(existingFile / "foo");
+    dpa.setMakeDirectories(true);
 
-//    // parent "dir" is a file
-//    dpa.setMakeDirectories(true);
-//    dpa.setPath(existingFile / "foo");
-//    not_expected = ValidationResult::SUCCESS;
-//    actual = dpa.validate();
-//    ASSERT_THAT(actual, Ne(not_expected));
+    const ValidationResult actual = dpa.validate();
+    ASSERT_FALSE(actual);
+    EXPECT_THROW(actual.trigger(), FileIOError);
 
-//    actualValue = actual.getError().what();
-//    expectedValue = "is not a directory.";
-//    EXPECT_THAT(actualValue, EndsWith(expectedValue));
+    const std::list<std::string> messages = actual.getMessages();
+    const auto expectedValue = "is not a directory.";
+    ASSERT_EQ(messages.size(), 1);
+    EXPECT_THAT(messages.front(), EndsWith(expectedValue));
 }

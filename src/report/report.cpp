@@ -39,6 +39,21 @@ namespace Plotypus
         return scriptFile.getDerivedPath(extension, infix);
     }
 
+    void Report::propagate()
+    {
+        scriptFile.propagate();
+    }
+
+    void Report::addSubscriber(Persistable& subscriber)
+    {
+        scriptFile.addSubscriber(subscriber);
+    }
+
+    Collection<Persistable> &Report::getSubscribers()
+    {
+        return scriptFile.getSubscribers();
+    }
+
     std::string Report::getInstanceName() const
     {
         return getTypeName();

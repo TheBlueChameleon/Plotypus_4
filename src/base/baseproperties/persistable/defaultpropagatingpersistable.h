@@ -13,6 +13,7 @@ namespace Plotypus
     {
         private:
             bool propagateUpdateChildFileNames = true;
+            FiFo<Persistable> subscribers;
 
         public:
             DefaultPropagatingPersistable() = default;
@@ -21,9 +22,10 @@ namespace Plotypus
             bool getPropagateUpdateChildFileNames() const;
             void setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames);
 
-            std::filesystem::path getDerivedPath(const std::string &extension, std::optional<std::string> infix);
-
-            // void propagate(Collection<Persistable> children);
+            std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
+            void propagate();
+            void addSubscriber(Persistable& subscriber);
+            Collection<Persistable>& getSubscribers();
 
             // Mutable interface
             void reset();

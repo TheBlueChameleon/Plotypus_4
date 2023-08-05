@@ -29,6 +29,29 @@ namespace Plotypus
         return result;
     }
 
+
+
+    void DefaultPropagatingPersistable::propagate()
+    {
+        getSubscribers().forEachExposed([](Persistable* ptr)
+        {
+            if (PropagatingPersistable* xPtr = dynamic_cast<PropagatingPersistable*>(ptr); xPtr)
+            {
+                xPtr->propagate();
+            }
+        });
+    }
+
+    void DefaultPropagatingPersistable::addSubscriber(Persistable& subscriber)
+    {
+        //subscribers.add(&subscriber);
+    }
+
+    Collection<Persistable>& DefaultPropagatingPersistable::getSubscribers()
+    {
+        return subscribers;
+    }
+
     void DefaultPropagatingPersistable::reset()
     {
         DefaultPersistable::reset();

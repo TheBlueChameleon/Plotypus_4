@@ -63,6 +63,9 @@ namespace Plotypus
             void setAllowNullPath(bool newAllowNullPath);
 
             std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix = std::optional<std::string>());
+            void propagate();
+            void addSubscriber(Persistable& subscriber);
+            Collection<Persistable>& getSubscribers();
 
             // NamedType interface
             std::string getInstanceName() const;

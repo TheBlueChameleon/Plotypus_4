@@ -20,6 +20,7 @@ namespace Plotypus
         virtual void clear() = 0;
 
         virtual void forEachExposed(std::function<void(T*)> action) = 0;
+        virtual void forEachExposed(std::function<void(const T*)> action) const = 0;
     };
 }
 

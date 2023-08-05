@@ -84,6 +84,22 @@ namespace Plotypus
     }
 
     template<typename T>
+    void FiFo<T>::forEachExposed(std::function<void (const T*)> action) const
+    {
+        if (action)
+        {
+            for (const T* x : elements)
+            {
+                action(x);
+            }
+        }
+        else
+        {
+            throw InvalidArgumentError("No valid callable provided");
+        }
+    }
+
+    template<typename T>
     typename FiFo<T>::iterator FiFo<T>::begin()
     {
         return iterator(elements.begin());

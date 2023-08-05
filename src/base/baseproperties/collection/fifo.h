@@ -38,6 +38,7 @@ namespace Plotypus
             size_t add(T* element);
             void clear();
             void forEachExposed(std::function<void (T*)> action);
+            void forEachExposed(std::function<void (const T*)> action) const;
 
             // FiFoIterable interface
             iterator begin();

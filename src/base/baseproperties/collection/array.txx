@@ -85,6 +85,22 @@ namespace Plotypus
     }
 
     template<typename T>
+    void Array<T>::forEachExposed(std::function<void (const T*)> action) const
+    {
+        if (action)
+        {
+            for (const T* x : elements)
+            {
+                action(x);
+            }
+        }
+        else
+        {
+            throw InvalidArgumentError("No valid callable provided");
+        }
+    }
+
+    template<typename T>
     typename Array<T>::iterator Array<T>::begin()
     {
         return decltype(begin())(elements.begin().base());

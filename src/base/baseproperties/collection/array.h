@@ -40,6 +40,7 @@ namespace Plotypus
             void clear();
 
             void forEachExposed(std::function<void (T*)> action);
+            void forEachExposed(std::function<void (const T*)> action) const;
 
             // ArrayIterable interface
             iterator begin();

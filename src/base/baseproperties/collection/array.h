@@ -20,14 +20,13 @@ namespace Plotypus
             using const_iterator = typename ArrayConstIterable<T>::ConstIterator;
 
         private:
-            std::vector<T*> elements;
+            std::vector<std::shared_ptr<T>> elements;
 
         public:
             Array() = default;
-            ~Array();
 
-            std::vector<T*>&       expose();
-            const std::vector<T*>& expose() const;
+            std::vector<std::shared_ptr<T>>&       expose();
+            const std::vector<std::shared_ptr<T>>& expose() const;
 
             // Collection interface
             size_t size() const;
@@ -56,8 +55,8 @@ namespace Plotypus
 
     class T;
     static_assert(Iterable<Array<T>>);
-    class T;
-    static_assert(ConstIterable<Array<T>>);
+    //    class T;
+    //    static_assert(ConstIterable<Array<T>>);
 }
 
 #include "array.txx"

@@ -19,15 +19,16 @@ namespace Plotypus
                     using reference         = T&;
                     using element_type      = T;
 
+                    using native_iter_type = typename std::vector<std::shared_ptr<T>>::iterator;
                 private:
-                    T** mPtr;
+                    native_iter_type nIter;
 
                 public:
                     // user needs
-                    Iterator(pointer ptr);
+                    Iterator(native_iter_type nIter);
 
                     // std::weakly_incrementable<I>
-                    Iterator();
+                    Iterator() = default;
                     Iterator& operator++();     // prefix inc
                     Iterator operator++(int);   // postfix inc
 

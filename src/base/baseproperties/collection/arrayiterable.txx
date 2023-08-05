@@ -3,17 +3,13 @@
 namespace Plotypus
 {
     template<typename T>
-    ArrayIterable<T>::Iterator::Iterator(pointer ptr) : mPtr(ptr)
-    {}
-
-    template<typename T>
-    ArrayIterable<T>::Iterator::Iterator(): mPtr(nullptr)
+    ArrayIterable<T>::Iterator::Iterator(native_iter_type nIter) : nIter(nIter)
     {}
 
     template<typename T>
     typename ArrayIterable<T>::Iterator& ArrayIterable<T>::Iterator::operator++()
     {
-        ++mPtr;
+        ++nIter;
         return *this;
     }
 
@@ -29,25 +25,25 @@ namespace Plotypus
     template<typename T>
     typename ArrayIterable<T>::Iterator::reference ArrayIterable<T>::Iterator::operator*()
     {
-        return **mPtr;
+        return **nIter;
     }
 
     template<typename T>
-    typename ArrayIterable<T>::Iterator::reference operator*(const typename ArrayIterable<T>::Iterator& it)
+    typename ArrayIterable<T>::Iterator::reference operator*(const typename ArrayIterable<T>::Iterator& iter)
     {
-        return *(it.mPtr);
+        return *(iter.nIter);
     }
 
     template<typename T>
-    bool ArrayIterable<T>::Iterator::operator==(const Iterator& it) const
+    bool ArrayIterable<T>::Iterator::operator==(const Iterator& iter) const
     {
-        return mPtr == it.mPtr;
+        return nIter == iter.nIter;
     }
 
     template<typename T>
     typename ArrayIterable<T>::Iterator& ArrayIterable<T>::Iterator::operator--()
     {
-        --mPtr;
+        --nIter;
         return *this;
     }
 
@@ -60,53 +56,53 @@ namespace Plotypus
     }
 
     template<typename T>
-    std::weak_ordering ArrayIterable<T>::Iterator::operator<=>(const Iterator& it) const
+    std::weak_ordering ArrayIterable<T>::Iterator::operator<=>(const Iterator& iter) const
     {
-        return mPtr <=> it.mPtr;
+        return nIter <=> iter.nIter;
     }
 
     template<typename T>
-    typename ArrayIterable<T>::Iterator::difference_type ArrayIterable<T>::Iterator::operator-(const Iterator& it) const
+    typename ArrayIterable<T>::Iterator::difference_type ArrayIterable<T>::Iterator::operator-(const Iterator& iter) const
     {
-        return mPtr - it.mPtr;
+        return nIter - iter.nIter;
     }
 
     template<typename T>
     typename ArrayIterable<T>::Iterator& ArrayIterable<T>::Iterator::operator+=(difference_type diff)
     {
-        mPtr += diff;
+        nIter += diff;
         return *this;
     }
 
     template<typename T>
     typename ArrayIterable<T>::Iterator& ArrayIterable<T>::Iterator::operator-=(difference_type diff)
     {
-        mPtr -= diff;
+        nIter -= diff;
         return *this;
     }
 
     template<typename T>
     typename ArrayIterable<T>::Iterator ArrayIterable<T>::Iterator::operator+(difference_type diff) const
     {
-        return Iterator(mPtr + diff);
+        return Iterator(nIter + diff);
     }
 
     template<typename T>
     typename ArrayIterable<T>::Iterator ArrayIterable<T>::Iterator::operator-(difference_type diff) const
     {
-        return Iterator(mPtr - diff);
+        return Iterator(nIter - diff);
     }
 
 
     template<typename T>
     typename ArrayIterable<T>::Iterator::reference ArrayIterable<T>::Iterator::operator[](difference_type diff) const
     {
-        return *mPtr[diff];
+        return *nIter[diff];
     }
 
     template<typename T>
     typename ArrayIterable<T>::Iterator::pointer ArrayIterable<T>::Iterator::operator->() const
     {
-        return *mPtr;
+        return *nIter;
     }
 }

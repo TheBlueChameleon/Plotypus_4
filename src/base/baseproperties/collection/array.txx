@@ -4,25 +4,19 @@
 namespace Plotypus
 {
     template<typename T>
-    Array<T>::~Array()
-    {
-        clear();
-    }
-
-    template<typename T>
     size_t Array<T>::size() const
     {
         return elements.size();
     }
 
     template<typename T>
-    std::vector<T*>& Array<T>::expose()
+    std::vector<std::shared_ptr<T> >& Array<T>::expose()
     {
         return elements;
     }
 
     template<typename T>
-    const std::vector<T*>& Array<T>::expose() const
+    const std::vector<std::shared_ptr<T> >& Array<T>::expose() const
     {
         return elements;
     }
@@ -54,17 +48,13 @@ namespace Plotypus
     template<typename T>
     size_t Array<T>::add(T* element)
     {
-        elements.push_back(element);
+        elements.emplace_back(element);
         return elements.size();
     }
 
     template<typename T>
     void Array<T>::clear()
     {
-        for (T* x : elements)
-        {
-            delete x;
-        }
         elements.clear();
     }
 
@@ -73,9 +63,9 @@ namespace Plotypus
     {
         if (action)
         {
-            for (T* x : elements)
+            for (std::shared_ptr<T> x : elements)
             {
-                action(x);
+                action(x.get());
             }
         }
         else
@@ -89,9 +79,9 @@ namespace Plotypus
     {
         if (action)
         {
-            for (const T* x : elements)
+            for (std::shared_ptr<const T> x : elements)
             {
-                action(x);
+                action(x.get());
             }
         }
         else
@@ -103,27 +93,25 @@ namespace Plotypus
     template<typename T>
     typename Array<T>::iterator Array<T>::begin()
     {
-        return decltype(begin())(elements.begin().base());
+        return iterator(elements.begin());
     }
 
     template<typename T>
     typename Array<T>::iterator Array<T>::end()
     {
-        return decltype(end())(elements.end().base());
+        return iterator(elements.end());
     }
 
     template<typename T>
     typename Array<T>::const_iterator Array<T>::cbegin() const
     {
-        const T** ptr = const_cast<const typename const_iterator::pointer>(elements.begin().base());
-        return const_iterator(ptr);
+        return const_iterator(elements.cbegin());
     }
 
     template<typename T>
     typename Array<T>::const_iterator Array<T>::cend() const
     {
-        const T** ptr = const_cast<const typename const_iterator::pointer>(elements.end().base());
-        return const_iterator(ptr);
+        return const_iterator(elements.cend());
     }
 
     template<typename T>

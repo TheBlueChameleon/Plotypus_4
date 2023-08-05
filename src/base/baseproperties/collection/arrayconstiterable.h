@@ -20,15 +20,17 @@ namespace Plotypus
                     using reference         = const T&;
                     using element_type      = const T;
 
+                    using native_iter_type = typename std::vector<std::shared_ptr<T>>::const_iterator;
+
                 private:
-                    const T** mPtr;
+                    native_iter_type nIter;
 
                 public:
                     // user needs
-                    ConstIterator(pointer ptr);
+                    ConstIterator(native_iter_type nIter);
 
                     // std::weakly_incrementable<I>
-                    ConstIterator();
+                    ConstIterator() = default;
                     ConstIterator& operator++();     // prefix inc
                     ConstIterator operator++(int);   // postfix inc
 

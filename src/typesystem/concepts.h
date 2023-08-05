@@ -2,15 +2,25 @@
 #define CONCEPTS_H
 
 #include <concepts>
+#include <string>
 
 namespace Plotypus
 {
     template<typename T>
     concept ErrorType = requires {std::derived_from<T, PlotypusError>;};
 
+    template<typename T>
+    concept StaticallyNamedType = requires(T)
+    {
+        {T::getTypeName()} -> std::convertible_to<std::string>;
+    };
+
     class TerminalInfoProvider;
     template<typename T>
-    concept TerminalInfoProviderType = requires {std::derived_from<T, TerminalInfoProvider>;};
+    concept TerminalInfoProviderType = requires {
+        requires std::derived_from<T, TerminalInfoProvider>;
+        requires StaticallyNamedType<T>;
+    };
 
     template<typename T>
     concept Iterable = requires(T x)

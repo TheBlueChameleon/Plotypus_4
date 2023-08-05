@@ -5,8 +5,6 @@
 #include <functional>
 #include <iterator>
 
-#include "../../typesystem/concepts.h"
-
 namespace Plotypus
 {
     template<typename T>

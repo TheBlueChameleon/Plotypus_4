@@ -14,7 +14,7 @@ namespace Plotypus
                 public:
                     using iterator_category = std::contiguous_iterator_tag;
                     using iterator_concept  = std::contiguous_iterator_tag;
-                    using difference_type   = typename std::iterator<std::contiguous_iterator_tag, T>::difference_type;
+                    using difference_type   = ptrdiff_t;
                     using value_type        = const std::remove_cv_t<T>;
                     using pointer           = const T** ;
                     using reference         = const T&;
@@ -57,10 +57,10 @@ namespace Plotypus
                     difference_type operator-(const ConstIterator& it) const;
 
                     //     std::iter_difference<I> operators
-                    ConstIterator& operator+=     (difference_type diff);
-                    ConstIterator& operator-=     (difference_type diff);
-                    ConstIterator  operator+      (difference_type diff) const;
-                    ConstIterator  operator-      (difference_type diff) const;
+                    ConstIterator& operator+= (difference_type diff);
+                    ConstIterator& operator-= (difference_type diff);
+                    ConstIterator  operator+ (difference_type diff) const;
+                    ConstIterator  operator- (difference_type diff) const;
                     friend ConstIterator operator+(difference_type diff, const ConstIterator& it);
                     friend ConstIterator operator-(difference_type diff, const ConstIterator& it);
                     reference operator[](difference_type diff) const;
@@ -84,7 +84,7 @@ namespace Plotypus
             static_assert(std::is_lvalue_reference_v<std::iter_reference_t<ConstIterator>>);
             static_assert(std::same_as<std::iter_value_t<ConstIterator>,
                           std::remove_cvref_t<std::iter_reference_t<ConstIterator>>>);
-//        static_assert(std::contiguous_iterator<ConstIterator>);
+            // static_assert(std::contiguous_iterator<ConstIterator>);
 
 
         public:

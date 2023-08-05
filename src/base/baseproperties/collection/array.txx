@@ -69,13 +69,13 @@ namespace Plotypus
     }
 
     template<typename T>
-    void Array<T>::forEach(std::function<void (T&)> action)
+    void Array<T>::forEachExposed(std::function<void (T*)> action)
     {
         if (action)
         {
             for (T* x : elements)
             {
-                action(*x);
+                action(x);
             }
         }
         else
@@ -85,39 +85,39 @@ namespace Plotypus
     }
 
     template<typename T>
-    typename Array<T>::Iterator Array<T>::begin()
+    typename Array<T>::iterator Array<T>::begin()
     {
-        return decltype(begin()) (elements.begin().base());
+        return decltype(begin())(elements.begin().base());
     }
 
     template<typename T>
-    typename Array<T>::Iterator Array<T>::end()
+    typename Array<T>::iterator Array<T>::end()
     {
-        return decltype(end()) (elements.end().base());
+        return decltype(end())(elements.end().base());
     }
 
     template<typename T>
-    typename Array<T>::ConstIterator Array<T>::cbegin() const
+    typename Array<T>::const_iterator Array<T>::cbegin() const
     {
-        const T** ptr =const_cast<const typename ConstIterator::pointer>(elements.begin().base());
-        return ConstIterator(ptr);
+        const T** ptr = const_cast<const typename const_iterator::pointer>(elements.begin().base());
+        return const_iterator(ptr);
     }
 
     template<typename T>
-    typename Array<T>::ConstIterator Array<T>::cend() const
+    typename Array<T>::const_iterator Array<T>::cend() const
     {
-        const T** ptr =const_cast<const typename ConstIterator::pointer>(elements.end().base());
-        return ConstIterator(ptr);
+        const T** ptr = const_cast<const typename const_iterator::pointer>(elements.end().base());
+        return const_iterator(ptr);
     }
 
     template<typename T>
-    typename Array<T>::ConstIterator Array<T>::begin() const
+    typename Array<T>::const_iterator Array<T>::begin() const
     {
         return this->cbegin();
     }
 
     template<typename T>
-    typename Array<T>::ConstIterator Array<T>::end() const
+    typename Array<T>::const_iterator Array<T>::end() const
     {
         return this->cend();
     }

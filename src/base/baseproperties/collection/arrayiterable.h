@@ -13,7 +13,7 @@ namespace Plotypus
                 public:
                     using iterator_category = std::contiguous_iterator_tag;
                     using iterator_concept  = std::contiguous_iterator_tag;
-                    using difference_type   = typename std::iterator<std::contiguous_iterator_tag, T>::difference_type;
+                    using difference_type   = ptrdiff_t;
                     using value_type        = std::remove_cv_t<T>;
                     using pointer           = T** ;
                     using reference         = T&;
@@ -50,7 +50,7 @@ namespace Plotypus
 
                     // std::random_access_iterator<I>
                     //     std::totally_ordered<I>
-                    std::weak_ordering operator<=>(const Iterator& it) const;
+                    std::weak_ordering operator<=> (const Iterator& it) const;
 
                     //     std::sized_sentinel_for<I, I>
                     difference_type operator-(const Iterator& it) const;

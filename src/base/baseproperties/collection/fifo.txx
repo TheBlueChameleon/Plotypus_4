@@ -68,13 +68,13 @@ namespace Plotypus
     }
 
     template<typename T>
-    void FiFo<T>::forEach(std::function<void (T&)> action)
+    void FiFo<T>::forEachExposed(std::function<void (T*)> action)
     {
         if (action)
         {
             for (T* x : elements)
             {
-                action(*x);
+                action(x);
             }
         }
         else
@@ -84,38 +84,38 @@ namespace Plotypus
     }
 
     template<typename T>
-    typename FiFo<T>::Iterator FiFo<T>::begin()
+    typename FiFo<T>::iterator FiFo<T>::begin()
     {
-        return Iterator(elements.begin());
+        return iterator(elements.begin());
     }
 
     template<typename T>
-    typename FiFo<T>::Iterator FiFo<T>::end()
+    typename FiFo<T>::iterator FiFo<T>::end()
     {
-        return Iterator(elements.end());
+        return iterator(elements.end());
     }
 
     template<typename T>
-    typename FiFo<T>::ConstIterator FiFo<T>::begin() const
+    typename FiFo<T>::const_iterator FiFo<T>::begin() const
     {
         return cbegin();
     }
 
     template<typename T>
-    typename FiFo<T>::ConstIterator FiFo<T>::end() const
+    typename FiFo<T>::const_iterator FiFo<T>::end() const
     {
         return cend();
     }
 
     template<typename T>
-    typename FiFo<T>::ConstIterator FiFo<T>::cbegin() const
+    typename FiFo<T>::const_iterator FiFo<T>::cbegin() const
     {
-        return ConstIterator(elements.cbegin());
+        return const_iterator(elements.cbegin());
     }
 
     template<typename T>
-    typename FiFo<T>::ConstIterator FiFo<T>::cend() const
+    typename FiFo<T>::const_iterator FiFo<T>::cend() const
     {
-        return ConstIterator(elements.cend());
+        return const_iterator(elements.cend());
     }
 }

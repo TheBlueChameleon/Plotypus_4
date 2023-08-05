@@ -12,12 +12,16 @@ namespace Plotypus
     template<typename T>
     concept StaticallyNamedType = requires(T)
     {
-        {T::getTypeName()} -> std::convertible_to<std::string>;
+        {
+            T::getTypeName()
+        }
+        -> std::convertible_to<std::string>;
     };
 
     class TerminalInfoProvider;
     template<typename T>
-    concept TerminalInfoProviderType = requires {
+    concept TerminalInfoProviderType = requires
+    {
         requires std::derived_from<T, TerminalInfoProvider>;
         requires StaticallyNamedType<T>;
     };
@@ -27,7 +31,27 @@ namespace Plotypus
     {
         x.begin();
         x.end();
-        typename T::iterator_category;
+        typename T::iterator;
+    };
+
+    template<typename T>
+    concept ConstIterable = requires(T x)
+    {
+        x.cbegin();
+        x.cend();
+        typename T::const_iterator;
+    }
+    && requires(T const x)
+    {
+        x.begin();
+        x.end();
+    };
+
+    class Persistable;
+    template<typename T>
+    concept PersistableType = requires
+    {
+        requires std::derived_from<T, Persistable>;
     };
 }
 

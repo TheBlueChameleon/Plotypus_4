@@ -14,7 +14,7 @@ namespace Plotypus
                 public:
                     using iterator_category    = std::bidirectional_iterator_tag;
                     using iterator_concept     = std::bidirectional_iterator_tag;
-                    using difference_type      = typename std::iterator<iterator_category, T>::difference_type;
+                    using difference_type      = ptrdiff_t;
                     using value_type           = std::remove_cv_t<T>;
                     using pointer              = T*;
                     using reference            = T&;

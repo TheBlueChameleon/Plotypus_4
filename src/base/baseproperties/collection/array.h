@@ -16,8 +16,8 @@ namespace Plotypus
     {
         public:
             // iterator types
-            using Iterator = typename ArrayIterable<T>::Iterator;
-            using ConstIterator = typename ArrayConstIterable<T>::ConstIterator;
+            using iterator = typename ArrayIterable<T>::Iterator;
+            using const_iterator = typename ArrayConstIterable<T>::ConstIterator;
 
         private:
             std::vector<T*> elements;
@@ -39,19 +39,24 @@ namespace Plotypus
             size_t add(T* element);
             void clear();
 
-            void forEach(std::function<void (T&)> action);
+            void forEachExposed(std::function<void (T*)> action);
 
             // ArrayIterable interface
-            Iterator begin();
-            Iterator end();
+            iterator begin();
+            iterator end();
 
             // ArrayConstIterable interface
-            ConstIterator cbegin() const;
-            ConstIterator cend() const;
+            const_iterator cbegin() const;
+            const_iterator cend() const;
 
-            ConstIterator begin() const;
-            ConstIterator end() const;
+            const_iterator begin() const;
+            const_iterator end() const;
     };
+
+    class T;
+    static_assert(Iterable<Array<T>>);
+    class T;
+    static_assert(ConstIterable<Array<T>>);
 }
 
 #include "array.txx"

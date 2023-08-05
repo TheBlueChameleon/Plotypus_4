@@ -75,9 +75,9 @@ TEST_F(Collection_Fixture, Array_Test)
 
         ASSERT_THAT(collection.size(), Eq(4));
 
-        collection.forEach([](const Base& x)
+        collection.forEachExposed([](const Base * x)
         {
-            x.show();
+            x->show();
         });
 
         for (const auto& x : collection)
@@ -91,7 +91,7 @@ TEST_F(Collection_Fixture, Array_Test)
             reads.push_back(x.get());
         }
 
-        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto& elm)
+        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto & elm)
         {
             return acc + elm.get();
         });
@@ -134,9 +134,9 @@ TEST_F(Collection_Fixture, FiFo_Test)
 
         ASSERT_THAT(collection.size(), Eq(4));
 
-        collection.forEach([](const Base& x)
+        collection.forEachExposed([](const Base * x)
         {
-            x.show();
+            x->show();
         });
 
         for (const auto& x : collection)
@@ -150,7 +150,7 @@ TEST_F(Collection_Fixture, FiFo_Test)
             reads.push_back(x.get());
         }
 
-        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto& elm)
+        sum = std::accumulate(collection.begin(), collection.end(), 0, [&sum](auto acc, auto & elm)
         {
             return acc + elm.get();
         });

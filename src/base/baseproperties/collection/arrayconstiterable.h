@@ -19,7 +19,6 @@ namespace Plotypus
                     using pointer           = const T** ;
                     using reference         = const T&;
                     using element_type      = const T;
-
                     using native_iter_type = typename std::vector<std::shared_ptr<T>>::const_iterator;
 
                 private:

@@ -18,8 +18,8 @@ namespace Plotypus
                     using pointer           = T** ;
                     using reference         = T&;
                     using element_type      = T;
-
                     using native_iter_type = typename std::vector<std::shared_ptr<T>>::iterator;
+
                 private:
                     native_iter_type nIter;
 

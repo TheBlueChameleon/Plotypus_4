@@ -21,11 +21,10 @@ namespace Plotypus
             using const_iterator = typename FiFoConstIterable<T>::ConstIterator;
 
         private:
-            std::list<T*> elements;
+            std::list<std::shared_ptr<T>> elements;
 
         public:
             FiFo() = default;
-            ~FiFo();
 
             size_t addBack(T* element);
             size_t addFront(T* element);

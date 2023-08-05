@@ -4,21 +4,15 @@
 namespace Plotypus
 {
     template<typename T>
-    FiFo<T>::~FiFo()
-    {
-        clear();
-    }
-
-    template<typename T>
     size_t FiFo<T>::addBack(T* element)
     {
-        elements.push_back(element);
+        elements.emplace_back(element);
     }
 
     template<typename T>
     size_t FiFo<T>::addFront(T* element)
     {
-        elements.push_front(element);
+        elements.emplace_front(element);
     }
 
     template<typename T>
@@ -60,10 +54,6 @@ namespace Plotypus
     template<typename T>
     void FiFo<T>::clear()
     {
-        for (auto element : elements)
-        {
-            delete element;
-        }
         elements.clear();
     }
 
@@ -72,9 +62,9 @@ namespace Plotypus
     {
         if (action)
         {
-            for (T* x : elements)
+            for (const std::shared_ptr<T> x : elements)
             {
-                action(x);
+                action(x.get());
             }
         }
         else
@@ -88,9 +78,9 @@ namespace Plotypus
     {
         if (action)
         {
-            for (const T* x : elements)
+            for (const std::shared_ptr<const T> x : elements)
             {
-                action(x);
+                action(x.get());
             }
         }
         else

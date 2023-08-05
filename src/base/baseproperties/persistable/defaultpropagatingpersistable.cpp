@@ -14,6 +14,21 @@ namespace Plotypus
         propagateUpdateChildFileNames = newPropagateUpdateChildFileNames;
     }
 
+    std::filesystem::path DefaultPropagatingPersistable::getDerivedPath(const std::string& extension, std::optional<std::string> infix)
+    {
+        const std::filesystem::path parentDir = getPath().parent_path();
+        const std::filesystem::path stem = getPath().stem();
+        std::filesystem::path result = parentDir / stem;
+
+        if (infix.has_value())
+        {
+            result += infix.value();
+        }
+
+        result.replace_extension(extension);
+        return result;
+    }
+
     void DefaultPropagatingPersistable::reset()
     {
         DefaultPersistable::reset();

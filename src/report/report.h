@@ -2,14 +2,11 @@
 #define REPORT_H
 
 #include "base/baseproperties/nonassignable.h"
-#include "base/baseproperties/persistable.h"
 #include "base/baseproperties/persistable/defaultpropagatingpersistable.h"
 
 #include "base/groupedproperties/userscriptinjectable.h"
 #include "base/groupedproperties/scriptable.h"
 #include "base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h"
-
-#include "outputpathprovider.h"
 
 #include "terminalinfoprovider/terminalinfoprovider.h"
 
@@ -20,9 +17,7 @@ namespace Plotypus
         public NonAssignable,
         public PropagatingPersistable,
         public Scriptable,
-        public UserScriptInjectable,
-
-        public OutputPathProvider
+        public UserScriptInjectable
     {
         private:
             TerminalInfoProvider* tip = nullptr;
@@ -35,8 +30,6 @@ namespace Plotypus
 
         public:
             Report();
-
-            void setChildFileNames();
 
             const std::string& getRunCommand() const;
             void setRunCommand(const std::string& newRunCommand);
@@ -68,6 +61,8 @@ namespace Plotypus
 
             bool getAllowNullPath() const;
             void setAllowNullPath(bool newAllowNullPath);
+
+            std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix = std::optional<std::string>());
 
             // NamedType interface
             std::string getInstanceName() const;

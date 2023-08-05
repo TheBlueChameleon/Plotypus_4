@@ -86,7 +86,7 @@ class TempDir_Fixture : public ::testing::Test
             ASSERT_TRUE(ready);
         }
 
-        void TearDown () override
+        void TearDown() override
         {}
 
 };
@@ -101,11 +101,10 @@ bool TempDir_Fixture::ready = false;
 
 TEST_F(TempDir_Fixture, DefaultPersistable_Default_Test)
 {
-    OutputPathProvider opp;
     DefaultPersistable dpa;
 
     // test in implicit CWD
-    std::filesystem::path filename = opp.getOutputPath(OutputPathProvider::GeneratedFileType::Report);
+    std::filesystem::path filename = "report.pdf";
     dpa.setPath(filename);
 
     const ValidationResult expected = ValidationResult::SUCCESS;
@@ -130,7 +129,7 @@ TEST_F(TempDir_Fixture, DefaultPersistable_ExFileInExDir_Test)
 
     const ValidationResult actual = dpa.validate();
     ASSERT_FALSE(actual);
-    ASSERT_TRUE (actual.getFirstResult());
+    ASSERT_TRUE(actual.getFirstResult());
     EXPECT_THROW(actual.trigger(), FileIOError);
 
     const std::list<std::string> messages = actual.getMessages();

@@ -10,10 +10,8 @@ namespace Plotypus
 {
     Report::Report()
     {
+        scriptFile.setPath("report.pdf");
         installTerminal<TerminalInfo::PdfCairo>();
-
-        const auto scriptPath = getOutputPath(GeneratedFileType::Script);
-        scriptFile.setPath(scriptPath);
     }
 
     bool Report::getPropagateUpdateChildFileNames() const
@@ -36,6 +34,11 @@ namespace Plotypus
         scriptFile.setAllowNullPath(newAllowNullPath);
     }
 
+    std::filesystem::path Report::getDerivedPath(const std::string& extension, std::optional<std::string> infix)
+    {
+        return scriptFile.getDerivedPath(extension, infix);
+    }
+
     std::string Report::getInstanceName() const
     {
         return getTypeName();
@@ -44,18 +47,6 @@ namespace Plotypus
     std::string Report::getTypeName()
     {
         return "Report";
-    }
-
-    void Report::setChildFileNames()
-    {
-        const auto scriptPath = getOutputPath(GeneratedFileType::Script);
-        scriptFile.setPath(scriptPath);
-
-        if (tip)
-        {
-            const auto reportPath = getOutputPath(GeneratedFileType::Report);
-            tip->setPath(reportPath);
-        }
     }
 
     const std::string& Report::getRunCommand() const
@@ -120,14 +111,11 @@ namespace Plotypus
         validate().trigger();
         auto buffer = getStringStream();
         writeScript(buffer);
-
         return buffer.str();
     }
 
     void Report::reset()
     {
-        OutputPathProvider::reset();
-
         if (tip)
         {
             tip->reset();
@@ -136,7 +124,6 @@ namespace Plotypus
         scriptFile.reset();
         userScripts.reset();
         sheets.clear();
-
         runCommand = "gnuplot $f";
     }
 
@@ -154,7 +141,6 @@ namespace Plotypus
         result.absorbValidationResult(tip->validate(), typeName);
         result.absorbValidationResult(scriptFile.validate(), typeName);
 
-
         for (auto& sheet : sheets)
         {
             result.absorbValidationResult(sheet.validate(), typeName);
@@ -167,8 +153,8 @@ namespace Plotypus
     {
         writeUserScriptBeforeSetup(hFile);
         tip->writeScript(hFile);
-
         writeUserScriptBeforeChildren(hFile);
+
         // sheets
 
         writeUserScriptCleanUp(hFile);

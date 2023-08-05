@@ -60,7 +60,6 @@ add_library(Plotypus-lib SHARED
     src/base/validationresult/validationresult.h src/base/validationresult/validationresult.txx src/base/validationresult/validationresult.cpp
 
     # report
-    src/report/outputpathprovider.h src/report/outputpathprovider.cpp
     src/report/report.h src/report/report.txx src/report/report.cpp
 
     src/report/terminalinfoprovider/terminalinfoprovider.h
@@ -151,8 +150,6 @@ add_executable(Plotypus_Test
     unittest/src/tst_collection.cpp
     unittest/src/tst_filesystem.cpp
     unittest/src/tst_validation.cpp
-
-    unittest/src/report/tst_outputpathprovider.cpp
 
     unittest/src/TerminalInfoProvider/tst_PdfCairo.cpp
 

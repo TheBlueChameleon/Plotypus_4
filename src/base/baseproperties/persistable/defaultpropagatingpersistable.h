@@ -21,6 +21,8 @@ namespace Plotypus
             bool getPropagateUpdateChildFileNames() const;
             void setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames);
 
+            std::filesystem::path getDerivedPath(const std::string &extension, std::optional<std::string> infix);
+
             // void propagate(Collection<Persistable> children);
 
             // Mutable interface

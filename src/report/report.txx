@@ -11,12 +11,10 @@ namespace Plotypus
             delete tip;
             tip = nullptr;
         }
+
         tip = new T();
-
-        setExtension(GeneratedFileType::Report, T::getDefaultExtension());
-        const auto pathToOutputFile = getOutputPath(GeneratedFileType::Report);
+        const auto pathToOutputFile = getDerivedPath(T::getDefaultExtension());
         tip->setPath(pathToOutputFile);
-
     }
 
     template<TerminalInfoProviderType T>
@@ -33,7 +31,7 @@ namespace Plotypus
         }
         else
         {
-            throw InvalidTypeError("Currently installed TerminalInfoProvider is of type '" + tip->getInstanceName() + "', but a '" + T::getTypeName() + "' was requested." );
+            throw InvalidTypeError("Currently installed TerminalInfoProvider is of type '" + tip->getInstanceName() + "', but a '" + T::getTypeName() + "' was requested.");
         }
     }
 }

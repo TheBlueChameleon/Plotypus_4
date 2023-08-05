@@ -7,7 +7,7 @@ namespace Plotypus
     ValidationResult Plotypus::EmptySheet::validate() const
     {
         ValidationResult result;
-        result.absorbValidationResult(file.validate(), getInstanceName());
+        result.absorbValidationResult(file->validate(), getInstanceName());
 
         return result;
     }
@@ -24,52 +24,52 @@ namespace Plotypus
 
     const std::filesystem::path& EmptySheet::getPath() const
     {
-        return file.getPath();
+        return file->getPath();
     }
 
     void EmptySheet::setPath(const std::filesystem::path& newPath)
     {
-        file.setPath(newPath);
+        file->setPath(newPath);
     }
 
     bool EmptySheet::getMakeDirectories() const
     {
-        return file.getMakeDirectories();
+        return file->getMakeDirectories();
     }
 
     void EmptySheet::setMakeDirectories(bool newMakeDirectories)
     {
-        file.setMakeDirectories(newMakeDirectories);
+        file->setMakeDirectories(newMakeDirectories);
     }
 
     bool EmptySheet::getOverwrite() const
     {
-        return file.getOverwrite();
+        return file->getOverwrite();
     }
 
     void EmptySheet::setOverwrite(bool newOverwrite)
     {
-        file.setOverwrite(newOverwrite);
+        file->setOverwrite(newOverwrite);
     }
 
     bool EmptySheet::getAllowNullPath() const
     {
-        return file.getAllowNullPath();
+        return file->getAllowNullPath();
     }
 
     void EmptySheet::setAllowNullPath(bool newAllowNullPath)
     {
-        file.setAllowNullPath(newAllowNullPath);
+        file->setAllowNullPath(newAllowNullPath);
     }
 
     std::ofstream EmptySheet::getFileStream() const
     {
-        return file.getFileStream();
+        return file->getFileStream();
     }
 
     std::ostringstream EmptySheet::getStringStream() const
     {
-        return file.getStringStream();
+        return file->getStringStream();
     }
 
     void EmptySheet::writeScriptHead(std::ostream& hFile) const

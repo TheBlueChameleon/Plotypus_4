@@ -1,6 +1,8 @@
 #ifndef REPORT_H
 #define REPORT_H
 
+#include <memory>
+
 #include "base/baseproperties/nonassignable.h"
 #include "base/baseproperties/persistable/defaultpropagatingpersistable.h"
 
@@ -21,7 +23,7 @@ namespace Plotypus
     {
         private:
             TerminalInfoProvider* tip = nullptr;
-            DefaultPropagatingPersistable scriptFile;
+            std::shared_ptr<DefaultPropagatingPersistable> scriptFile = std::make_shared<DefaultPropagatingPersistable>();
             DefaultUserScriptInjectable userScripts;
 
             Array<Sheet> sheets;

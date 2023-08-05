@@ -1,6 +1,8 @@
 #ifndef TIP_PDFCAIRO_H
 #define TIP_PDFCAIRO_H
 
+#include <memory>
+
 #include "fragments/enhancedfragment.h"
 #include "fragments/colorfragment.h"
 #include "fragments/fontfragment.h"
@@ -25,7 +27,7 @@ namespace Plotypus
             public UserCodeFragment
         {
             private:
-                DefaultPersistable outputFile;
+                std::shared_ptr<DefaultPersistable> outputFile = std::make_shared<DefaultPersistable>();
 
             public:
                 PdfCairo() = default;

@@ -53,6 +53,13 @@ namespace Plotypus
     }
 
     template<typename T>
+    size_t Array<T>::add(const std::shared_ptr<T>& element)
+    {
+        elements.push_back(element);
+        return elements.size();
+    }
+
+    template<typename T>
     void Array<T>::clear()
     {
         elements.clear();
@@ -63,7 +70,7 @@ namespace Plotypus
     {
         if (action)
         {
-            for (std::shared_ptr<T> x : elements)
+            for (const std::shared_ptr<T>& x : elements)
             {
                 action(x.get());
             }
@@ -79,7 +86,7 @@ namespace Plotypus
     {
         if (action)
         {
-            for (std::shared_ptr<const T> x : elements)
+            for (const std::shared_ptr<const T>& x : elements)
             {
                 action(x.get());
             }

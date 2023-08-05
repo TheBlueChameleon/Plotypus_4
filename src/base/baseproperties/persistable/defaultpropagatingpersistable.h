@@ -24,7 +24,7 @@ namespace Plotypus
 
             std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
             void propagate();
-            void addSubscriber(Persistable& subscriber);
+            void addSubscriber(std::shared_ptr<Persistable>& subscriber);
             Collection<Persistable>& getSubscribers();
 
             // Mutable interface

@@ -44,7 +44,7 @@ namespace Plotypus
         scriptFile->propagate();
     }
 
-    void Report::addSubscriber(Persistable& subscriber)
+    void Report::addSubscriber(std::shared_ptr<Persistable>& subscriber)
     {
         scriptFile->addSubscriber(subscriber);
     }

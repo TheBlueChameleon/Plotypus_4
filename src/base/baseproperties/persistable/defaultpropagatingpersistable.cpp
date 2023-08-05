@@ -42,9 +42,9 @@ namespace Plotypus
         });
     }
 
-    void DefaultPropagatingPersistable::addSubscriber(Persistable& subscriber)
+    void DefaultPropagatingPersistable::addSubscriber(std::shared_ptr<Persistable>& subscriber)
     {
-        //subscribers.add(&subscriber);
+        subscribers.add(subscriber);
     }
 
     Collection<Persistable>& DefaultPropagatingPersistable::getSubscribers()

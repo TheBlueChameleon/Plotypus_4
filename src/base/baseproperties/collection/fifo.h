@@ -27,7 +27,10 @@ namespace Plotypus
             FiFo() = default;
 
             size_t addBack(T* element);
+            size_t addBack(const std::shared_ptr<T>& element);
+
             size_t addFront(T* element);
+            size_t addFront(const std::shared_ptr<T>& element);
 
             // Collection interface
             size_t size() const;
@@ -35,6 +38,7 @@ namespace Plotypus
             bool operator ==(const Collection<T>& other);
             bool operator ==(const FiFo<T>& other);
             size_t add(T* element);
+            size_t add(const std::shared_ptr<T>& element);
             void clear();
             void forEachExposed(std::function<void (T*)> action);
             void forEachExposed(std::function<void (const T*)> action) const;

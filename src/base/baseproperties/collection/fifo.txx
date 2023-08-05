@@ -10,9 +10,21 @@ namespace Plotypus
     }
 
     template<typename T>
+    size_t FiFo<T>::addBack(const std::shared_ptr<T>& element)
+    {
+        elements.push_back(element);
+    }
+
+    template<typename T>
     size_t FiFo<T>::addFront(T* element)
     {
         elements.emplace_front(element);
+    }
+
+    template<typename T>
+    size_t FiFo<T>::addFront(const std::shared_ptr<T>& element)
+    {
+        elements.push_front(element);
     }
 
     template<typename T>
@@ -52,6 +64,12 @@ namespace Plotypus
     }
 
     template<typename T>
+    size_t FiFo<T>::add(const std::shared_ptr<T>& element)
+    {
+        addBack(element);
+    }
+
+    template<typename T>
     void FiFo<T>::clear()
     {
         elements.clear();
@@ -62,7 +80,7 @@ namespace Plotypus
     {
         if (action)
         {
-            for (const std::shared_ptr<T> x : elements)
+            for (const std::shared_ptr<T>& x : elements)
             {
                 action(x.get());
             }
@@ -78,7 +96,7 @@ namespace Plotypus
     {
         if (action)
         {
-            for (const std::shared_ptr<const T> x : elements)
+            for (const std::shared_ptr<const T>& x : elements)
             {
                 action(x.get());
             }

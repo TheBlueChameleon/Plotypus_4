@@ -36,6 +36,7 @@ namespace Plotypus
             bool operator ==(const Array<T>& other);
 
             size_t add(T* element);
+            size_t add(const std::shared_ptr<T>& element);
             void clear();
 
             void forEachExposed(std::function<void (T*)> action);
@@ -55,6 +56,8 @@ namespace Plotypus
 
     class T;
     static_assert(Iterable<Array<T>>);
+
+
     //    class T;
     //    static_assert(ConstIterable<Array<T>>);
 }

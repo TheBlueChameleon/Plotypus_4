@@ -7,19 +7,19 @@
 #include "typesystem/concepts.h"
 #include "typesystem/types.h"
 
-#include "base/baseproperties/namedtype.h"
-#include "base/baseproperties/nonassignable.h"
+#include "base/namedtype.h"
+#include "base/nonassignable.h"
 
-#include "base/baseproperties/collection/collection.h"
-#include "base/baseproperties/persistable/persistable.h"
+#include "base/collection/collection.h"
+#include "base/persistable/persistable.h"
 
-#include "base/baseproperties/collection/array.h"
-#include "base/baseproperties/collection/fifo.h"
-#include "base/baseproperties/persistable/defaultpersistable.h"
+#include "base/collection/array.h"
+#include "base/collection/fifo.h"
+#include "base/persistable/defaultpersistable.h"
 
-#include "base/groupedproperties/scriptfragment.h"
-#include "base/groupedproperties/scriptable.h"
-#include "base/groupedproperties/serializable.h"
+#include "base/scriptfragment.h"
+#include "base/scriptable.h"
+#include "base/serializable.h"
 
 #include "sheet/sheet.h"
 #include "sheet/emptysheet.h"

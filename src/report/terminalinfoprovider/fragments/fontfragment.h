@@ -3,7 +3,7 @@
 
 #include <string_view>
 
-#include "base/groupedproperties/scriptfragment.h"
+#include "base/scriptfragment.h"
 #include "base/fragments/genericfontfragment.h"
 
 namespace Plotypus

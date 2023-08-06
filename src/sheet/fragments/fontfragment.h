@@ -1,7 +1,7 @@
 #ifndef SHEET_FONTFRAGMENT_H
 #define SHEET_FONTFRAGMENT_H
 
-#include "base/groupedproperties/scriptfragment.h"
+#include "base/scriptfragment.h"
 
 #include "base/fragments/genericfontfragment.h"
 

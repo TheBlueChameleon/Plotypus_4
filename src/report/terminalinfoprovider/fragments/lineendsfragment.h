@@ -2,7 +2,7 @@
 #define LINEENDSFRAGMENT_H
 
 #include "typesystem/enums.h"
-#include "base/groupedproperties/scriptfragment.h"
+#include "base/scriptfragment.h"
 
 namespace Plotypus
 {

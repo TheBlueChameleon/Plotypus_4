@@ -3,10 +3,9 @@
 
 #include "sheet.h"
 
-#include "base/baseproperties/persistable/defaultpersistable.h"
-
-#include "base/groupedproperties/defaultImpl/defaultnumbereditem.h"
-#include "base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h"
+#include "base/numbereditem/defaultnumbereditem.h"
+#include "base/persistable/defaultpersistable.h"
+#include "base/userscriptinjectable/defaultuserscriptinjectable.h"
 
 #include "fragments/cleansheetfragment.h"
 #include "fragments/fontfragment.h"

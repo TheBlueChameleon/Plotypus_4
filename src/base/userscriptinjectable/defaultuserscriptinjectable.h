@@ -1,7 +1,7 @@
 #ifndef DEFAULTUSERSCRIPTINJECTABLE_H
 #define DEFAULTUSERSCRIPTINJECTABLE_H
 
-#include "../userscriptinjectable.h"
+#include "userscriptinjectable.h"
 
 namespace Plotypus
 {

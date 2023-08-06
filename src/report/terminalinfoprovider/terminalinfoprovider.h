@@ -3,7 +3,7 @@
 
 #include "typesystem/concepts.h"
 
-#include "base/groupedproperties/scriptable.h"
+#include "base/scriptable.h"
 
 namespace Plotypus
 {

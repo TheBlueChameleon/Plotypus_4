@@ -1,7 +1,7 @@
 #ifndef DEFAULTNUMBEREDITEM_H
 #define DEFAULTNUMBEREDITEM_H
 
-#include "../numbereditem.h"
+#include "numbereditem.h"
 
 namespace Plotypus
 {

@@ -1,11 +1,11 @@
 #ifndef SHEET_H
 #define SHEET_H
 
-#include "base/baseproperties/persistable/persistable.h"
+#include "base/scriptable.h"
 
-#include "base/groupedproperties/numbereditem.h"
-#include "base/groupedproperties/scriptable.h"
-#include "base/groupedproperties/userscriptinjectable.h"
+#include "base/persistable/persistable.h"
+#include "base/numbereditem/numbereditem.h"
+#include "base/userscriptinjectable/userscriptinjectable.h"
 
 namespace Plotypus
 {

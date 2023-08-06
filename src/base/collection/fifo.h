@@ -3,8 +3,8 @@
 
 #include <list>
 
-#include "base/baseproperties/collection/collection.h"
-#include "base/baseproperties/collection/fifoiterable.h"
+#include "collection.h"
+#include "fifoiterable.h"
 #include "fifoconstiterable.h"
 
 namespace Plotypus

@@ -1,7 +1,7 @@
 #ifndef FRAGMENT_H
 #define FRAGMENT_H
 
-#include "base/baseproperties/mutable.h"
+#include "mutable.h"
 
 namespace Plotypus
 {

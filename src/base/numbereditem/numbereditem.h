@@ -1,7 +1,7 @@
 #ifndef NUMBEREDITEM_H
 #define NUMBEREDITEM_H
 
-#include "base/baseproperties/mutable.h"
+#include "../mutable.h"
 
 namespace Plotypus
 {

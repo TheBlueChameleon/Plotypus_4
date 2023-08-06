@@ -1,7 +1,7 @@
 #ifndef TITLEFRAGMENT_H
 #define TITLEFRAGMENT_H
 
-#include "base/groupedproperties/scriptfragment.h"
+#include "base/scriptfragment.h"
 
 namespace Plotypus
 {

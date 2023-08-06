@@ -1,7 +1,7 @@
 #ifndef ENHANCEDFRAGMENT_H
 #define ENHANCEDFRAGMENT_H
 
-#include "base/groupedproperties/scriptfragment.h"
+#include "base/scriptfragment.h"
 
 namespace Plotypus
 {

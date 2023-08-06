@@ -1,7 +1,7 @@
 #ifndef REALSIZEFRAGMENT_H
 #define REALSIZEFRAGMENT_H
 
-#include "base/groupedproperties/scriptfragment.h"
+#include "base/scriptfragment.h"
 
 namespace Plotypus
 {

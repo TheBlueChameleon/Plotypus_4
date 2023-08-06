@@ -1,8 +1,8 @@
 #ifndef SCRIPTABLE_H
 #define SCRIPTABLE_H
 
-#include "base/baseproperties/mutable.h"
-#include "base/baseproperties/validatable.h"
+#include "mutable.h"
+#include "validatable.h"
 
 namespace Plotypus
 {

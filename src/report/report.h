@@ -4,14 +4,14 @@
 #include <memory>
 
 
-#include "base/baseproperties/nonassignable.h"
+#include "base/nonassignable.h"
 
-#include "base/baseproperties/persistable/propagatingpersistable.h"
-#include "base/baseproperties/persistable/defaultpropagatingpersistable.h"
+#include "base/persistable/propagatingpersistable.h"
+#include "base/persistable/defaultpropagatingpersistable.h"
 
-#include "base/groupedproperties/userscriptinjectable.h"
-#include "base/groupedproperties/scriptable.h"
-#include "base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h"
+#include "base/scriptable.h"
+#include "base/userscriptinjectable/userscriptinjectable.h"
+#include "base/userscriptinjectable/defaultuserscriptinjectable.h"
 
 #include "terminalinfoprovider/terminalinfoprovider.h"
 

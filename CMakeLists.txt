@@ -27,34 +27,35 @@ add_library(Plotypus-lib SHARED
     src/typesystem/types.h
 
     # base
-    src/base/baseproperties/mutable.h
-    src/base/baseproperties/namedtype.h
-    src/base/baseproperties/nonassignable.h
-    src/base/baseproperties/validatable.h
+    src/base/mutable.h
+    src/base/namedtype.h
+    src/base/nonassignable.h
+    src/base/validatable.h
 
-    src/base/baseproperties/collection/collection.h src/base/baseproperties/collection/collection.cpp
+    src/base/collection/collection.h src/base//collection/collection.cpp
 
-    src/base/baseproperties/persistable/persistable.h
-    src/base/baseproperties/persistable/propagatingpersistable.h
+    src/base/persistable/persistable.h
+    src/base/persistable/propagatingpersistable.h
 
-    src/base/baseproperties/collection/array.h src/base/baseproperties/collection/array.txx
-    src/base/baseproperties/collection/arrayiterable.h src/base/baseproperties/collection/arrayiterable.txx
-    src/base/baseproperties/collection/arrayconstiterable.h src/base/baseproperties/collection/arrayconstiterable.txx
-    src/base/baseproperties/collection/fifo.h src/base/baseproperties/collection/fifo.txx
-    src/base/baseproperties/collection/fifoiterable.h src/base/baseproperties/collection/fifoiterable.txx
-    src/base/baseproperties/collection/fifoconstiterable.h src/base/baseproperties/collection/fifoconstiterable.txx
+    src/base/collection/array.h                 src/base/collection/array.txx
+    src/base/collection/arrayiterable.h         src/base/collection/arrayiterable.txx
+    src/base/collection/arrayconstiterable.h    src/base/collection/arrayconstiterable.txx
+    src/base/collection/fifo.h                  src/base/collection/fifo.txx
+    src/base/collection/fifoiterable.h          src/base/collection/fifoiterable.txx
+    src/base/collection/fifoconstiterable.h     src/base/collection/fifoconstiterable.txx
 
-    src/base/baseproperties/persistable/defaultpersistable.h src/base/baseproperties/persistable/defaultpersistable.cpp
-    src/base/baseproperties/persistable/defaultpropagatingpersistable.h src/base/baseproperties/persistable/defaultpropagatingpersistable.cpp
+    src/base/persistable/defaultpersistable.h               src/base/persistable/defaultpersistable.cpp
+    src/base/persistable/defaultpropagatingpersistable.h    src/base/persistable/defaultpropagatingpersistable.cpp
 
-    src/base/groupedproperties/scriptfragment.h src/base/groupedproperties/scriptfragment.cpp
-    src/base/groupedproperties/scriptable.h
-    src/base/groupedproperties/serializable.h
-    src/base/groupedproperties/numbereditem.h
-    src/base/groupedproperties/userscriptinjectable.h
+    src/base/scriptfragment.h src/base/scriptfragment.cpp
+    src/base/scriptable.h
+    src/base/serializable.h
 
-    src/base/groupedproperties/defaultImpl/defaultnumbereditem.h src/base/groupedproperties/defaultImpl/defaultnumbereditem.cpp
-    src/base/groupedproperties/defaultImpl/defaultuserscriptinjectable.h src/base/groupedproperties/defaultImpl/defaultuserscriptinjectable.cpp
+    src/base/numbereditem/numbereditem.h
+    src/base/numbereditem/defaultnumbereditem.h src/base/numbereditem/defaultnumbereditem.cpp
+
+    src/base/userscriptinjectable/userscriptinjectable.h
+    src/base/userscriptinjectable/defaultuserscriptinjectable.h src/base/userscriptinjectable/defaultuserscriptinjectable.cpp
 
     src/base/fragments/genericfontfragment.h src/base/fragments/genericfontfragment.cpp
     src/base/fragments/usercodefragment.h src/base/fragments/usercodefragment.cpp

@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <optional>
 
-#include "../../typesystem/types.h"
+#include "typesystem/types.h"
 
 namespace Plotypus
 {

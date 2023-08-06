@@ -3,7 +3,7 @@
 
 #include <list>
 
-#include "base/baseproperties/collection.h"
+#include "base/baseproperties/collection/collection.h"
 #include "base/baseproperties/collection/fifoiterable.h"
 #include "fifoconstiterable.h"
 

@@ -2,7 +2,7 @@
 #define SERIALIZABLE_H
 
 #include "base/baseproperties/mutable.h"
-#include "base/baseproperties/persistable.h"
+#include "base/baseproperties/persistable/persistable.h"
 
 namespace Plotypus
 {

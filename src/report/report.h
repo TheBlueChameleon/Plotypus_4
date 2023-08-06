@@ -3,7 +3,10 @@
 
 #include <memory>
 
+
 #include "base/baseproperties/nonassignable.h"
+
+#include "base/baseproperties/persistable/propagatingpersistable.h"
 #include "base/baseproperties/persistable/defaultpropagatingpersistable.h"
 
 #include "base/groupedproperties/userscriptinjectable.h"
@@ -103,7 +106,5 @@ namespace Plotypus
 }
 
 #include "report.txx"
-
-#include <base/baseproperties/propagatingpersistable.h>
 
 #endif // REPORT_H

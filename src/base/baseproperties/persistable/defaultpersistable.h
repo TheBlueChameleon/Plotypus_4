@@ -1,11 +1,12 @@
 #ifndef DEFAULTPERSISTABLE_H
 #define DEFAULTPERSISTABLE_H
 
-#include "../mutable.h"
-#include "../persistable.h"
-#include "../validatable.h"
+#include "persistable.h"
 
 #include "base/validationresult/validationresult.h"
+
+#include "../mutable.h"
+#include "../validatable.h"
 
 namespace Plotypus
 {

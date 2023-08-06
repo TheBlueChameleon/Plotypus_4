@@ -7,10 +7,11 @@
 #include "typesystem/concepts.h"
 #include "typesystem/types.h"
 
-#include "base/baseproperties/collection.h"
 #include "base/baseproperties/namedtype.h"
 #include "base/baseproperties/nonassignable.h"
-#include "base/baseproperties/persistable.h"
+
+#include "base/baseproperties/collection/collection.h"
+#include "base/baseproperties/persistable/persistable.h"
 
 #include "base/baseproperties/collection/array.h"
 #include "base/baseproperties/collection/fifo.h"

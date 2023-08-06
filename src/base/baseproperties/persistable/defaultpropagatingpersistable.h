@@ -1,9 +1,8 @@
 #ifndef DEFAULTPROPAGATINGPERSISTABLE_H
 #define DEFAULTPROPAGATINGPERSISTABLE_H
 
-#include "../propagatingpersistable.h"
-
 #include "defaultpersistable.h"
+#include "propagatingpersistable.h"
 
 namespace Plotypus
 {

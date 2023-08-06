@@ -27,13 +27,15 @@ add_library(Plotypus-lib SHARED
     src/typesystem/types.h
 
     # base
-    src/base/baseproperties/collection.h src/base/baseproperties/collection/collection.cpp
     src/base/baseproperties/mutable.h
     src/base/baseproperties/namedtype.h
     src/base/baseproperties/nonassignable.h
-    src/base/baseproperties/persistable.h
-    src/base/baseproperties/propagatingpersistable.h
     src/base/baseproperties/validatable.h
+
+    src/base/baseproperties/collection/collection.h src/base/baseproperties/collection/collection.cpp
+
+    src/base/baseproperties/persistable/persistable.h
+    src/base/baseproperties/persistable/propagatingpersistable.h
 
     src/base/baseproperties/collection/array.h src/base/baseproperties/collection/array.txx
     src/base/baseproperties/collection/arrayiterable.h src/base/baseproperties/collection/arrayiterable.txx

@@ -1,14 +1,15 @@
 #ifndef DEFAULTPROPAGATINGPERSISTABLE_H
 #define DEFAULTPROPAGATINGPERSISTABLE_H
 
-#include "defaultpersistable.h"
+#include "defaultpersistablefragment.h"
 #include "propagatingpersistable.h"
 
 namespace Plotypus
 {
     class DefaultPropagatingPersistable :
         public PropagatingPersistable,
-        public DefaultPersistable
+
+        private DefaultPersistableFragment
     {
         private:
             bool propagateUpdateChildFileNames = true;
@@ -17,8 +18,15 @@ namespace Plotypus
         public:
             DefaultPropagatingPersistable() = default;
 
+            // NamedType interface
+            std::string getInstanceName() const;
+            static std::string getTypeName();
+
             // Mutable interface
             void reset();
+
+            // Validatable interface
+            ValidationResult validate() const;
 
             // Persistable interface
             const std::filesystem::path& getPath() const;

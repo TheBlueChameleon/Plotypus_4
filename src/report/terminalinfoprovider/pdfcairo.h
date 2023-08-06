@@ -18,13 +18,13 @@ namespace Plotypus
         class PdfCairo :
             public TerminalInfoProvider,
 
-            public EnhancedFragment,
-            public ColorFragment,
-            public FontFragment,
-            public LineEndsFragment,
-            public BackgroundFragment,
-            public ContinuousSizeFragment,
-            public UserCodeFragment
+            private EnhancedFragment,
+            private ColorFragment,
+            private FontFragment,
+            private LineEndsFragment,
+            private BackgroundFragment,
+            private ContinuousSizeFragment,
+            private UserCodeFragment
         {
             private:
                 DefaultPersistable_SP outputFile;

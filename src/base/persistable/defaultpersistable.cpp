@@ -6,56 +6,6 @@ using namespace std::string_literals;
 
 namespace Plotypus
 {
-    ValidationResult DefaultPersistable::validate() const
-    {
-        ValidationResult result;
-
-        auto fail = [&result, this](const std::string& message)
-        {
-            result.addError<FileIOError>(message, getTypeName());
-        };
-
-        if (!allowNullPath)
-        {
-            if (path.empty())
-            {
-                result.addError<InvalidFilenameError>("Filename is empty.", getTypeName());
-            }
-        }
-
-        if (!overwrite)
-        {
-            if (std::filesystem::exists(path))
-            {
-                fail("File '"s + path.string() + "' already exists.");
-            }
-        }
-
-        const auto& parentDir = path.parent_path();
-        if (parentDir.empty())
-        {
-            // implicitly in CWD -- always valid
-        }
-        else
-        {
-            if (!makeDirectories)
-            {
-                if (!std::filesystem::exists(parentDir))
-                {
-                    fail("Directory '"s + parentDir.string() + "' does not exist.");
-                }
-            }
-            else
-            {
-                if (std::filesystem::exists(parentDir) && !std::filesystem::is_directory(parentDir))
-                {
-                    fail("'"s + parentDir.string() + "' is not a directory.");
-                }
-            }
-        }
-
-        return result;
-    }
 
     std::string DefaultPersistable::getInstanceName() const
     {
@@ -69,80 +19,69 @@ namespace Plotypus
 
     void DefaultPersistable::reset()
     {
-        path.clear();
-
-        makeDirectories = true;
-        overwrite = false;
-        allowNullPath = false;
+        DefaultPersistableFragment::reset();
     }
 
     const std::filesystem::path& DefaultPersistable::getPath() const
     {
-        return path;
+        return DefaultPersistableFragment::getPath();
     }
 
     void DefaultPersistable::setPath(const std::filesystem::path& newPath)
     {
-        path = newPath;
+        DefaultPersistableFragment::setPath(newPath);
     }
 
     bool DefaultPersistable::getMakeDirectories() const
     {
-        return makeDirectories;
+        return DefaultPersistableFragment::getMakeDirectories();
     }
 
     void DefaultPersistable::setMakeDirectories(bool newMakeDirectories)
     {
-        makeDirectories = newMakeDirectories;
+        DefaultPersistableFragment::setMakeDirectories(newMakeDirectories);
     }
 
     bool DefaultPersistable::getOverwrite() const
     {
-        return overwrite;
+        return DefaultPersistableFragment::getOverwrite();
     }
 
     void DefaultPersistable::setOverwrite(bool newOverwrite)
     {
-        overwrite = newOverwrite;
+        DefaultPersistableFragment::setOverwrite(newOverwrite);
     }
 
     bool DefaultPersistable::getAllowNullPath() const
     {
-        return allowNullPath;
+        return DefaultPersistableFragment::getAllowNullPath();
     }
 
     void DefaultPersistable::setAllowNullPath(bool newAllowNullPath)
     {
-        allowNullPath = newAllowNullPath;
+        DefaultPersistableFragment::setAllowNullPath(newAllowNullPath);
     }
 
     std::ofstream DefaultPersistable::getFileStream() const
     {
-        const std::string filename = path.string();
-        auto hFile = std::ofstream(filename, std::ios_base::out);
-
-        if (!hFile.is_open())
-        {
-            throw FileIOError("Could not create file: "s + filename);
-        }
-
-        return hFile;
+        return DefaultPersistableFragment::getFileStream();
     }
 
     std::ostringstream DefaultPersistable::getStringStream() const
     {
-        return std::ostringstream();
+        return DefaultPersistableFragment::getStringStream();
     }
 
-    bool DefaultPersistable::operator ==(const Persistable &other) const
+    bool DefaultPersistable::operator ==(const Persistable& other) const
     {
-        bool result = true;
+        const DefaultPersistableFragment* thisFragment = static_cast<const DefaultPersistableFragment*>(this);
+        return (*thisFragment) == other;
+    }
 
-        result &= (path == other.getPath());
-        result &= (makeDirectories == other.getMakeDirectories());
-        result &= (overwrite == other.getOverwrite());
-        result &= (allowNullPath == other.getAllowNullPath());
-
+    ValidationResult DefaultPersistable::validate() const
+    {
+        ValidationResult result;
+        result.absorbValidationResult(DefaultPersistableFragment::validate(), getInstanceName());
         return result;
     }
 
@@ -164,7 +103,7 @@ namespace Plotypus
 
     std::string DefaultPersistable_SP::getTypeName()
     {
-        return DefaultPersistable::getTypeName();
+        return "DefaultPersistable_SP";
     }
 
     void DefaultPersistable_SP::reset()

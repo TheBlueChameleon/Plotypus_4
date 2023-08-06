@@ -44,6 +44,7 @@ add_library(Plotypus-lib SHARED
     src/base/collection/fifoiterable.h          src/base/collection/fifoiterable.txx
     src/base/collection/fifoconstiterable.h     src/base/collection/fifoconstiterable.txx
 
+    src/base/persistable/defaultpersistablefragment.h       src/base/persistable/defaultpersistablefragment.cpp
     src/base/persistable/defaultpersistable.h               src/base/persistable/defaultpersistable.cpp
     src/base/persistable/defaultpropagatingpersistable.h    src/base/persistable/defaultpropagatingpersistable.cpp
 

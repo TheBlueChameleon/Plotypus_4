@@ -3,7 +3,6 @@
 
 #include <memory>
 
-
 #include "base/nonassignable.h"
 
 #include "base/persistable/propagatingpersistable.h"
@@ -25,7 +24,7 @@ namespace Plotypus
         public UserScriptInjectable
     {
         private:
-            TerminalInfoProvider* tip = nullptr;
+            std::shared_ptr<TerminalInfoProvider> tip;
             DefaultPropagatingPersistable_SP scriptFile;
             DefaultUserScriptInjectable userScripts;
 

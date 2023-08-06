@@ -6,13 +6,14 @@ namespace Plotypus
     template<TerminalInfoProviderType T>
     T& Report::installTerminal()
     {
+        TerminalInfoProvider* ptr = new T();
+        std::shared_ptr<TerminalInfoProvider> newProvider(ptr);
         if (tip)
         {
-            delete tip;
-            tip = nullptr;
+            // find and replace in scriptFile.subscribers
         }
 
-        tip = new T();
+        tip = newProvider;
         const auto pathToOutputFile = getDerivedPath(T::getDefaultExtension());
         tip->setPath(pathToOutputFile);
     }
@@ -25,7 +26,7 @@ namespace Plotypus
             throw InvalidTypeError("No TerminalInfoProvider installed");
         }
 
-        if (auto typedTip = dynamic_cast<T*>(tip))
+        if (std::shared_ptr<T> typedTip = std::dynamic_pointer_cast<T>(tip))
         {
             return *typedTip;
         }

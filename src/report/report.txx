@@ -39,7 +39,7 @@ namespace Plotypus
     template<PersistableSPType T>
     void Report::addSubscriber(T& subscriber)
     {
-        auto ptr = std::static_pointer_cast<Persistable>(subscriber.get());
+        auto ptr = std::static_pointer_cast<Persistable>(subscriber.getSharedPtr());
         scriptFile.addSubscriber(ptr);
     }
 }

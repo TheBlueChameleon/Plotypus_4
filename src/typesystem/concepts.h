@@ -55,7 +55,7 @@ namespace Plotypus
         requires std::is_base_of<Persistable, T>::value;
 
         {
-            std::static_pointer_cast<Persistable>(x.get())
+            std::static_pointer_cast<Persistable>(x.getSharedPtr())
         }
         -> std::convertible_to<std::shared_ptr<Persistable>>;
     };

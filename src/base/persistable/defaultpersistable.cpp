@@ -91,7 +91,7 @@ namespace Plotypus
         m(std::make_shared<DefaultPersistable>())
     {}
 
-    std::shared_ptr<DefaultPersistable>& DefaultPersistable_SP::get()
+    std::shared_ptr<DefaultPersistable>& DefaultPersistable_SP::getSharedPtr()
     {
         return m;
     }

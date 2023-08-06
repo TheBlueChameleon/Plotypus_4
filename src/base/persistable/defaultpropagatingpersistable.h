@@ -67,7 +67,7 @@ namespace Plotypus
         public:
             DefaultPropagatingPersistable_SP();
 
-            std::shared_ptr<DefaultPropagatingPersistable>& get();
+            std::shared_ptr<DefaultPropagatingPersistable>& getSharedPtr();
 
             // NamedType interface
             std::string getInstanceName() const;

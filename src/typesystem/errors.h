@@ -8,7 +8,7 @@ namespace Plotypus
     class PlotypusError : public std::runtime_error
     {
         public :
-            PlotypusError (const std::string& m);
+            PlotypusError(const std::string& m);
 
             bool operator==(const PlotypusError& other) const;
 
@@ -24,11 +24,11 @@ namespace Plotypus
             virtual ErrorClassName* getDuplicate() const {return new ErrorClassName(this->what());} \
     }
 
-    PLOTYPUS_ERROR(InvalidFilenameError);
     PLOTYPUS_ERROR(InvalidIndexError);
     PLOTYPUS_ERROR(InvalidArgumentError);
     PLOTYPUS_ERROR(InvalidTypeError);
 
+    PLOTYPUS_ERROR(InvalidFilenameError);
     PLOTYPUS_ERROR(FileIOError);
 
     PLOTYPUS_ERROR(IncompleteDescritporError);

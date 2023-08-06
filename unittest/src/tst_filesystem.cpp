@@ -98,8 +98,19 @@ std::filesystem::path TempDir_Fixture::existingFile      = std::filesystem::path
 std::filesystem::path TempDir_Fixture::nonExistingFile   = std::filesystem::path();
 bool TempDir_Fixture::ready = false;
 
+TEST_F(TempDir_Fixture, DefaultPersistable_DefaultUnset_Test)
+{
+    DefaultPersistable dpa;
 
-TEST_F(TempDir_Fixture, DefaultPersistable_Default_Test)
+    // test in implicit CWD
+    const ValidationResult actual = dpa.validate();
+
+    ASSERT_FALSE(actual);
+    ASSERT_TRUE(actual.getFirstResult());
+    EXPECT_THROW(actual.trigger(), InvalidFilenameError);
+}
+
+TEST_F(TempDir_Fixture, DefaultPersistable_DefaultSet_Test)
 {
     DefaultPersistable dpa;
 

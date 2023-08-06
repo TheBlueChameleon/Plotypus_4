@@ -28,13 +28,13 @@ namespace Plotypus
     }
 
     template<typename T>
-    bool Array<T>::operator ==(const Collection<T>& other)
+    bool Array<T>::operator ==(const Collection<T>& other) const
     {
         return false;
     }
 
     template<typename T>
-    bool Array<T>::operator ==(const Array<T>& other)
+    bool Array<T>::operator ==(const Array<T>& other) const
     {
         if (!std::is_same<decltype(*this), decltype(other)>::value)
         {
@@ -58,6 +58,23 @@ namespace Plotypus
         elements.push_back(element);
         return elements.size();
     }
+
+    //    template<typename T>
+    //    void Array<T>::replace(const T& old, const T& replacement)
+    //    {
+    //        const auto first = begin();
+    //        const auto last = end();
+    //        const auto match = std::find(first, last, old);
+
+    //        if (match == last)
+    //        {
+    //            throw InvalidArgumentError("Object to replace not found");
+    //        }
+    //        else
+    //        {
+    //            *match = replacement;
+    //        }
+    //    }
 
     template<typename T>
     void Array<T>::clear()

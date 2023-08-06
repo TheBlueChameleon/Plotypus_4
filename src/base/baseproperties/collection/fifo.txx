@@ -40,13 +40,13 @@ namespace Plotypus
     }
 
     template<typename T>
-    bool FiFo<T>::operator ==(const Collection<T>& other)
+    bool FiFo<T>::operator ==(const Collection<T>& other) const
     {
         return false;
     }
 
     template<typename T>
-    bool FiFo<T>::operator ==(const FiFo<T>& other)
+    bool FiFo<T>::operator ==(const FiFo<T>& other) const
     {
         if (!std::is_same<decltype(*this), decltype(other)>::value)
         {
@@ -68,6 +68,23 @@ namespace Plotypus
     {
         addBack(element);
     }
+
+    //    template<typename T>
+    //    void FiFo<T>::replace(const T& old, const T& replacement)
+    //    {
+    //        const auto first = begin();
+    //        const auto last = end();
+    //        const auto match = std::find(first, last, old);
+
+    //        if (match == last)
+    //        {
+    //            throw InvalidArgumentError("Object to replace not found");
+    //        }
+    //        else
+    //        {
+    //            *match = replacement;
+    //        }
+    //    }
 
     template<typename T>
     void FiFo<T>::clear()

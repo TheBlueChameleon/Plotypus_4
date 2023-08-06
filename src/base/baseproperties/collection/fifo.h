@@ -35,10 +35,11 @@ namespace Plotypus
             // Collection interface
             size_t size() const;
             bool empty() const;
-            bool operator ==(const Collection<T>& other);
-            bool operator ==(const FiFo<T>& other);
+            bool operator ==(const Collection<T>& other) const;
+            bool operator ==(const FiFo<T>& other) const;
             size_t add(T* element);
             size_t add(const std::shared_ptr<T>& element);
+            // void replace(const T& old, const T& replacement);
             void clear();
             void forEachExposed(std::function<void (T*)> action);
             void forEachExposed(std::function<void (const T*)> action) const;

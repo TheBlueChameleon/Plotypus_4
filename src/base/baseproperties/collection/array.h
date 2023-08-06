@@ -32,11 +32,12 @@ namespace Plotypus
             size_t size() const;
             bool empty() const;
 
-            bool operator ==(const Collection<T>& other);
-            bool operator ==(const Array<T>& other);
+            bool operator ==(const Collection<T>& other) const;
+            bool operator ==(const Array<T>& other) const;
 
             size_t add(T* element);
             size_t add(const std::shared_ptr<T>& element);
+            // void replace(const T& old, const T& replacement);
             void clear();
 
             void forEachExposed(std::function<void (T*)> action);
@@ -57,9 +58,8 @@ namespace Plotypus
     class T;
     static_assert(Iterable<Array<T>>);
 
-
-    //    class T;
-    //    static_assert(ConstIterable<Array<T>>);
+    class T;
+    static_assert(ConstIterable<Array<T>>);
 }
 
 #include "array.txx"

@@ -60,6 +60,11 @@ namespace Plotypus
         return scriptFile.getSubscribers();
     }
 
+    const Collection<Persistable>& Report::getSubscribers() const
+    {
+        return scriptFile.getSubscribers();
+    }
+
     std::string Report::getInstanceName() const
     {
         return getTypeName();

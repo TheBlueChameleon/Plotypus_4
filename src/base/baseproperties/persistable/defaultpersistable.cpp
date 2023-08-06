@@ -19,7 +19,7 @@ namespace Plotypus
         {
             if (path.empty())
             {
-                fail("Filename is empty.");
+                result.addError<InvalidFilenameError>("Filename is empty.", getTypeName());
             }
         }
 
@@ -134,6 +134,18 @@ namespace Plotypus
         return std::ostringstream();
     }
 
+    bool DefaultPersistable::operator ==(const Persistable &other) const
+    {
+        bool result = true;
+
+        result &= (path == other.getPath());
+        result &= (makeDirectories == other.getMakeDirectories());
+        result &= (overwrite == other.getOverwrite());
+        result &= (allowNullPath == other.getAllowNullPath());
+
+        return result;
+    }
+
     // ====================================================================== //
 
     DefaultPersistable_SP::DefaultPersistable_SP():
@@ -208,6 +220,11 @@ namespace Plotypus
     std::ostringstream DefaultPersistable_SP::getStringStream() const
     {
         return m->getStringStream();
+    }
+
+    bool DefaultPersistable_SP::operator ==(const Persistable& other) const
+    {
+        return *m == other;
     }
 
     ValidationResult DefaultPersistable_SP::validate() const

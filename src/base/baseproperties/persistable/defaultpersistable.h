@@ -48,6 +48,8 @@ namespace Plotypus
             std::ofstream getFileStream() const;
             std::ostringstream getStringStream() const;
 
+            bool operator ==(const Persistable& other) const;
+
             // Validatable interface
             ValidationResult validate() const;
     };
@@ -84,6 +86,7 @@ namespace Plotypus
             void setAllowNullPath(bool newAllowNullPath);
             std::ofstream getFileStream() const;
             std::ostringstream getStringStream() const;
+            bool operator ==(const Persistable& other) const;
 
             // Validatable interface
             ValidationResult validate() const;

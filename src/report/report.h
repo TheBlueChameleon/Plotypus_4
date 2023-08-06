@@ -70,6 +70,7 @@ namespace Plotypus
             template<PersistableSPType T>
             void addSubscriber(T& subscriber);
             Collection<Persistable>& getSubscribers();
+            const Collection<Persistable>& getSubscribers() const;
 
             // NamedType interface
             std::string getInstanceName() const;

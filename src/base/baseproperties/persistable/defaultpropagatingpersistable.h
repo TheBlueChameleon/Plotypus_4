@@ -18,6 +18,27 @@ namespace Plotypus
         public:
             DefaultPropagatingPersistable() = default;
 
+            // Mutable interface
+            void reset();
+
+            // Persistable interface
+            const std::filesystem::path& getPath() const;
+            void setPath(const std::filesystem::path& newPath);
+
+            bool getMakeDirectories() const;
+            void setMakeDirectories(bool newMakeDirectories);
+
+            bool getOverwrite() const;
+            void setOverwrite(bool newOverwrite);
+
+            bool getAllowNullPath() const;
+            void setAllowNullPath(bool newAllowNullPath);
+
+            std::ofstream getFileStream() const;
+            std::ostringstream getStringStream() const;
+
+            bool operator ==(const Persistable& other) const;
+
             // PropagatingPersistable interface
             bool getPropagateUpdateChildFileNames() const;
             void setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames);
@@ -26,21 +47,7 @@ namespace Plotypus
             void propagate();
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
             Collection<Persistable>& getSubscribers();
-
-            // Mutable interface
-            void reset();
-
-            // Persistable interface
-            const std::filesystem::path& getPath() const;
-            void setPath(const std::filesystem::path& newPath);
-            bool getMakeDirectories() const;
-            void setMakeDirectories(bool newMakeDirectories);
-            bool getOverwrite() const;
-            void setOverwrite(bool newOverwrite);
-            bool getAllowNullPath() const;
-            void setAllowNullPath(bool newAllowNullPath);
-            std::ofstream getFileStream() const;
-            std::ostringstream getStringStream() const;
+            const Collection<Persistable>& getSubscribers() const;
     };
 
     class DefaultPropagatingPersistable_SP :
@@ -73,6 +80,7 @@ namespace Plotypus
             void setAllowNullPath(bool newAllowNullPath);
             std::ofstream getFileStream() const;
             std::ostringstream getStringStream() const;
+            bool operator ==(const Persistable& other) const;
 
             // Validatable interface
             ValidationResult validate() const;
@@ -84,6 +92,7 @@ namespace Plotypus
             void propagate();
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
             Collection<Persistable>& getSubscribers();
+            const Collection<Persistable>& getSubscribers() const;
     };
 
     static_assert(PersistableSPType<DefaultPropagatingPersistable_SP>);

@@ -52,6 +52,11 @@ namespace Plotypus
         return subscribers;
     }
 
+    const Collection<Persistable>& DefaultPropagatingPersistable::getSubscribers() const
+    {
+        return subscribers;
+    }
+
     void DefaultPropagatingPersistable::reset()
     {
         DefaultPersistable::reset();
@@ -106,6 +111,29 @@ namespace Plotypus
     std::ostringstream DefaultPropagatingPersistable::getStringStream() const
     {
         return DefaultPersistable::getStringStream();
+    }
+
+    bool DefaultPropagatingPersistable::operator ==(const Persistable& other) const
+    {
+        bool result = true;
+
+        const PropagatingPersistable* otherX = dynamic_cast<const PropagatingPersistable*>(&other);
+        if (otherX)
+        {
+            const DefaultPersistable* otherY = dynamic_cast<const DefaultPersistable*>(&other);
+            const Persistable* thisBase = static_cast<const DefaultPersistable*>(this);
+
+            result &= (*thisBase == *otherY);
+            result &= (propagateUpdateChildFileNames == otherX->getPropagateUpdateChildFileNames());
+            result &= (subscribers == otherX->getSubscribers());
+        }
+        else
+        {
+            return false;
+        }
+
+        return result;
+
     }
 
     // ====================================================================== //
@@ -164,6 +192,11 @@ namespace Plotypus
         return m->getSubscribers();
     }
 
+    const Collection<Persistable>& DefaultPropagatingPersistable_SP::getSubscribers() const
+    {
+        return m->getSubscribers();
+    }
+
     const std::filesystem::path& DefaultPropagatingPersistable_SP::getPath() const
     {
         return m->getPath();
@@ -212,6 +245,11 @@ namespace Plotypus
     std::ostringstream DefaultPropagatingPersistable_SP::getStringStream() const
     {
         return m->getStringStream();
+    }
+
+    bool DefaultPropagatingPersistable_SP::operator ==(const Persistable& other) const
+    {
+        return *m == other;
     }
 
     ValidationResult DefaultPropagatingPersistable_SP::validate() const

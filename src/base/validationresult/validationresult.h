@@ -37,7 +37,7 @@ namespace Plotypus
             void trigger() const;
 
             operator bool() const;
-            bool operator==(const ValidationResult& other) const;
+            bool operator==(const ValidationResult& other) const = default;
 
             void writeValidationResults(std::ostream& stream) const;
             std::string getValidationReport() const;

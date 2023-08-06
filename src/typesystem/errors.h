@@ -10,8 +10,6 @@ namespace Plotypus
         public :
             PlotypusError(const std::string& m);
 
-            bool operator==(const PlotypusError& other) const;
-
             virtual void trigger() const;
             virtual PlotypusError* getDuplicate() const;
     };

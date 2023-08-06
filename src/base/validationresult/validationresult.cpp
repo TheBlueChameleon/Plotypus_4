@@ -112,11 +112,6 @@ namespace Plotypus
         return results.empty();
     }
 
-    bool ValidationResult::operator==(const ValidationResult& other) const
-    {
-        return this->results == other.results;
-    }
-
     void ValidationResult::writeValidationResults(std::ostream& stream) const
     {
         if (*this)

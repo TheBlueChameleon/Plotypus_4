@@ -31,12 +31,11 @@ add_library(Plotypus-lib SHARED
     src/base/namedtype.h
     src/base/nonassignable.h
     src/base/validatable.h
+    src/base/scriptfragment.h src/base/scriptfragment.cpp
+    src/base/scriptable.h
+    src/base/serializable.h
 
-    src/base/collection/collection.h src/base//collection/collection.cpp
-
-    src/base/persistable/persistable.h
-    src/base/persistable/propagatingpersistable.h
-
+    src/base/collection/collection.h            src/base//collection/collection.cpp             src/base/collection/collection.txx
     src/base/collection/array.h                 src/base/collection/array.txx
     src/base/collection/arrayiterable.h         src/base/collection/arrayiterable.txx
     src/base/collection/arrayconstiterable.h    src/base/collection/arrayconstiterable.txx
@@ -44,22 +43,20 @@ add_library(Plotypus-lib SHARED
     src/base/collection/fifoiterable.h          src/base/collection/fifoiterable.txx
     src/base/collection/fifoconstiterable.h     src/base/collection/fifoconstiterable.txx
 
-    src/base/persistable/defaultpersistablefragment.h       src/base/persistable/defaultpersistablefragment.cpp
-    src/base/persistable/defaultpersistable.h               src/base/persistable/defaultpersistable.cpp
-    src/base/persistable/defaultpropagatingpersistable.h    src/base/persistable/defaultpropagatingpersistable.cpp
-
-    src/base/scriptfragment.h src/base/scriptfragment.cpp
-    src/base/scriptable.h
-    src/base/serializable.h
+    src/base/fragments/genericfontfragment.h    src/base/fragments/genericfontfragment.cpp
+    src/base/fragments/usercodefragment.h       src/base/fragments/usercodefragment.cpp
 
     src/base/numbereditem/numbereditem.h
     src/base/numbereditem/defaultnumbereditem.h src/base/numbereditem/defaultnumbereditem.cpp
 
+    src/base/persistable/persistable.h
+    src/base/persistable/propagatingpersistable.h
+    src/base/persistable/defaultpersistablefragment.h       src/base/persistable/defaultpersistablefragment.cpp
+    src/base/persistable/defaultpersistable.h               src/base/persistable/defaultpersistable.cpp
+    src/base/persistable/defaultpropagatingpersistable.h    src/base/persistable/defaultpropagatingpersistable.cpp
+
     src/base/userscriptinjectable/userscriptinjectable.h
     src/base/userscriptinjectable/defaultuserscriptinjectable.h src/base/userscriptinjectable/defaultuserscriptinjectable.cpp
-
-    src/base/fragments/genericfontfragment.h src/base/fragments/genericfontfragment.cpp
-    src/base/fragments/usercodefragment.h src/base/fragments/usercodefragment.cpp
 
     src/base/validationresult/validationresult.h src/base/validationresult/validationresult.txx src/base/validationresult/validationresult.cpp
 

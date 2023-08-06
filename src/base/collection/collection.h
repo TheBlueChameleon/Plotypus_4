@@ -2,6 +2,7 @@
 #define COLLECTION_H
 
 #include <cstddef>
+#include <concepts>
 #include <functional>
 #include <iterator>
 #include <memory>
@@ -23,6 +24,12 @@ namespace Plotypus
         virtual void forEachExposed(std::function<void(T*)> action) = 0;
         virtual void forEachExposed(std::function<void(const T*)> action) const = 0;
     };
+
+    template<typename T, typename U>
+    requires std::equality_comparable_with<T, U>
+    void findAndReplace(Collection<T>& collection, const U& old, const U& replacement);
 }
+
+#include "collection.txx"
 
 #endif // COLLECTION_H

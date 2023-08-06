@@ -10,7 +10,7 @@ namespace Plotypus
     {
         ValidationResult result;
 
-        auto fail = [&result, this] (const std::string& message)
+        auto fail = [&result, this](const std::string& message)
         {
             result.addError<FileIOError>(message, getTypeName());
         };
@@ -132,5 +132,86 @@ namespace Plotypus
     std::ostringstream DefaultPersistable::getStringStream() const
     {
         return std::ostringstream();
+    }
+
+    // ====================================================================== //
+
+    DefaultPersistable_SP::DefaultPersistable_SP():
+        m(std::make_shared<DefaultPersistable>())
+    {}
+
+    std::shared_ptr<DefaultPersistable>& DefaultPersistable_SP::get()
+    {
+        return m;
+    }
+
+    std::string DefaultPersistable_SP::getInstanceName() const
+    {
+        return m->getInstanceName();
+    }
+
+    std::string DefaultPersistable_SP::getTypeName()
+    {
+        return DefaultPersistable::getTypeName();
+    }
+
+    void DefaultPersistable_SP::reset()
+    {
+        m->reset();
+    }
+
+    const std::filesystem::path& DefaultPersistable_SP::getPath() const
+    {
+        return m->getPath();
+    }
+
+    void DefaultPersistable_SP::setPath(const std::filesystem::path& newPath)
+    {
+        m->setPath(newPath);
+    }
+
+    bool DefaultPersistable_SP::getMakeDirectories() const
+    {
+        return m->getMakeDirectories();
+    }
+
+    void DefaultPersistable_SP::setMakeDirectories(bool newMakeDirectories)
+    {
+        m->setMakeDirectories(newMakeDirectories);
+    }
+
+    bool DefaultPersistable_SP::getOverwrite() const
+    {
+        return m->getOverwrite();
+    }
+
+    void DefaultPersistable_SP::setOverwrite(bool newOverwrite)
+    {
+        m->setOverwrite(newOverwrite);
+    }
+
+    bool DefaultPersistable_SP::getAllowNullPath() const
+    {
+        return m->getAllowNullPath();
+    }
+
+    void DefaultPersistable_SP::setAllowNullPath(bool newAllowNullPath)
+    {
+        m->setAllowNullPath(newAllowNullPath);
+    }
+
+    std::ofstream DefaultPersistable_SP::getFileStream() const
+    {
+        return m->getFileStream();
+    }
+
+    std::ostringstream DefaultPersistable_SP::getStringStream() const
+    {
+        return m->getStringStream();
+    }
+
+    ValidationResult DefaultPersistable_SP::validate() const
+    {
+        return m->validate();
     }
 }

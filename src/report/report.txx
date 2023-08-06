@@ -34,5 +34,12 @@ namespace Plotypus
             throw InvalidTypeError("Currently installed TerminalInfoProvider is of type '" + tip->getInstanceName() + "', but a '" + T::getTypeName() + "' was requested.");
         }
     }
+
+    template<PersistableSPType T>
+    void Report::addSubscriber(T& subscriber)
+    {
+        auto ptr = std::static_pointer_cast<Persistable>(subscriber.get());
+        scriptFile.addSubscriber(ptr);
+    }
 }
 #endif // REPORT_TXX

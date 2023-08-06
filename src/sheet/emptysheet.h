@@ -23,7 +23,7 @@ namespace Plotypus
     {
         private:
             DefaultNumberedItem number;
-            std::shared_ptr<DefaultPersistable> file = std::make_shared<DefaultPersistable>();
+            DefaultPersistable_SP file;
             DefaultUserScriptInjectable userCode;
 
         public:

@@ -2,6 +2,7 @@
 #define CONCEPTS_H
 
 #include <concepts>
+#include <memory>
 #include <string>
 
 namespace Plotypus
@@ -49,9 +50,14 @@ namespace Plotypus
 
     class Persistable;
     template<typename T>
-    concept PersistableType = requires
+    concept PersistableSPType = requires(T x)
     {
         requires std::derived_from<T, Persistable>;
+
+        {
+            std::static_pointer_cast<Persistable>(x.get())
+        }
+        -> std::convertible_to<std::shared_ptr<Persistable>>;
     };
 }
 

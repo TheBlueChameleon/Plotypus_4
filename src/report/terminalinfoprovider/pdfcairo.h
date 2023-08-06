@@ -27,7 +27,7 @@ namespace Plotypus
             public UserCodeFragment
         {
             private:
-                std::shared_ptr<DefaultPersistable> outputFile = std::make_shared<DefaultPersistable>();
+                DefaultPersistable_SP outputFile;
 
             public:
                 PdfCairo() = default;

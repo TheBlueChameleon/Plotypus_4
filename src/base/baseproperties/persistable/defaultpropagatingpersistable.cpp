@@ -107,4 +107,116 @@ namespace Plotypus
     {
         return DefaultPersistable::getStringStream();
     }
+
+    // ====================================================================== //
+
+    DefaultPropagatingPersistable_SP::DefaultPropagatingPersistable_SP():
+        m(std::make_shared<DefaultPropagatingPersistable>())
+    {}
+
+    std::shared_ptr<DefaultPropagatingPersistable>& DefaultPropagatingPersistable_SP::get()
+    {
+        return m;
+    }
+
+    std::string DefaultPropagatingPersistable_SP::getInstanceName() const
+    {
+        return m->getInstanceName();
+    }
+
+    std::string DefaultPropagatingPersistable_SP::getTypeName()
+    {
+        return DefaultPropagatingPersistable::getTypeName();
+    }
+
+    void DefaultPropagatingPersistable_SP::reset()
+    {
+        m->reset();
+    }
+
+    bool DefaultPropagatingPersistable_SP::getPropagateUpdateChildFileNames() const
+    {
+        return m->getPropagateUpdateChildFileNames();
+    }
+
+    void DefaultPropagatingPersistable_SP::setPropagateUpdateChildFileNames(const bool newSetUpdateChildFileNames)
+    {
+        m->setPropagateUpdateChildFileNames(newSetUpdateChildFileNames);
+    }
+
+    std::filesystem::path DefaultPropagatingPersistable_SP::getDerivedPath(const std::string& extension, std::optional<std::string> infix)
+    {
+        return m->getDerivedPath(extension, infix);
+    }
+
+    void DefaultPropagatingPersistable_SP::propagate()
+    {
+        m->propagate();
+    }
+
+    void DefaultPropagatingPersistable_SP::addSubscriber(std::shared_ptr<Persistable>& subscriber)
+    {
+        m->addSubscriber(subscriber);
+    }
+
+    Collection<Persistable>& DefaultPropagatingPersistable_SP::getSubscribers()
+    {
+        return m->getSubscribers();
+    }
+
+    const std::filesystem::path& DefaultPropagatingPersistable_SP::getPath() const
+    {
+        return m->getPath();
+    }
+
+    void DefaultPropagatingPersistable_SP::setPath(const std::filesystem::path& newPath)
+    {
+        m->setPath(newPath);
+    }
+
+    bool DefaultPropagatingPersistable_SP::getMakeDirectories() const
+    {
+        return m->getMakeDirectories();
+    }
+
+    void DefaultPropagatingPersistable_SP::setMakeDirectories(bool newMakeDirectories)
+    {
+        m->setMakeDirectories(newMakeDirectories);
+    }
+
+    bool DefaultPropagatingPersistable_SP::getOverwrite() const
+    {
+        return m->getOverwrite();
+    }
+
+    void DefaultPropagatingPersistable_SP::setOverwrite(bool newOverwrite)
+    {
+        m->setOverwrite(newOverwrite);
+    }
+
+    bool DefaultPropagatingPersistable_SP::getAllowNullPath() const
+    {
+        return m->getAllowNullPath();
+    }
+
+    void DefaultPropagatingPersistable_SP::setAllowNullPath(bool newAllowNullPath)
+    {
+        m->setAllowNullPath(newAllowNullPath);
+    }
+
+    std::ofstream DefaultPropagatingPersistable_SP::getFileStream() const
+    {
+        return m->getFileStream();
+    }
+
+    std::ostringstream DefaultPropagatingPersistable_SP::getStringStream() const
+    {
+        return m->getStringStream();
+    }
+
+    ValidationResult DefaultPropagatingPersistable_SP::validate() const
+    {
+        return m->validate();
+    }
+
 }

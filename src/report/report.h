@@ -23,7 +23,7 @@ namespace Plotypus
     {
         private:
             TerminalInfoProvider* tip = nullptr;
-            std::shared_ptr<DefaultPropagatingPersistable> scriptFile = std::make_shared<DefaultPropagatingPersistable>();
+            DefaultPropagatingPersistable_SP scriptFile;
             DefaultUserScriptInjectable userScripts;
 
             Array<Sheet> sheets;
@@ -67,6 +67,8 @@ namespace Plotypus
             std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix = std::optional<std::string>());
             void propagate();
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
+            template<PersistableSPType T>
+            void addSubscriber(T& subscriber);
             Collection<Persistable>& getSubscribers();
 
             // NamedType interface

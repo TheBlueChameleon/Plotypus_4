@@ -41,7 +41,7 @@ namespace Plotypus
             return false;
         }
 
-        const std::vector<T*>& otherElements = other.elements;
+        const decltype(other.elements)& otherElements = other.elements;
         return elements == otherElements;
     }
 

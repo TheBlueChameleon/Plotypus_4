@@ -8,7 +8,7 @@
 namespace Plotypus
 {
     template<typename T>
-    concept ErrorType = requires {std::derived_from<T, PlotypusError>;};
+    concept ErrorType = requires {std::is_base_of<PlotypusError, T>::value;};
 
     template<typename T>
     concept StaticallyNamedType = requires(T)
@@ -23,7 +23,7 @@ namespace Plotypus
     template<typename T>
     concept TerminalInfoProviderType = requires
     {
-        requires std::derived_from<T, TerminalInfoProvider>;
+        requires std::is_base_of<TerminalInfoProvider, T>::value;
         requires StaticallyNamedType<T>;
     };
 
@@ -52,7 +52,7 @@ namespace Plotypus
     template<typename T>
     concept PersistableSPType = requires(T x)
     {
-        requires std::derived_from<T, Persistable>;
+        requires std::is_base_of<Persistable, T>::value;
 
         {
             std::static_pointer_cast<Persistable>(x.get())

@@ -12,7 +12,7 @@ namespace Plotypus
     // ====================================================================== //
     // template instatiations
 
-    //template ValidationResult ValidationResult::makeValidationResult<InvalidFilenameError>(const std::optional<std::string> message);
+    template void ValidationResult::addError<InvalidFilenameError>(const std::string& message, const std::string& stackTraceElement);
 
     // ====================================================================== //
     // proper code
@@ -72,7 +72,7 @@ namespace Plotypus
 
         std::transform(results.begin(), results.end(),
                        std::back_inserter(messages),
-                       [] (const ValidationResultElement& result)
+                       [](const ValidationResultElement& result)
         {
             return result.first->what();
         }

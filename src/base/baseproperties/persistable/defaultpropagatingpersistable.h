@@ -62,14 +62,6 @@ namespace Plotypus
             // Mutable interface
             void reset();
 
-            // PropagatingPersistable interface
-            bool getPropagateUpdateChildFileNames() const;
-            void setPropagateUpdateChildFileNames(const bool newSetUpdateChildFileNames);
-            std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
-            void propagate();
-            void addSubscriber(std::shared_ptr<Persistable>& subscriber);
-            Collection<Persistable>& getSubscribers();
-
             // Persistable interface
             const std::filesystem::path& getPath() const;
             void setPath(const std::filesystem::path& newPath);
@@ -84,7 +76,17 @@ namespace Plotypus
 
             // Validatable interface
             ValidationResult validate() const;
+
+            // PropagatingPersistable interface
+            bool getPropagateUpdateChildFileNames() const;
+            void setPropagateUpdateChildFileNames(const bool newSetUpdateChildFileNames);
+            std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
+            void propagate();
+            void addSubscriber(std::shared_ptr<Persistable>& subscriber);
+            Collection<Persistable>& getSubscribers();
     };
+
+    static_assert(PersistableSPType<DefaultPropagatingPersistable_SP>);
 }
 
 #endif // DEFAULTPROPAGATINGPERSISTABLE_H

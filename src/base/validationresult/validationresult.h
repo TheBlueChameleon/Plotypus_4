@@ -1,7 +1,7 @@
 #ifndef VALIDATIONRESULT_H
 #define VALIDATIONRESULT_H
 
-#include "base/baseproperties/collection/fifo.h"
+#include <list>
 
 namespace Plotypus
 {

@@ -15,10 +15,10 @@ namespace Plotypus
                     using iterator_concept  = std::contiguous_iterator_tag;
                     using difference_type   = ptrdiff_t;
                     using value_type        = std::remove_cv_t<T>;
-                    using pointer           = T** ;
+                    using pointer           = std::shared_ptr<T>;
                     using reference         = T&;
                     using element_type      = T;
-                    using native_iter_type = typename std::vector<std::shared_ptr<T>>::iterator;
+                    using native_iter_type  = typename std::vector<std::shared_ptr<T>>::iterator;
 
                 private:
                     native_iter_type nIter;

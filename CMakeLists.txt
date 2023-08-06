@@ -27,7 +27,7 @@ add_library(Plotypus-lib SHARED
     src/typesystem/types.h
 
     # base
-    src/base/baseproperties/collection.h
+    src/base/baseproperties/collection.h src/base/baseproperties/collection/collection.cpp
     src/base/baseproperties/mutable.h
     src/base/baseproperties/namedtype.h
     src/base/baseproperties/nonassignable.h

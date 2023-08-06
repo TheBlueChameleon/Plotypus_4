@@ -8,6 +8,12 @@
 
 namespace Plotypus
 {
+    template TerminalInfo::PdfCairo& Report::installTerminal();
+    template TerminalInfo::PdfCairo& Report::getTerminal();
+
+    template void Report::addSubscriber<DefaultPersistable_SP>(DefaultPersistable_SP& subscriber);
+    //    template void Report::addSubscriber<DefaultPropagatingPersistable_SP>(DefaultPropagatingPersistable_SP& subscriber);
+
     Report::Report()
     {
         scriptFile.setPath("report.pdf");
@@ -48,9 +54,6 @@ namespace Plotypus
     {
         scriptFile.addSubscriber(subscriber);
     }
-
-    //    template void Report::addSubscriber<DefaultPersistable_SP>(DefaultPersistable_SP& subscriber);
-    //    template void Report::addSubscriber<DefaultPropagatingPersistable_SP>(DefaultPropagatingPersistable_SP& subscriber);
 
     Collection<Persistable>& Report::getSubscribers()
     {

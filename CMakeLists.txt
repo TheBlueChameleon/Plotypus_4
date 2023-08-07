@@ -149,10 +149,12 @@ include_directories(${GTestIncludes})
 add_executable(Plotypus_Test
     unittest/src/main.cpp
     unittest/src/tst_collection.cpp
-    unittest/src/tst_filesystem.cpp
     unittest/src/tst_validation.cpp
 
-    unittest/src/TerminalInfoProvider/tst_PdfCairo.cpp
+    unittest/src/persistable/tst_filesystem.cpp
+    unittest/src/persistable/tst_propagate.cpp
+
+    unittest/src/terminalinfoprovider/tst_PdfCairo.cpp
 
     ${GTestFiles}
 )

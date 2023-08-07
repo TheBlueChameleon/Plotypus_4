@@ -6,11 +6,16 @@ namespace Plotypus
     template<TerminalInfoProviderType T>
     T& Report::installTerminal()
     {
-        TerminalInfoProvider* ptr = new T();
-        std::shared_ptr<TerminalInfoProvider> newProvider(ptr);
+        std::shared_ptr<TerminalInfoProvider> newProvider(new T());
+        std::shared_ptr<Persistable> newPersistable = std::static_pointer_cast<Persistable>(newProvider);
         if (tip)
         {
-            // find and replace in scriptFile.subscribers
+            std::shared_ptr<Persistable> oldPersistable = std::static_pointer_cast<Persistable>(tip);
+            scriptFile.replaceSubscriber(oldPersistable, newPersistable);
+        }
+        else
+        {
+            scriptFile.addSubscriber(newPersistable);
         }
 
         tip = newProvider;
@@ -26,7 +31,8 @@ namespace Plotypus
             throw InvalidTypeError("No TerminalInfoProvider installed");
         }
 
-        if (std::shared_ptr<T> typedTip = std::dynamic_pointer_cast<T>(tip))
+        std::shared_ptr<T> typedTip = std::dynamic_pointer_cast<T>(tip);
+        if (typedTip)
         {
             return *typedTip;
         }

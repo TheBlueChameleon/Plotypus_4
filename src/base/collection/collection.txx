@@ -1,7 +1,7 @@
 namespace Plotypus
 {
     template<typename T, typename U>
-    void findAndReplace(Collection<T>& collection, const U& old, const U& replacement)
+    void findAndReplace(T& collection, const U& old, const U& replacement)
     {
         const auto first = collection.begin();
         const auto last = collection.end();

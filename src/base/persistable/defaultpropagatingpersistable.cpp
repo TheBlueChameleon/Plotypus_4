@@ -47,6 +47,11 @@ namespace Plotypus
         subscribers.add(subscriber);
     }
 
+    void DefaultPropagatingPersistable::replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber)
+    {
+        findAndReplace(subscribers.expose(), oldSubscriber, newSubscriber);
+    }
+
     Collection<Persistable>& DefaultPropagatingPersistable::getSubscribers()
     {
         return subscribers;
@@ -213,6 +218,11 @@ namespace Plotypus
     void DefaultPropagatingPersistable_SP::addSubscriber(std::shared_ptr<Persistable>& subscriber)
     {
         m->addSubscriber(subscriber);
+    }
+
+    void DefaultPropagatingPersistable_SP::replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber)
+    {
+        m->replaceSubscriber(oldSubscriber, newSubscriber);
     }
 
     Collection<Persistable>& DefaultPropagatingPersistable_SP::getSubscribers()

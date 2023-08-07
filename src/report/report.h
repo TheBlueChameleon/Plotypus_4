@@ -71,6 +71,7 @@ namespace Plotypus
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
             template<PersistableSPType T>
             void addSubscriber(T& subscriber);
+            void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber);
             Collection<Persistable>& getSubscribers();
             const Collection<Persistable>& getSubscribers() const;
 

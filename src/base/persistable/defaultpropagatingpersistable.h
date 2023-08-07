@@ -53,6 +53,7 @@ namespace Plotypus
             std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
             void propagate();
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
+            void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber);
             Collection<Persistable>& getSubscribers();
             const Collection<Persistable>& getSubscribers() const;
     };
@@ -98,6 +99,7 @@ namespace Plotypus
             std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
             void propagate();
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
+            void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber);
             Collection<Persistable>& getSubscribers();
             const Collection<Persistable>& getSubscribers() const;
     };

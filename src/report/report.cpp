@@ -55,6 +55,11 @@ namespace Plotypus
         scriptFile.addSubscriber(subscriber);
     }
 
+    void Report::replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber)
+    {
+        scriptFile.replaceSubscriber(oldSubscriber, newSubscriber);
+    }
+
     Collection<Persistable>& Report::getSubscribers()
     {
         return scriptFile.getSubscribers();

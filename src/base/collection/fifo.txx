@@ -3,6 +3,19 @@
 
 namespace Plotypus
 {
+
+    template<typename T>
+    std::list<std::shared_ptr<T> >& FiFo<T>::expose()
+    {
+        return elements;
+    }
+
+    template<typename T>
+    const std::list<std::shared_ptr<T> >& FiFo<T>::expose() const
+    {
+        return elements;
+    }
+
     template<typename T>
     size_t FiFo<T>::addBack(T* element)
     {

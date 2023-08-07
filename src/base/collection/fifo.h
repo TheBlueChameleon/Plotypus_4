@@ -26,6 +26,9 @@ namespace Plotypus
         public:
             FiFo() = default;
 
+            std::list<std::shared_ptr<T>>&       expose();
+            const std::list<std::shared_ptr<T>>& expose() const;
+
             size_t addBack(T* element);
             size_t addBack(const std::shared_ptr<T>& element);
 

@@ -15,6 +15,7 @@ namespace Plotypus
 
         virtual void propagate() = 0;
         virtual void addSubscriber(std::shared_ptr<Persistable>& subscriber) = 0;
+        virtual void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber) = 0;
         virtual Collection<Persistable>& getSubscribers() = 0;
         virtual const Collection<Persistable>& getSubscribers() const = 0;
 

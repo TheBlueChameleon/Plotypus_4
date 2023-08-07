@@ -11,11 +11,11 @@ namespace Plotypus
         if (tip)
         {
             std::shared_ptr<Persistable> oldPersistable = std::static_pointer_cast<Persistable>(tip);
-            scriptFile.replaceSubscriber(oldPersistable, newPersistable);
+            scriptFile->replaceSubscriber(oldPersistable, newPersistable);
         }
         else
         {
-            scriptFile.addSubscriber(newPersistable);
+            scriptFile->addSubscriber(newPersistable);
         }
 
         tip = newProvider;
@@ -40,13 +40,6 @@ namespace Plotypus
         {
             throw InvalidTypeError("Currently installed TerminalInfoProvider is of type '" + tip->getInstanceName() + "', but a '" + T::getTypeName() + "' was requested.");
         }
-    }
-
-    template<PersistableSPType T>
-    void Report::addSubscriber(T& subscriber)
-    {
-        auto ptr = std::static_pointer_cast<Persistable>(subscriber.getSharedPtr());
-        scriptFile.addSubscriber(ptr);
     }
 }
 #endif // REPORT_TXX

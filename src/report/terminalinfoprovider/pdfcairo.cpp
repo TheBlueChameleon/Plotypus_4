@@ -6,6 +6,11 @@ namespace Plotypus
 {
     namespace TerminalInfo
     {
+        PdfCairo::PdfCairo()
+        {
+            outputFile = std::make_shared<DefaultPersistable>();
+        }
+
         void PdfCairo::reset()
         {
             EnhancedFragment::reset();
@@ -22,7 +27,7 @@ namespace Plotypus
         ValidationResult PdfCairo::validate() const
         {
             ValidationResult result;
-            result.absorbValidationResult(outputFile.validate(), getTypeName());
+            result.absorbValidationResult(outputFile->validate(), getTypeName());
             return result;
         }
 
@@ -38,7 +43,7 @@ namespace Plotypus
             UserCodeFragment::writeScriptFragment(hFile);
             hFile << std::endl;
 
-            hFile << "set output " << outputFile.getPath() << std::endl;
+            hFile << "set output " << outputFile->getPath() << std::endl;
             hFile << std::endl;
         }
 
@@ -59,52 +64,52 @@ namespace Plotypus
 
         const std::filesystem::path& PdfCairo::getPath() const
         {
-            return outputFile.getPath();
+            return outputFile->getPath();
         }
 
         void PdfCairo::setPath(const std::filesystem::path& newPath)
         {
-            outputFile.setPath(newPath);
+            outputFile->setPath(newPath);
         }
 
         bool PdfCairo::getMakeDirectories() const
         {
-            return outputFile.getMakeDirectories();
+            return outputFile->getMakeDirectories();
         }
 
         void PdfCairo::setMakeDirectories(bool newMakeDirectories)
         {
-            outputFile.setMakeDirectories(newMakeDirectories);
+            outputFile->setMakeDirectories(newMakeDirectories);
         }
 
         bool PdfCairo::getOverwrite() const
         {
-            return outputFile.getOverwrite();
+            return outputFile->getOverwrite();
         }
 
         void PdfCairo::setOverwrite(bool newOverwrite)
         {
-            outputFile.setOverwrite(newOverwrite);
+            outputFile->setOverwrite(newOverwrite);
         }
 
         bool PdfCairo::getAllowNullPath() const
         {
-            return outputFile.getAllowNullPath();
+            return outputFile->getAllowNullPath();
         }
 
         void PdfCairo::setAllowNullPath(bool newAllowNullPath)
         {
-            outputFile.setAllowNullPath(newAllowNullPath);
+            outputFile->setAllowNullPath(newAllowNullPath);
         }
 
         std::ofstream PdfCairo::getFileStream() const
         {
-            return outputFile.getFileStream();
+            return outputFile->getFileStream();
         }
 
         std::ostringstream PdfCairo::getStringStream() const
         {
-            return outputFile.getStringStream();
+            return outputFile->getStringStream();
         }
     }
 }

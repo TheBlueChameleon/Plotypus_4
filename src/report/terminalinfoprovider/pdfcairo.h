@@ -27,10 +27,10 @@ namespace Plotypus
             private UserCodeFragment
         {
             private:
-                DefaultPersistable_SP outputFile;
+                std::shared_ptr<DefaultPersistable> outputFile;
 
             public:
-                PdfCairo() = default;
+                PdfCairo();
 
                 // Scriptable interface
                 void reset();

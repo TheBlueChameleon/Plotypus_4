@@ -47,18 +47,6 @@ namespace Plotypus
         x.begin();
         x.end();
     };
-
-    class Persistable;
-    template<typename T>
-    concept PersistableSPType = requires(T x)
-    {
-        requires std::is_base_of<Persistable, T>::value;
-
-        {
-            std::static_pointer_cast<Persistable>(x.getSharedPtr())
-        }
-        -> std::convertible_to<std::shared_ptr<Persistable>>;
-    };
 }
 
 #endif // CONCEPTS_H

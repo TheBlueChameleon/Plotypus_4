@@ -11,63 +11,61 @@ namespace Plotypus
     template TerminalInfo::PdfCairo& Report::installTerminal();
     template TerminalInfo::PdfCairo& Report::getTerminal();
 
-    template void Report::addSubscriber<DefaultPersistable_SP>(DefaultPersistable_SP& subscriber);
-    template void Report::addSubscriber<DefaultPropagatingPersistable_SP>(DefaultPropagatingPersistable_SP& subscriber);
-
     Report::Report()
     {
-        scriptFile.setPath("report.pdf");
+        scriptFile = std::make_shared<DefaultPropagatingPersistable>();
+        scriptFile->setPath("report.pdf");
         installTerminal<TerminalInfo::PdfCairo>();
     }
 
     bool Report::getPropagateUpdateChildFileNames() const
     {
-        return scriptFile.getPropagateUpdateChildFileNames();
+        return scriptFile->getPropagateUpdateChildFileNames();
     }
 
     void Report::setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames)
     {
-        scriptFile.setPropagateUpdateChildFileNames(newPropagateUpdateChildFileNames);
+        scriptFile->setPropagateUpdateChildFileNames(newPropagateUpdateChildFileNames);
     }
 
     bool Report::getAllowNullPath() const
     {
-        return scriptFile.getAllowNullPath();
+        return scriptFile->getAllowNullPath();
     }
 
     void Report::setAllowNullPath(bool newAllowNullPath)
     {
-        scriptFile.setAllowNullPath(newAllowNullPath);
+        scriptFile->setAllowNullPath(newAllowNullPath);
     }
 
     std::filesystem::path Report::getDerivedPath(const std::string& extension, std::optional<std::string> infix)
     {
-        return scriptFile.getDerivedPath(extension, infix);
+        return scriptFile->getDerivedPath(extension, infix);
     }
 
     void Report::updateChildFileNames()
     {
-        scriptFile.updateChildFileNames();
+        scriptFile->updateChildFileNames();
     }
 
     void Report::addSubscriber(std::shared_ptr<Persistable>& subscriber)
     {
-        scriptFile.addSubscriber(subscriber);
+        scriptFile->addSubscriber(subscriber);
     }
 
     void Report::replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber)
     {
-        scriptFile.replaceSubscriber(oldSubscriber, newSubscriber);
+        scriptFile->replaceSubscriber(oldSubscriber, newSubscriber);
     }
 
     Collection<Persistable>& Report::getSubscribers()
     {
-        return scriptFile.getSubscribers();
+        return scriptFile->getSubscribers();
     }
 
     const Collection<Persistable>& Report::getSubscribers() const
     {
-        return scriptFile.getSubscribers();
+        return scriptFile->getSubscribers();
     }
 
     std::string Report::getInstanceName() const
@@ -101,7 +99,7 @@ namespace Plotypus
             if (c != '$') {result << c;}
             else {
                 if (escapeMode) {
-                    if (c == 'f') {result << scriptFile.getPath();}
+                    if (c == 'f') {result << scriptFile->getPath();}
                     else          {result << c;}
                     escapeMode = false;
                 }
@@ -170,7 +168,7 @@ namespace Plotypus
         }
 
         result.absorbValidationResult(tip->validate(), typeName);
-        result.absorbValidationResult(scriptFile.validate(), typeName);
+        result.absorbValidationResult(scriptFile->validate(), typeName);
 
         for (auto& sheet : sheets)
         {
@@ -193,42 +191,42 @@ namespace Plotypus
 
     const std::filesystem::path& Report::getPath() const
     {
-        return scriptFile.getPath();
+        return scriptFile->getPath();
     }
 
     void Report::setPath(const std::filesystem::path& newPath)
     {
-        scriptFile.setPath(newPath);
+        scriptFile->setPath(newPath);
     }
 
     bool Report::getMakeDirectories() const
     {
-        return scriptFile.getMakeDirectories();
+        return scriptFile->getMakeDirectories();
     }
 
     void Report::setMakeDirectories(bool newMakeDirectories)
     {
-        scriptFile.setMakeDirectories(newMakeDirectories);
+        scriptFile->setMakeDirectories(newMakeDirectories);
     }
 
     bool Report::getOverwrite() const
     {
-        return scriptFile.getOverwrite();
+        return scriptFile->getOverwrite();
     }
 
     void Report::setOverwrite(bool newOverwrite)
     {
-        scriptFile.setOverwrite(newOverwrite);
+        scriptFile->setOverwrite(newOverwrite);
     }
 
     std::ofstream Report::getFileStream() const
     {
-        return scriptFile.getFileStream();
+        return scriptFile->getFileStream();
     }
 
     std::ostringstream Report::getStringStream() const
     {
-        return scriptFile.getStringStream();
+        return scriptFile->getStringStream();
     }
 
     std::optional<std::string> Report::getUserScriptBeforeSetup() const

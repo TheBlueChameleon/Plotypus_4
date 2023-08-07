@@ -22,11 +22,11 @@ namespace Plotypus
     {
         private:
             DefaultNumberedItem number;
-            DefaultPersistable_SP file;
+            std::shared_ptr<DefaultPersistable> file;
             DefaultUserScriptInjectable userCode;
 
         public:
-            EmptySheet() = default;
+            EmptySheet();
 
             // Validatable interface
             ValidationResult validate() const;

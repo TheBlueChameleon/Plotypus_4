@@ -35,13 +35,14 @@ add_library(Plotypus-lib SHARED
     src/base/scriptable.h
     src/base/serializable.h
 
-    src/base/collection/collection.h            src/base//collection/collection.cpp             src/base/collection/collection.txx
+    src/base/collection/collection.h            src/base//collection/collection.cpp
     src/base/collection/array.h                 src/base/collection/array.txx
     src/base/collection/arrayiterable.h         src/base/collection/arrayiterable.txx
     src/base/collection/arrayconstiterable.h    src/base/collection/arrayconstiterable.txx
     src/base/collection/fifo.h                  src/base/collection/fifo.txx
     src/base/collection/fifoiterable.h          src/base/collection/fifoiterable.txx
     src/base/collection/fifoconstiterable.h     src/base/collection/fifoconstiterable.txx
+    src/base/collection/stdrangeutils.h         src/base/collection/stdrangeutils.cpp           src/base/collection/stdrangeutils.txx
 
     src/base/fragments/genericfontfragment.h    src/base/fragments/genericfontfragment.cpp
     src/base/fragments/usercodefragment.h       src/base/fragments/usercodefragment.cpp
@@ -148,8 +149,10 @@ include_directories(${GTestIncludes})
 
 add_executable(Plotypus_Test
     unittest/src/main.cpp
-    unittest/src/tst_collection.cpp
     unittest/src/tst_validation.cpp
+
+    unittest/src/collection/tst_collection.cpp
+    unittest/src/collection/tst_stdrangeutils.cpp
 
     unittest/src/persistable/tst_filesystem.cpp
     unittest/src/persistable/tst_propagate.cpp

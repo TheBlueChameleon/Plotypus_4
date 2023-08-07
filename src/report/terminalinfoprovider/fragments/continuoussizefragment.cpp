@@ -1,5 +1,4 @@
 #include "continuoussizefragment.h"
-#include <iostream>
 
 namespace Plotypus
 {
@@ -59,7 +58,7 @@ namespace Plotypus
 
         void ContinuousSizeFragment::writeScriptFragment(std::ostream& hFile) const
         {
-            if(size.has_value())
+            if (size.has_value())
             {
                 ContinuousCoordinate_t sizeValue = size.value();
 

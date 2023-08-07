@@ -30,16 +30,29 @@ namespace Plotypus
     }
 
 
-
-    void DefaultPropagatingPersistable::propagate()
+    void DefaultPropagatingPersistable::updateChildFileNames()
     {
-        getSubscribers().forEachExposed([](Persistable* ptr)
+        for (int idx = 1; std::shared_ptr<Persistable>& subscriber : subscribers.expose())
         {
-            if (PropagatingPersistable* xPtr = dynamic_cast<PropagatingPersistable*>(ptr); xPtr)
+            // rename
+            const std::string ext = subscriber->getPath().extension();
+            const auto childFilePath = getDerivedPath(ext, "_" + std::to_string(idx));
+            subscriber->setPath(childFilePath);
+            ++idx;
+
+            // propagate
+            if (propagateUpdateChildFileNames)
             {
-                xPtr->propagate();
+                {
+                    PropagatingPersistable* propagatingSubscriber = std::dynamic_pointer_cast<PropagatingPersistable>(subscriber).get();
+                    if (propagatingSubscriber)
+                    {
+                        propagatingSubscriber->updateChildFileNames();
+                    }
+                }
             }
-        });
+        }
+
     }
 
     void DefaultPropagatingPersistable::addSubscriber(std::shared_ptr<Persistable>& subscriber)
@@ -210,9 +223,9 @@ namespace Plotypus
         return m->getDerivedPath(extension, infix);
     }
 
-    void DefaultPropagatingPersistable_SP::propagate()
+    void DefaultPropagatingPersistable_SP::updateChildFileNames()
     {
-        m->propagate();
+        m->updateChildFileNames();
     }
 
     void DefaultPropagatingPersistable_SP::addSubscriber(std::shared_ptr<Persistable>& subscriber)

@@ -45,9 +45,9 @@ namespace Plotypus
         return scriptFile.getDerivedPath(extension, infix);
     }
 
-    void Report::propagate()
+    void Report::updateChildFileNames()
     {
-        scriptFile.propagate();
+        scriptFile.updateChildFileNames();
     }
 
     void Report::addSubscriber(std::shared_ptr<Persistable>& subscriber)

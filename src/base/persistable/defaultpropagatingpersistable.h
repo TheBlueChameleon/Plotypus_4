@@ -51,7 +51,7 @@ namespace Plotypus
             void setPropagateUpdateChildFileNames(const bool newPropagateUpdateChildFileNames);
 
             std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
-            void propagate();
+            void updateChildFileNames();
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
             void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber);
             Collection<Persistable>& getSubscribers();
@@ -97,7 +97,7 @@ namespace Plotypus
             bool getPropagateUpdateChildFileNames() const;
             void setPropagateUpdateChildFileNames(const bool newSetUpdateChildFileNames);
             std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix);
-            void propagate();
+            void updateChildFileNames();
             void addSubscriber(std::shared_ptr<Persistable>& subscriber);
             void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber);
             Collection<Persistable>& getSubscribers();

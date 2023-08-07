@@ -13,7 +13,7 @@ namespace Plotypus
 
         virtual std::filesystem::path getDerivedPath(const std::string& extension, std::optional<std::string> infix = std::optional<std::string>()) = 0;
 
-        virtual void propagate() = 0;
+        virtual void updateChildFileNames() = 0;
         virtual void addSubscriber(std::shared_ptr<Persistable>& subscriber) = 0;
         virtual void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber) = 0;
         virtual Collection<Persistable>& getSubscribers() = 0;

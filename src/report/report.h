@@ -9,7 +9,6 @@
 #include "base/persistable/defaultpropagatingpersistable.h"
 
 #include "base/scriptable.h"
-#include "base/userscriptinjectable/userscriptinjectable.h"
 #include "base/userscriptinjectable/defaultuserscriptinjectable.h"
 
 #include "terminalinfoprovider/terminalinfoprovider.h"
@@ -17,16 +16,16 @@
 namespace Plotypus
 {
     class Report :
-        public NamedType,
-        public NonAssignable,
-        public PropagatingPersistable,
-        public Scriptable,
-        public UserScriptInjectable
+        public virtual NamedType,
+        public virtual NonAssignable,
+        public virtual PropagatingPersistable,
+        public virtual Scriptable,
+
+        public virtual DefaultUserScriptInjectable
     {
         private:
             std::shared_ptr<TerminalInfoProvider> tip;
             std::shared_ptr<DefaultPropagatingPersistable> scriptFile;
-            DefaultUserScriptInjectable userScripts;
 
             Array<Sheet> sheets;
 
@@ -50,6 +49,19 @@ namespace Plotypus
 
             std::string getScriptString() const;
 
+            // NamedType interface
+            std::string getInstanceName() const;
+            static std::string getTypeName();
+
+            // Scriptable interface
+            void reset();
+
+            ValidationResult validate() const;
+            void writeScript(std::ostream& hFile) const;
+
+            std::ofstream getFileStream() const;
+            std::ostringstream getStringStream() const;
+
             // PropagatingPersistable interface
             const std::filesystem::path& getPath() const;
             void setPath(const std::filesystem::path& newPath);
@@ -72,34 +84,6 @@ namespace Plotypus
             void replaceSubscriber(std::shared_ptr<Persistable>& oldSubscriber, std::shared_ptr<Persistable>& newSubscriber);
             Collection<Persistable>& getSubscribers();
             const Collection<Persistable>& getSubscribers() const;
-
-            // NamedType interface
-            std::string getInstanceName() const;
-            static std::string getTypeName();
-
-            // Mutable interface
-            void reset();
-
-            // Scriptable interface
-            ValidationResult validate() const;
-            void writeScript(std::ostream& hFile) const;
-
-            std::ofstream getFileStream() const;
-            std::ostringstream getStringStream() const;
-
-            // UserScriptInjectable interface
-            std::optional<std::string> getUserScriptBeforeSetup() const;
-            void setUserScriptBeforeSetup(const std::string& newUserScriptBeforeSetup);
-
-            std::optional<std::string> getUserScriptBeforeChildren() const;
-            void setUserScriptBeforeChildren(const std::string& newUserScriptBeforeChildren);
-
-            std::optional<std::string> getUserScriptCleanUp() const;
-            void setUserScriptCleanUp(const std::string& newUserScriptCleanUp);
-
-            void writeUserScriptBeforeSetup(std::ostream& hFile) const;
-            void writeUserScriptBeforeChildren(std::ostream& hFile) const;
-            void writeUserScriptCleanUp(std::ostream& hFile) const;
     };
 }
 

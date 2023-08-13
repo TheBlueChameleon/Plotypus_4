@@ -9,6 +9,16 @@ namespace Plotypus
         file = std::make_shared<DefaultPersistable>();
     }
 
+    std::string EmptySheet::getInstanceName() const
+    {
+        return getTypeName() + getNumberText();
+    }
+
+    std::string EmptySheet::getTypeName()
+    {
+        return "EmptySheet";
+    }
+
     ValidationResult Plotypus::EmptySheet::validate() const
     {
         ValidationResult result;
@@ -22,9 +32,10 @@ namespace Plotypus
         TitleFragment::reset();
         FontFragment::reset();
 
-        number.reset();
+        DefaultNumberedItem::reset();
+        DefaultUserScriptInjectable::reset();
+
         file.reset();
-        userCode.reset();
     }
 
     const std::filesystem::path& EmptySheet::getPath() const
@@ -103,73 +114,63 @@ namespace Plotypus
         hFile << SheetFragments::CleanSheetFragment::generateCleanSheetOffScriptFragment();
     }
 
-    size_t EmptySheet::getNumber() const
-    {
-        return number.getNumber();
-    }
-
-    void EmptySheet::setNumber(size_t newNumber)
-    {
-        number.setNumber(newNumber);
-    }
-
-    std::string EmptySheet::getNumberText() const
-    {
-        return number.getNumberText();
-    }
-
     std::optional<std::string> EmptySheet::getUserScriptBeforeSetup() const
     {
-        return userCode.getUserScriptBeforeSetup();
+        return DefaultUserScriptInjectable::getUserScriptBeforeSetup();
     }
 
     void EmptySheet::setUserScriptBeforeSetup(const std::string& newUserScriptBeforeSetup)
     {
-        userCode.setUserScriptBeforeSetup(newUserScriptBeforeSetup);
+        DefaultUserScriptInjectable::setUserScriptBeforeSetup(newUserScriptBeforeSetup);
     }
 
     std::optional<std::string> EmptySheet::getUserScriptBeforeChildren() const
     {
-        return userCode.getUserScriptBeforeChildren();
+        return DefaultUserScriptInjectable::getUserScriptBeforeChildren();
     }
 
     void EmptySheet::setUserScriptBeforeChildren(const std::string& newUserScriptBeforeChildren)
     {
-        userCode.setUserScriptBeforeChildren(newUserScriptBeforeChildren);
+        DefaultUserScriptInjectable::setUserScriptBeforeChildren(newUserScriptBeforeChildren);
     }
 
     std::optional<std::string> EmptySheet::getUserScriptCleanUp() const
     {
-        return userCode.getUserScriptCleanUp();
+        return DefaultUserScriptInjectable::getUserScriptCleanUp();
     }
 
     void EmptySheet::setUserScriptCleanUp(const std::string& newUserScriptCleanUp)
     {
-        userCode.setUserScriptCleanUp(newUserScriptCleanUp);
+        DefaultUserScriptInjectable::setUserScriptCleanUp(newUserScriptCleanUp);
     }
 
     void EmptySheet::writeUserScriptBeforeSetup(std::ostream& hFile) const
     {
-        userCode.writeUserScriptBeforeSetup(hFile);
+        DefaultUserScriptInjectable::writeUserScriptBeforeSetup(hFile);
     }
 
     void EmptySheet::writeUserScriptBeforeChildren(std::ostream& hFile) const
     {
-        userCode.writeUserScriptBeforeChildren(hFile);
+        DefaultUserScriptInjectable::writeUserScriptBeforeChildren(hFile);
     }
 
     void EmptySheet::writeUserScriptCleanUp(std::ostream& hFile) const
     {
-        userCode.writeUserScriptCleanUp(hFile);
+        DefaultUserScriptInjectable::writeUserScriptCleanUp(hFile);
     }
 
-    std::string EmptySheet::getInstanceName() const
+    size_t EmptySheet::getNumber() const
     {
-        return getTypeName() + getNumberText();
+        return DefaultNumberedItem::getNumber();
     }
 
-    std::string EmptySheet::getTypeName()
+    void EmptySheet::setNumber(size_t newNumber)
     {
-        return "EmptySheet";
+        DefaultNumberedItem::setNumber(newNumber);
+    }
+
+    std::string EmptySheet::getNumberText() const
+    {
+        return DefaultNumberedItem::getNumberText();
     }
 }

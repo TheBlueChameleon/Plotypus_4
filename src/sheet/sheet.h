@@ -10,11 +10,11 @@
 namespace Plotypus
 {
     struct Sheet:
-        public NamedType,
-        public Scriptable,
-        public Persistable,
-        public NumberedItem,
-        public UserScriptInjectable
+        public virtual NamedType,
+        public virtual Scriptable,
+        public virtual Persistable,
+        public virtual NumberedItem,
+        public virtual UserScriptInjectable
     {
         virtual void writeScript(std::ostream& hFile) const;
 

@@ -7,8 +7,8 @@
 namespace Plotypus
 {
     struct Scriptable :
-        public Mutable,
-        public Validatable
+        public virtual Mutable,
+        public virtual Validatable
     {
         virtual void writeScript(std::ostream& hFile) const = 0;
     };

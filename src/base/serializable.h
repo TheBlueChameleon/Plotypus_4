@@ -7,8 +7,8 @@
 namespace Plotypus
 {
     struct Serializable :
-        public Persistable,
-        public Mutable
+        public virtual Persistable,
+        public virtual Mutable
     {
 
     };

@@ -5,16 +5,11 @@
 
 #include "base/validationresult/validationresult.h"
 
-#include "../mutable.h"
-#include "../validatable.h"
 
 namespace Plotypus
 {
     class DefaultPersistable:
-        public virtual NamedType,
-        public virtual Mutable,
-        public virtual Persistable,
-        public virtual Validatable
+        public virtual Persistable
     {
         private:
             std::filesystem::path path;

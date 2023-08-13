@@ -14,19 +14,24 @@
 namespace Plotypus
 {
     class EmptySheet :
-        public Sheet,
+        public virtual Sheet,
 
-        public SheetFragments::TitleFragment,
-        public SheetFragments::FontFragment,
-        public SheetFragments::CleanSheetFragment
+        public virtual SheetFragments::TitleFragment,
+        public virtual SheetFragments::FontFragment,
+        public virtual SheetFragments::CleanSheetFragment,
+
+        private virtual DefaultUserScriptInjectable,
+        private virtual DefaultNumberedItem
     {
         private:
-            DefaultNumberedItem number;
             std::shared_ptr<DefaultPersistable> file;
-            DefaultUserScriptInjectable userCode;
 
         public:
             EmptySheet();
+
+            // NamedType interface
+            std::string getInstanceName() const;
+            static std::string getTypeName();
 
             // Validatable interface
             ValidationResult validate() const;
@@ -52,11 +57,6 @@ namespace Plotypus
             void writeScriptOverlays(std::ostream& hFile) const;
             void writeScriptFooter(std::ostream& hFile) const;
 
-            // NumberedItem interface
-            size_t getNumber() const;
-            void setNumber(size_t number);
-            std::string getNumberText() const;
-
             // UserScriptInjectable interface
             std::optional<std::string> getUserScriptBeforeSetup() const;
             void setUserScriptBeforeSetup(const std::string& newUserScriptBeforeSetup);
@@ -68,9 +68,10 @@ namespace Plotypus
             void writeUserScriptBeforeChildren(std::ostream& hFile) const;
             void writeUserScriptCleanUp(std::ostream& hFile) const;
 
-            // NamedType interface
-            std::string getInstanceName() const;
-            static std::string getTypeName();
+            // NumberedItem interface
+            size_t getNumber() const;
+            void setNumber(size_t number);
+            std::string getNumberText() const;
     };
 }
 

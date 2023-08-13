@@ -4,11 +4,15 @@
 #include <filesystem>
 #include <optional>
 
-#include "typesystem/types.h"
+#include "../mutable.h"
+#include "../validatable.h"
 
 namespace Plotypus
 {
-    struct Persistable
+    struct Persistable:
+        public virtual NamedType,
+        public virtual Mutable,
+        public virtual Validatable
     {
         virtual const std::filesystem::path& getPath() const = 0;
         virtual void setPath(const std::filesystem::path& newPath) = 0;

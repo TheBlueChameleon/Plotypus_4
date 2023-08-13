@@ -1,16 +1,13 @@
 #ifndef TERMINALINFOPROVIDER_H
 #define TERMINALINFOPROVIDER_H
 
-#include "typesystem/concepts.h"
-
 #include "base/scriptable.h"
 
 namespace Plotypus
 {
     struct TerminalInfoProvider :
-        public Scriptable,
-        public Persistable,
-        public NamedType
+        public virtual Scriptable,
+        public virtual Persistable
     {
         static std::string getDefaultExtension();
 

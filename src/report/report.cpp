@@ -68,16 +68,6 @@ namespace Plotypus
         return scriptFile->getSubscribers();
     }
 
-    std::string Report::getInstanceName() const
-    {
-        return getTypeName();
-    }
-
-    std::string Report::getTypeName()
-    {
-        return "Report";
-    }
-
     const std::string& Report::getRunCommand() const
     {
         return runCommand;
@@ -143,15 +133,26 @@ namespace Plotypus
         return buffer.str();
     }
 
+    std::string Report::getInstanceName() const
+    {
+        return getTypeName();
+    }
+
+    std::string Report::getTypeName()
+    {
+        return "Report";
+    }
+
     void Report::reset()
     {
+        DefaultUserScriptInjectable::reset();
+
         if (tip)
         {
             tip->reset();
         }
 
         scriptFile.reset();
-        userScripts.reset();
         sheets.clear();
         runCommand = "gnuplot $f";
     }
@@ -227,50 +228,5 @@ namespace Plotypus
     std::ostringstream Report::getStringStream() const
     {
         return scriptFile->getStringStream();
-    }
-
-    std::optional<std::string> Report::getUserScriptBeforeSetup() const
-    {
-        return userScripts.getUserScriptBeforeSetup();
-    }
-
-    void Report::setUserScriptBeforeSetup(const std::string& newUserScriptBeforeSetup)
-    {
-        userScripts.setUserScriptBeforeSetup(newUserScriptBeforeSetup);
-    }
-
-    std::optional<std::string> Report::getUserScriptBeforeChildren() const
-    {
-        return userScripts.getUserScriptBeforeChildren();
-    }
-
-    void Report::setUserScriptBeforeChildren(const std::string& newUserScriptBeforeChildren)
-    {
-        userScripts.setUserScriptBeforeChildren(newUserScriptBeforeChildren);
-    }
-
-    std::optional<std::string> Report::getUserScriptCleanUp() const
-    {
-        return userScripts.getUserScriptCleanUp();
-    }
-
-    void Report::setUserScriptCleanUp(const std::string& newUserScriptCleanUp)
-    {
-        userScripts.setUserScriptCleanUp(newUserScriptCleanUp);
-    }
-
-    void Report::writeUserScriptBeforeSetup(std::ostream& hFile) const
-    {
-        userScripts.writeUserScriptBeforeSetup(hFile);
-    }
-
-    void Report::writeUserScriptBeforeChildren(std::ostream& hFile) const
-    {
-        userScripts.writeUserScriptBeforeChildren(hFile);
-    }
-
-    void Report::writeUserScriptCleanUp(std::ostream& hFile) const
-    {
-        userScripts.writeUserScriptCleanUp(hFile);
     }
 }

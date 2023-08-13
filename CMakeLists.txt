@@ -160,6 +160,8 @@ add_executable(Plotypus_Test
 
     unittest/src/terminalinfoprovider/tst_PdfCairo.cpp
 
+    unittest/src/report/tst_report.cpp
+
     ${GTestFiles}
 )
 

@@ -1,9 +1,9 @@
 #include <fstream>
 #include <iostream>
 
-#include "terminalinfoprovider/terminalinfoprovider.h"
-
 #include "report.h"
+
+#include "terminalinfoprovider/terminalinfoprovider.h"
 #include "terminalinfoprovider/pdfcairo.h"
 
 namespace Plotypus
@@ -14,7 +14,7 @@ namespace Plotypus
     Report::Report()
     {
         scriptFile = std::make_shared<DefaultPropagatingPersistable>();
-        scriptFile->setPath("report.pdf");
+        scriptFile->setPath("report.gnuplot");
         installTerminal<TerminalInfo::PdfCairo>();
     }
 
@@ -86,14 +86,16 @@ namespace Plotypus
         for (const char c : runCommand)
         {
             // *INDENT-OFF*
-            if (c != '$') {result << c;}
-            else {
-                if (escapeMode) {
-                    if (c == 'f') {result << scriptFile->getPath();}
-                    else          {result << c;}
-                    escapeMode = false;
-                }
-                else {escapeMode = true;}
+            if (escapeMode)
+            {
+                escapeMode = false;
+                if (c == 'f')   {result << scriptFile->getPath();}
+                else            {result << c;}
+            }
+            else
+            {
+                if (c == '$')   {escapeMode = true;}
+                else            {result << c;}
             }
             // *INDENT-ON*
         }

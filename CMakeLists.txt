@@ -75,11 +75,13 @@ add_library(Plotypus-lib SHARED
 
     # sheet
     src/sheet/sheet.h src/sheet/sheet.cpp
-    src/sheet/emptysheet.h src/sheet/emptysheet.cpp
+    src/sheet/sheetscollection/sheetscollection.h
 
     src/sheet/fragments/cleansheetfragment.h src/sheet/fragments/cleansheetfragment.cpp
     src/sheet/fragments/fontfragment.h src/sheet/fragments/fontfragment.cpp
     src/sheet/fragments/titlefragment.h src/sheet/fragments/titlefragment.cpp
+
+    src/sheet/emptysheet.h src/sheet/emptysheet.cpp
 )
 
 target_include_directories(Plotypus-lib PUBLIC

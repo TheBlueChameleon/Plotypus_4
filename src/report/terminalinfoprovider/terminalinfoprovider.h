@@ -14,7 +14,7 @@ namespace Plotypus
         template<TerminalInfoProviderType T>
         T& as()
         {
-            return dynamic_cast<T>(*this);
+            return dynamic_cast<T&>(*this);
         }
     };
 }

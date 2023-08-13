@@ -23,11 +23,12 @@
 #include "base/persistable/defaultpersistable.h"
 #include "base/persistable/defaultpropagatingpersistable.h"
 
-#include "sheet/sheet.h"
-#include "sheet/emptysheet.h"
-
 #include "report/report.h"
 #include "report/terminalinfoprovider/pdfcairo.h"
 #include "report/terminalinfoprovider/terminalinfoprovider.h"
+
+#include "sheet/sheet.h"
+#include "sheet/sheetscollection/sheetscollection.h"
+#include "sheet/emptysheet.h"
 
 #endif // PLOTYPUS_H

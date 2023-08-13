@@ -13,6 +13,8 @@
 
 #include "terminalinfoprovider/terminalinfoprovider.h"
 
+#include "sheet/sheet.h"
+
 namespace Plotypus
 {
     class Report :

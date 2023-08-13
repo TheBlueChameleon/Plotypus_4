@@ -26,15 +26,19 @@ namespace Plotypus
             {
                 case LineEnds::Default:
                     hFile << "";
+                    return;
                 case LineEnds::Rounded:
                     hFile << "rounded ";
+                    return;
                 case LineEnds::Square:
                     hFile << "square ";
+                    return;
                 case LineEnds::Butt:
                     hFile << "butt ";
+                    return;
             }
 
-            throw InvalidArgumentError("Unknown LineEnds type.");
+            throw InvalidArgumentError("Unknown LineEnds type: " + std::to_string(static_cast<int>(lineEnds)));
         }
     }
 }

@@ -70,8 +70,8 @@ TEST_F(Propagate_Fixture, DefaultPropagatingPersistable_PartialPropagation_Test)
 
     EXPECT_EQ(root->getPath(), "dir/root.dat");
 
-    EXPECT_EQ(level_1_1->getPath(), "dir/root_1");
-    EXPECT_EQ(level_1_2->getPath(), "dir/root_2");
+    EXPECT_EQ(level_1_1->getPath(), "level_1_1");
+    EXPECT_EQ(level_1_2->getPath(), "level_1_2");
     EXPECT_EQ(level_1_3->getPath(), "other");
     EXPECT_EQ(level_2_1->getPath(), "foo/level_2_1.ext");
     EXPECT_EQ(level_2_2->getPath(), "foo/level_2_2.ext");
@@ -90,3 +90,4 @@ TEST_F(Propagate_Fixture, DefaultPropagatingPersistable_ReplacementPropagation_T
     EXPECT_EQ(level_2_1->getPath(), "foo/level_2_1.ext");
     EXPECT_EQ(level_2_2->getPath(), "foo/level_2_2.ext");
 }
+

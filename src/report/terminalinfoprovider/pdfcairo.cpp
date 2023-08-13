@@ -21,7 +21,7 @@ namespace Plotypus
             ContinuousSizeFragment::reset();
             UserCodeFragment::reset();
 
-            outputFile.reset();
+            outputFile->reset();
         }
 
         ValidationResult PdfCairo::validate() const

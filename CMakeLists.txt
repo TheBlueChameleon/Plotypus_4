@@ -52,7 +52,6 @@ add_library(Plotypus-lib SHARED
 
     src/base/persistable/persistable.h
     src/base/persistable/propagatingpersistable.h
-    src/base/persistable/defaultpersistablefragment.h       src/base/persistable/defaultpersistablefragment.cpp
     src/base/persistable/defaultpersistable.h               src/base/persistable/defaultpersistable.cpp
     src/base/persistable/defaultpropagatingpersistable.h    src/base/persistable/defaultpropagatingpersistable.cpp
 

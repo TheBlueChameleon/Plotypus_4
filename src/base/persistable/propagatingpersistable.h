@@ -6,7 +6,7 @@
 namespace Plotypus
 {
     struct PropagatingPersistable :
-        public Persistable
+        public virtual Persistable
     {
         virtual bool getPropagateUpdateChildFileNames() const = 0;
         virtual void setPropagateUpdateChildFileNames(const bool newSetUpdateChildFileNames) = 0;

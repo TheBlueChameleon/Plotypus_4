@@ -87,7 +87,7 @@ namespace Plotypus
 
     void DefaultPropagatingPersistable::reset()
     {
-        DefaultPersistableFragment::reset();
+        DefaultPersistable::reset();
         subscribers.clear();
         propagateUpdateChildFileNames = true;
     }
@@ -96,7 +96,7 @@ namespace Plotypus
     {
         ValidationResult result;
         const std::string stackTraceElement = getInstanceName();
-        result.absorbValidationResult(DefaultPersistableFragment::validate(), stackTraceElement);
+        result.absorbValidationResult(DefaultPersistable::validate(), stackTraceElement);
 
         bool hasNullPointers = false;
         subscribers.forEachExposed([&hasNullPointers](const Persistable* ptr)
@@ -111,56 +111,6 @@ namespace Plotypus
         return result;
     }
 
-    const std::filesystem::path& DefaultPropagatingPersistable::getPath() const
-    {
-        return DefaultPersistableFragment::getPath();
-    }
-
-    void DefaultPropagatingPersistable::setPath(const std::filesystem::path& newPath)
-    {
-        DefaultPersistableFragment::setPath(newPath);
-    }
-
-    bool DefaultPropagatingPersistable::getMakeDirectories() const
-    {
-        return DefaultPersistableFragment::getMakeDirectories();
-    }
-
-    void DefaultPropagatingPersistable::setMakeDirectories(bool newMakeDirectories)
-    {
-        DefaultPersistableFragment::setMakeDirectories(newMakeDirectories);
-    }
-
-    bool DefaultPropagatingPersistable::getOverwrite() const
-    {
-        return DefaultPersistableFragment::getOverwrite();
-    }
-
-    void DefaultPropagatingPersistable::setOverwrite(bool newOverwrite)
-    {
-        DefaultPersistableFragment::setOverwrite(newOverwrite);
-    }
-
-    bool DefaultPropagatingPersistable::getAllowNullPath() const
-    {
-        return DefaultPersistableFragment::getAllowNullPath();
-    }
-
-    void DefaultPropagatingPersistable::setAllowNullPath(bool newAllowNullPath)
-    {
-        DefaultPersistableFragment::setAllowNullPath(newAllowNullPath);
-    }
-
-    std::ofstream DefaultPropagatingPersistable::getFileStream() const
-    {
-        return DefaultPersistableFragment::getFileStream();
-    }
-
-    std::ostringstream DefaultPropagatingPersistable::getStringStream() const
-    {
-        return DefaultPersistableFragment::getStringStream();
-    }
-
     bool DefaultPropagatingPersistable::operator ==(const Persistable& other) const
     {
         bool result = true;
@@ -168,7 +118,7 @@ namespace Plotypus
         const PropagatingPersistable* otherPropagating = dynamic_cast<const PropagatingPersistable*>(&other);
         if (otherPropagating)
         {
-            const DefaultPersistableFragment* thisBase = static_cast<const DefaultPersistableFragment*>(this);
+            const DefaultPersistable* thisBase = static_cast<const DefaultPersistable*>(this);
             result &= (*thisBase == other);
 
             result &= (propagateUpdateChildFileNames == otherPropagating->getPropagateUpdateChildFileNames());

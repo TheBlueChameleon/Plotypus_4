@@ -1,7 +1,6 @@
 #ifndef DEFAULTPROPAGATINGPERSISTABLE_H
 #define DEFAULTPROPAGATINGPERSISTABLE_H
 
-#include "defaultpersistablefragment.h"
 #include "propagatingpersistable.h"
 
 namespace Plotypus
@@ -9,7 +8,7 @@ namespace Plotypus
     class DefaultPropagatingPersistable :
         public PropagatingPersistable,
 
-        private DefaultPersistableFragment
+        public virtual DefaultPersistable
     {
         private:
             bool propagateUpdateChildFileNames = true;
@@ -29,21 +28,6 @@ namespace Plotypus
             ValidationResult validate() const;
 
             // Persistable interface
-            const std::filesystem::path& getPath() const;
-            void setPath(const std::filesystem::path& newPath);
-
-            bool getMakeDirectories() const;
-            void setMakeDirectories(bool newMakeDirectories);
-
-            bool getOverwrite() const;
-            void setOverwrite(bool newOverwrite);
-
-            bool getAllowNullPath() const;
-            void setAllowNullPath(bool newAllowNullPath);
-
-            std::ofstream getFileStream() const;
-            std::ostringstream getStringStream() const;
-
             bool operator ==(const Persistable& other) const;
 
             // PropagatingPersistable interface

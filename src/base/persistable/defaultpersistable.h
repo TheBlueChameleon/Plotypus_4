@@ -2,7 +2,6 @@
 #define DEFAULTPERSISTABLE_H
 
 #include "persistable.h"
-#include "defaultpersistablefragment.h"
 
 #include "base/validationresult/validationresult.h"
 
@@ -12,13 +11,18 @@
 namespace Plotypus
 {
     class DefaultPersistable:
-        public NamedType,
-        public Mutable,
-        public Persistable,
-        public Validatable,
-
-        private DefaultPersistableFragment
+        public virtual NamedType,
+        public virtual Mutable,
+        public virtual Persistable,
+        public virtual Validatable
     {
+        private:
+            std::filesystem::path path;
+
+            bool makeDirectories = true;
+            bool overwrite = false;
+            bool allowNullPath = false;
+
         public:
             DefaultPersistable() = default;
 

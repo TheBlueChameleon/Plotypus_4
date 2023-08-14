@@ -22,6 +22,18 @@ namespace Plotypus
     }
 
     template<typename T>
+    std::shared_ptr<T> Array<T>::getPtr(const size_t idx)
+    {
+        return elements.at(idx);
+    }
+
+    template<typename T>
+    T& Array<T>::getRef(const size_t idx)
+    {
+        return *getPtr(idx);
+    }
+
+    template<typename T>
     bool Array<T>::empty() const
     {
         return elements.empty();

@@ -28,6 +28,9 @@ namespace Plotypus
             std::vector<std::shared_ptr<T>>&       expose();
             const std::vector<std::shared_ptr<T>>& expose() const;
 
+            std::shared_ptr<T> getPtr(const size_t idx);
+            T& getRef(const size_t idx);
+
             // Collection interface
             size_t size() const;
             bool empty() const;

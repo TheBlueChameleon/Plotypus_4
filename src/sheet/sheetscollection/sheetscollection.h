@@ -11,14 +11,24 @@ namespace Plotypus
         public virtual Validatable,
         public virtual Collection<Sheet>
     {
-        size_t addSheet(const Sheet* newSheet);
-        Sheet& getSheet(const size_t idx);
+        protected:
+            virtual size_t addSheet(Sheet* newSheet) = 0;
+            virtual Sheet& getSheet(const size_t idx) = 0;
 
-        template<SheetType T>
-        T& getSheetAs(const size_t idx)
-        {
-            return dynamic_cast<T&>(getSheet(idx));
-        }
+        public:
+            template<SheetType T, class ... Args>
+            T& emplace(Args ... args)
+            {
+                T* newSheet = new T(args...);
+                addSheet(newSheet);
+                return *newSheet;
+            }
+
+            template<SheetType T>
+            T& getSheetAs(const size_t idx)
+            {
+                return dynamic_cast<T&>(getSheet(idx));
+            }
     };
 }
 

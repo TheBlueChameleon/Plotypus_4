@@ -76,6 +76,7 @@ add_library(Plotypus-lib SHARED
     # sheet
     src/sheet/sheet.h src/sheet/sheet.cpp
     src/sheet/sheetscollection/sheetscollection.h
+    src/sheet/sheetscollection/defaultsheetscollection.h src/sheet/sheetscollection/defaultsheetscollection.cpp src/sheet/sheetscollection/defaultsheetscollection.txx
 
     src/sheet/fragments/cleansheetfragment.h src/sheet/fragments/cleansheetfragment.cpp
     src/sheet/fragments/fontfragment.h src/sheet/fragments/fontfragment.cpp
